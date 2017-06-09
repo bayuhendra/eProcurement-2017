@@ -11,6 +11,7 @@
         <module>com.agit.eProcure.shared</module>
         <module>com.agit.eProcure.user.management</module>
         <module>com.agit.eProcure.main</module>
+        <module>com.agit.eProcure.core</module>
     </modules>
     <properties>
         <!-- Properties for POM -->
