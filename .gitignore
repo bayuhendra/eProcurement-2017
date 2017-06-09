@@ -1,0 +1,10 @@
+/com.bitozen.skk.util/target/
+/com.bitozen.skk.shared/target/
+/com.bitozen.skk.common/target/
+/com.bitozen.skk.main/target/
+/com.bitozen.skk.user.management/target/
+/com.skk.bitozen.infrastructure.bpm/com.bitozen.skk.infrastructure.bpm/target/
+/com.bitozen.skk.ide/target/
+/com.skk.bitozen.infrastructure.bpm/com.bitozen.skk.infrastructure.hibernate/target/
+/com.bitozen.skk.sa/target/
+/com.bitozen.skk.master.data/target/
