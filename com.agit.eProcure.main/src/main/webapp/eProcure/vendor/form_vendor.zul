@@ -1,0 +1,23 @@
+<zk xmlns:x="xhtml">
+    <window>
+        <separator spacing="5px"/>
+        <caption label="Data Vendor Perusahaan"/>  
+        <div height = "50%">
+            <tabbox width="100%" height="100%" sclass="nav_tabs">
+                <tabs id="tabs" >
+                    <tab label="  DATA LOGIN  "/>
+                    <tab label="  DATA PERUSAHAAN  "/>
+                    <tab label="  DATA BANK  "/>
+                    <tab label="  DATA SEGMENTASI  "/>
+                    <tab label="  DATA DOKUMEN  "/>
+                    <tab label="  PERALATAN  "/>
+                    <tab label="  DATA KEUANGAN  "/>
+                    <tab label="  DATA PENGALAMAN  "/>
+                </tabs>
+            </tabbox>
+        </div>
+        <hlayout>
+            <include id="incTab1" src="@load(vm.src)" hflex="1"/>
+        </hlayout>
+    </window>
+</zk>
