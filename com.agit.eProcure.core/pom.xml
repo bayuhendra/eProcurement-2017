@@ -8,4 +8,22 @@
     </parent>
     <artifactId>com.agit.eProcure.core</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.bitozen.rkap</groupId>
+            <artifactId>com.bitozen.rkap.prognosa</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.bitozen.rkap</groupId>
+                    <artifactId>com.bitozen.rkap.common</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.bitozen.rkap</groupId>
+            <artifactId>com.bitozen.rkap.util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
