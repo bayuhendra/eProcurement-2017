@@ -5,5 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     
     <!--setting service apllication-->
-    
+    <bean id="dataLoginDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataLoginDTOAssembler">
+    </bean>
+    <bean id="dataLoginService" class="com.agit.eProcure.core.application.impl.DataLoginServiceImpl">
+        <property name="dataLoginRepository" ref="dataLoginRepository"/>
+        <property name="dataLoginDTOAssembler" ref="dataLoginDTOAssembler"/>
+    </bean>
+        
 </beans>

@@ -5,7 +5,7 @@
         <id column="id_privilege" name="id">
             <generator class="increment"/>
         </id>
-        <property column="idDataLogin" name="idDataLogin" unique="true" update="false" not-null="true"/>
+        <property column="idDataLogin" name="idDataLogin" unique="true" update="true" not-null="true"/>
         <property column="namaPengguna" name="namaPengguna" not-null="true" update="true"/>
         <property column="idUser" name="idUser"/>
         <property column="password" name="password"/>

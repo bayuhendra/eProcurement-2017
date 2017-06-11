@@ -1,16 +1,14 @@
-package com.agit.eProcure.core.domain.vendor;
+package com.agit.eProcure.common.dto.vendor;
 
-import com.agit.eProcure.shared.object.EntityObject;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  *
  * @author Bayu Hendra Setiawan
  */
-public class DataLogin implements EntityObject<DataLogin> {
+public class DataLoginDTO implements Serializable {
 
-    long id;
     private String idDataLogin;
     private String namaPengguna;
     private String idUser;
@@ -22,11 +20,10 @@ public class DataLogin implements EntityObject<DataLogin> {
     private String modifiedBy;
     private Date modifiedDate;
 
-    public DataLogin() {
+    public DataLoginDTO() {
     }
 
-    public DataLogin(long id, String idDataLogin, String namaPengguna, String idUser, String password, String logo, String headerImage, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
-        this.id = id;
+    public DataLoginDTO(String idDataLogin, String namaPengguna, String idUser, String password, String logo, String headerImage, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idDataLogin = idDataLogin;
         this.namaPengguna = namaPengguna;
         this.idUser = idUser;
@@ -37,14 +34,6 @@ public class DataLogin implements EntityObject<DataLogin> {
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getIdDataLogin() {
@@ -128,54 +117,8 @@ public class DataLogin implements EntityObject<DataLogin> {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.idDataLogin);
-        hash = 71 * hash + Objects.hashCode(this.namaPengguna);
-        hash = 71 * hash + Objects.hashCode(this.idUser);
-        hash = 71 * hash + Objects.hashCode(this.password);
-        hash = 71 * hash + Objects.hashCode(this.logo);
-        hash = 71 * hash + Objects.hashCode(this.headerImage);
-        hash = 71 * hash + Objects.hashCode(this.createdBy);
-        hash = 71 * hash + Objects.hashCode(this.createdDate);
-        hash = 71 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 71 * hash + Objects.hashCode(this.modifiedDate);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DataLogin other = (DataLogin) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-
-    public void assignNewDataLogin(DataLogin dataLogin) {
-        this.namaPengguna = dataLogin.namaPengguna;
-        this.idUser = dataLogin.idUser;
-        this.password = dataLogin.password;
-        this.logo = dataLogin.logo;
-        this.headerImage = dataLogin.headerImage;
-        this.createdBy = dataLogin.createdBy;
-        this.createdDate = dataLogin.createdDate;
-        this.modifiedBy = dataLogin.modifiedBy;
-        this.modifiedDate = dataLogin.modifiedDate;
-    }
-
-    @Override
-    public boolean sameIdentityAs(DataLogin other) {
-        return this.equals(other);
+    public String toString() {
+        return "DataLoginDTO{" + "idDataLogin=" + idDataLogin + ", namaPengguna=" + namaPengguna + ", idUser=" + idUser + ", password=" + password + ", logo=" + logo + ", headerImage=" + headerImage + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

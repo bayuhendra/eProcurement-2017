@@ -34,7 +34,7 @@ public class DataLoginHibernateRepository extends HibernateRepository implements
     @Override
     public DataLogin findByID(String idDataLogin) {
         return (DataLogin) getSession()
-                .createQuery("from from com.agit.eProcure.core.domain.vendor.DataLogin where idDataLogin = :tid")
+                .createQuery("from com.agit.eProcure.core.domain.vendor.DataLogin where idDataLogin= :tid")
                 .setParameter("tid", idDataLogin)
                 .uniqueResult();
     }
@@ -42,7 +42,7 @@ public class DataLoginHibernateRepository extends HibernateRepository implements
     @Override
     public List<DataLogin> findAll() {
         return (List<DataLogin>) getSession()
-                .createQuery("from from com.agit.eProcure.core.domain.vendor.DataLogin")
+                .createQuery("from com.agit.eProcure.core.domain.vendor.DataLogin")
                 .list();
     }
 
