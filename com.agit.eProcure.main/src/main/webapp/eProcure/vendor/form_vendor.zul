@@ -1,11 +1,12 @@
 <zk xmlns:x="xhtml">
-    <window>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="5px"/>
         <caption label="Data Vendor Perusahaan"/>  
         <div height = "50%">
-            <tabbox width="100%" height="100%" sclass="nav_tabs">
+            <tabbox width="100%">
                 <tabs id="tabs" >
-                    <tab label="  DATA LOGIN  "/>
+                    <tab label="  DATA LOGIN  " onClick="@command('buttonKlikDataLogin')"/>
                     <tab label="  DATA PERUSAHAAN  "/>
                     <tab label="  DATA BANK  "/>
                     <tab label="  DATA SEGMENTASI  "/>
@@ -16,8 +17,8 @@
                 </tabs>
             </tabbox>
         </div>
-        <hlayout>
+<!--        <hlayout>
             <include id="incTab1" src="@load(vm.src)" hflex="1"/>
-        </hlayout>
+        </hlayout>-->
     </window>
 </zk>

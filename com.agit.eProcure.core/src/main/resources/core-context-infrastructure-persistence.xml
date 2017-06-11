@@ -11,4 +11,9 @@
 
     <!--Setting Repository-->
     
+    
+    <bean id="dataLoginRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataLoginHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
 </beans>

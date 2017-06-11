@@ -9,7 +9,7 @@
             <groupbox mold="3d" >
                 <vbox width="100%" height="100%" align="center">
                     <image src="/images/logoagit-new.png"/>
-                    <label style="color:gray;font-size:20px">Sign In To Start App E-Procurement</label>
+                    <label style="color:#65001e;font-size:23px">Sign In To Start App E-Procurement</label>
                 </vbox>
                 <style>
                     .z-separator-hor-bar {
@@ -21,15 +21,15 @@
                 <grid style="border:none;">
                     <rows>
                         <row>
-                            <label style="font-weight:bold;" value="${labels.user.label.username}" />
+                            <label style="font-weight:bold;color:#65001e" value="${labels.user.label.username}" />
                             <textbox name="username" width="150px" placeholder="username" />
                         </row>
                         <row>
-                            <label style="font-weight:bold" value="${labels.user.label.password}" />
+                            <label style="font-weight:bold;color:#65001e" value="${labels.user.label.password}" />
                             <textbox type="password" name="password" width="150px" placeholder="Password"/>
                         </row>
                         <row visible="false">
-                            <label value="${labels.user.label.domain}" style="font-weight:bold" />
+                            <label value="${labels.user.label.domain}" style="font-weight:bold;color:#65001e" />
                             <listbox name="ldapDomain" model="@load(vm.domains)" mold="select" width="150px">
                                 <template name="model" status="s">  
                                     <listitem label="@load(each.key)" value="@load(each.value)" selected="@load(s.index eq 0)"/>
@@ -42,13 +42,15 @@
                 <grid style="border:none;">
                     <rows>
                         <row spans="2">
-                            <a href="http://localhost:9091/eProcure-migas" label="I Forgot My Password"/>
+                            <a href="http://localhost:9091/eProcure" target="_blank" label="Belum Punya Account User?" style="font-weight:bold;color:#65001e"/>
                             <div align="center">
-                                <h:input type="submit" value="${labels.user.label.login}" style="width: 120px; height : 30px" />
+                                <h:input type="submit" value="${labels.user.label.login}" style="width: 120px; height : 30px;color:#65001e" />
                             </div>
                         </row>
+                        
                     </rows>
                 </grid>
+                
             </groupbox>
         </h:form>
         <!-- this form-login-page form is also used as the form-error-page to ask for a login again. -->
