@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <groupbox id="gb" mold="3d" width="100%" style="padding:10px;">
-        <caption label="Data Perusahaan" style="font-size:12pt; font-weight: bold"/>
+        <caption label="Data Perusahaan" style="font-size:10pt; font-weight: bold"/>
 	 		
         <grid>
             <rows>
@@ -17,7 +18,7 @@
     </groupbox>
     
     <groupbox id="gb2" mold="3d" width="100%" style="padding:10px;">
-        <caption label="Daftar Pelanggan Aktif Selama % Tahun Terakhir" style="font-size:12pt; font-weight: bold"/>	
+        <caption label="Daftar Pelanggan Aktif Selama % Tahun Terakhir" style="font-size:10pt; font-weight: bold"/>	
         <grid vflex="1">
             <columns menupopup="auto">
                 <column label="No" sort="auto"/>
@@ -31,17 +32,16 @@
             </columns>
             <rows>
                 <row>
-                    <label value="Philip Hensher"/>
-                    <label value="The Northern Clemency"/>
-                    <label value="Knopf (October 30, 2008)"/>
-                    <label value="608 pages"/>
-                    <label value="Philip Hensher"/>
-                    <label value="The Northern Clemency"/>
-                    <label value="Knopf (October 30, 2008)"/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
                     <div>
                         <button
-                            image="/widgets/grid/inline_row_editing/img/tick-small.png"
-                            onClick="@command('confirm', languageContributionStatus=each)" />
+                            label="edit" />
                         <button
                             label="delete" />
                     </div>
@@ -51,4 +51,85 @@
         </grid>
     </groupbox>
     
+    <groupbox id="gbmd" mold="3d" width="100%" style="padding:10px;">
+        <caption label="Daftar Mitra Dagang / Usaha" style="font-size:10pt; font-weight: bold"/>	
+        <grid vflex="1">
+            <columns menupopup="auto">
+                <column label="No" sort="auto"/>
+                <column label="Nama" sort="auto"/>
+                <column label="Alamat" sort="auto"/>
+                <column label="Bidang Usaha" sort="auto"/>
+                <column label="Mulai Kerjasama" sort="auto"/>
+                <column label="Nilai Kontrak" sort="auto"/>
+                <column label="Bukti Kerjasama" sort="auto"/>
+                <column label="Aksi" sort="auto"/>
+            </columns>
+            <rows>
+                <row>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <div>
+                        <button
+                            label="edit" />
+                        <button
+                            label="delete" />
+                    </div>
+                </row>
+                
+            </rows>
+        </grid>
+    </groupbox>
+    
+    <groupbox id="gbdp" mold="3d" width="100%" style="padding:10px;">
+        <caption label="Daftar Pekerjaan Yang Sedang Berjalan" style="font-size:12pt; font-weight: bold"/>	
+        <grid vflex="1">
+            <columns menupopup="auto">
+                <column label="No" sort="auto"/>
+                <column label="Nama" sort="auto"/>
+                <column label="Alamat" sort="auto"/>
+                <column label="Bidang Usaha" sort="auto"/>
+                <column label="Mulai Kerjasama" sort="auto"/>
+                <column label="Nilai Kontrak" sort="auto"/>
+                <column label="Bukti Kerjasama" sort="auto"/>
+                <column label="Aksi" sort="auto"/>
+            </columns>
+            <rows>
+                <row>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <label value=" "/>
+                    <div>
+                        <button
+                            label="edit" />
+                        <button
+                            label="delete" />
+                    </div>
+                </row>
+                
+            </rows>
+        </grid>
+    </groupbox>
+    
+    <groupbox style="color:red; margin:10px; border:none;">
+        <label value="*) "/>
+        <label value="Dengan mengisi formulir registrasi ini anda telah menyetujui TERM CONDITION E-PROCUREMENT"/>
+        <separator></separator>
+        
+        <div style="text-align:center; margin-top:20px;">
+            <button
+                label=" Sebelumnya" />
+            <button
+                label="Simpan" />
+        </div>
+                
+    </groupbox>
 </zk>
