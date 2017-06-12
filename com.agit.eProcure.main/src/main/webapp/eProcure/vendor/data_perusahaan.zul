@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window>
+        <separator spacing="5px"/>
+        <groupbox width="600px">
+            <caption label="Data Perusahaan" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"/>
+                    <column width="20%"/>
+                    <column width="50%"/>
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="PKP / Non-PKP" style="font-weight: bold"/>
+                        <radiogroup width="100%">
+                            <radio label="PKP"/>
+                            <radio label="Non-PKP"/>
+                        </radiogroup>
+                    </row>
+                    
+                    <row>
+                        <label/>
+                        <label/>
+                        <textbox width="100%" disabled="true" />
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Kualifikasi" style="font-weight: bold"/>
+                        <combobox autodrop="true" readonly="true" width="100%">
+                            <template name="model">
+                                <comboitem label="" value=""/>
+                            </template>
+                        </combobox>
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Mendaftar di Unit" style="font-weight: bold"/>
+                        <textbox width="100%"/>
+                        <combobox autodrop="true" readonly="true" width="70%">
+                            <template name="model">
+                                <comboitem label="" value=""/>
+                            </template>
+                        </combobox>
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="NPWP Perusahaan" style="font-weight: bold"/>
+                        <textbox width="100%"/>
+                        <button label="Check NPWP" width="70%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Nama Singkatan" style="font-weight: bold"/>
+                        <textbox width="100%"/>
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Jumlah Karyawan" style="font-weight: bold"/>
+                        <textbox width="100%"/>
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Tanggal Berdiri" style="font-weight: bold"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label></label>
+                        <label value="Deskripsi"  style="font-weight: bold"/>
+                        <textbox rows="7" width="100%"></textbox>
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        
+        <separator spacing="15px"/>
+        <groupbox width="600px">
+            <caption label="Alamat Perusahaan" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"/>
+                    <column width="20%"/>
+                    <column width="60%"/>
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Alamat Perusahaan" style="font-weight: bold"/>
+                        <textbox rows="5" width="100%" />
+                    </row>
+                
+                    <row>
+                        <label/>
+                        <label/>
+                        <groupbox>
+                            <grid style="border:0">
+                                <columns>
+                                    <column width="5%"/>
+                                    <column width="30%"/>
+                                    <column width="60%"/>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <label value="*)" style="color:red"/>
+                                        <label value="Provinsi"/>
+                                        <combobox autodrop="true" readonly="true" width="100%">
+                                            <template name="model">
+                                                <comboitem label="" value=""/>
+                                            </template>
+                                        </combobox>
+                                    </row>
+                                    
+                                    
+                                    <row>
+                                        <label value="*)" style="color:red"/>
+                                        <label value="Kota"/>
+                                        <combobox autodrop="true" readonly="true" width="100%">
+                                            <template name="model">
+                                                <comboitem label="" value=""/>
+                                            </template>
+                                        </combobox>
+                                    </row>
+                                    
+                                    <row>
+                                        <label />
+                                        <label value="PO BOX"/>
+                                        <textbox width="100%"/>
+                                    </row>
+                                    
+                                    <row>
+                                        <label />
+                                        <label value="Kode Pos"/>
+                                        <textbox width="100%"/>
+                                    </row>
+                                </rows>
+                            </grid>
+                        </groupbox>
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Telepon Perusahaan" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="No. Fax" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Email" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                    <row>
+                        <label />
+                        <label value="Website" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                </rows>
+            </grid>
+        </groupbox>
+        
+        <separator spacing="15px"/>
+        <groupbox width="600px">
+            <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"/>
+                    <column width="20%"/>
+                    <column width="60%"/>
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Nama" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="No. HP" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Email" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="No. KTP" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        
+        <separator spacing="15px"/>
+        <groupbox width="1000px">
+            <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
+            <!--<paging forward="onPaging" />-->
+            <listbox rows = "4">
+                
+                <listhead>
+                    <listheader label="Nama" width="40%" align="center"/>
+                    <listheader label="Jabatan" width="15%" align="center"/>
+                    <listheader label="Email" width="20%" align="center"/>
+                    <listheader label="Aksi" width="15%" align="center"/>
+                </listhead>
+                
+                <template name="model">
+                    <listitem>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <a label="EDIT" />
+                            <a label=" | " style="font-size:12pt ;color:black" />
+                            <a label="DELETE" />
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+            
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="50%"/>
+                    <column align="left" width="50%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <button label="Kembali" width="20%" />
+                        <button label="Selanjutnya" width="20%" />
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+    </window>
+</zk>

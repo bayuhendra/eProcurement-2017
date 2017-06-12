@@ -29,12 +29,18 @@ public class VendorVM extends SelectorComposer<Window> {
     private List<DataLoginDTO> dataLoginDTOs = new ArrayList();
     private DataLoginDTO dataLoginDTO = new DataLoginDTO();
 
-    private String src= "/eProcure/vendor/data_login.zul";
+    private String src = "/eProcure/vendor/data_login.zul";
 
     @Command("buttonKlikDataLogin")
     @NotifyChange("src")
     public void buttonKlikDataLogin(@BindingParam("object") DataLoginDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_login.zul";
+    }
+    
+    @Command("buttonKlikDataPerusahaan")
+    @NotifyChange("src")
+    public void buttonKlikDataPerusahaan(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/data_perusahaan.zul";
     }
 
     public String getSrc() {
