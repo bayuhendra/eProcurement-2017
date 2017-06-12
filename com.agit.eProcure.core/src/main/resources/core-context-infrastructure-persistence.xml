@@ -25,4 +25,12 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="dataPengalamanRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataPengalamanHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="pengalamanMitraRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.PengalamanMitraHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
 </beans>
