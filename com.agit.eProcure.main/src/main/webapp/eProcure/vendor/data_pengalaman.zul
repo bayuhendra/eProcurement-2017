@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <groupbox id="gb" mold="3d" width="100%" style="padding:10px;">
+        <caption label="Data Perusahaan" style="font-size:12pt; font-weight: bold"/>
+	 		
+        <grid>
+            <rows>
+                <row>
+                    <checkbox id="" label="Tanpa Pengalaman" onCheck="" style="font-weight:bold;"/>   
+                </row>
+                <row>
+                    <button label="+ Tambah Data Pelanggan" onClick="" style="float:right"></button>
+                </row>
+            </rows>
+        </grid>
+    </groupbox>
+    
+    <groupbox id="gb2" mold="3d" width="100%" style="padding:10px;">
+        <caption label="Daftar Pelanggan Aktif Selama % Tahun Terakhir" style="font-size:12pt; font-weight: bold"/>	
+        <grid vflex="1">
+            <columns menupopup="auto">
+                <column label="No" sort="auto"/>
+                <column label="Nama" sort="auto"/>
+                <column label="Alamat" sort="auto"/>
+                <column label="Bidang Usaha" sort="auto"/>
+                <column label="Mulai Kerjasama" sort="auto"/>
+                <column label="Nilai Kontrak" sort="auto"/>
+                <column label="Bukti Kerjasama" sort="auto"/>
+                <column label="Aksi" sort="auto"/>
+            </columns>
+            <rows>
+                <row>
+                    <label value="Philip Hensher"/>
+                    <label value="The Northern Clemency"/>
+                    <label value="Knopf (October 30, 2008)"/>
+                    <label value="608 pages"/>
+                    <label value="Philip Hensher"/>
+                    <label value="The Northern Clemency"/>
+                    <label value="Knopf (October 30, 2008)"/>
+                    <div>
+                        <button
+                            image="/widgets/grid/inline_row_editing/img/tick-small.png"
+                            onClick="@command('confirm', languageContributionStatus=each)" />
+                        <button
+                            label="delete" />
+                    </div>
+                </row>
+                
+            </rows>
+        </grid>
+    </groupbox>
+    
+</zk>
