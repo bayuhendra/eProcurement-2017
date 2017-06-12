@@ -37,11 +37,11 @@
         <property name="dataPengalamanDTOAssembler" ref="dataPengalamanDTOAssembler"/>
     </bean>
     
-    <!--    <bean id="pengalamanMitraDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.PengalamanMitraDTOAssembler">
+    <bean id="pengalamanMitraDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.PengalamanMitraDTOAssembler">
     </bean>
     <bean id="pengalamanMitraService" class="com.agit.eProcure.core.application.impl.PengalamanMitraServiceImpl">
         <property name="pengalamanMitraRepository" ref="pengalamanMitraRepository"/>
         <property name="pengalamanMitraDTOAssembler" ref="pengalamanMitraDTOAssembler"/>
-    </bean>-->
+    </bean>
         
 </beans>

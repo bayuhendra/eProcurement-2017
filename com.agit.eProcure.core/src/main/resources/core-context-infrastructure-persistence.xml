@@ -29,7 +29,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <bean id="pengalamanMitraHibernateRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.PengalamanMitraHibernateRepository">
+    <bean id="pengalamanMitraRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.PengalamanMitraHibernateRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
