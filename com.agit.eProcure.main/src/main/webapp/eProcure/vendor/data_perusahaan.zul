@@ -216,6 +216,20 @@
         <separator spacing="15px"/>
         <groupbox width="1000px">
             <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="85%"/>
+                    <column align="left" width="15%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <label/>
+                        <button label=" + Tambah" width="100%" />
+                    </row>
+                </rows>
+            </grid>
             <!--<paging forward="onPaging" />-->
             <listbox rows = "4">
                 
