@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.PengalamanMitra" table="AGIT_PENGALAMAN_MITRA">
+        <id column="id" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="mitraID" name="mitraID" unique="true" update="true" not-null="true"/>
+        <property column="namaMitra" name="namaMitra" not-null="true" update="true"/>
+        <property column="lokasiKerja" name="lokasiKerja"/>
+        <property column="bidangUsahaType" name="bidangUsahaType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.BidangUsahaType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="mulaiKerjasama" name="mulaiKerjasama"/>
+        <property column="nilai" name="nilai" unique="true"/>
+        <property column="buktiKerjasama" name="buktiKerjasama" unique="true"/>
+        <property column="createBy" name="createBy" not-null="false"/>
+        <property column="createDate" name="createDate" not-null="false"/>
+        <property column="modifiedBy" name="modifiedBy" not-null="false"/>
+        <property column="modifiedDate" name="modifiedDate" not-null="false"/>
+    </class>
+</hibernate-mapping>
