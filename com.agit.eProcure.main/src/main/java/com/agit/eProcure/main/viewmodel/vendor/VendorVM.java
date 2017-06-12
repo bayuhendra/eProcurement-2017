@@ -63,7 +63,7 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataPerusahaanPICForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         Map<String, Object> params = new HashMap<>();
         params.put("dataPerusahaanDTO", obj);
-        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_perusahaan_Form_PIC.zul", window, params);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_perusahaan_form.zul", window, params);
     }
     
     @Command("buttonKlikBackFormPIC")
@@ -101,6 +101,13 @@ public class VendorVM extends SelectorComposer<Window> {
     }
     
     
+    
+    /* functional for page Data Pengalaman*/
+    @Command("buttonKlikDataPengalaman")
+    @NotifyChange("src")
+    public void buttonKlikDataPengalaman (@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/data_pengalaman.zul";
+    }
 
     /* getter setter */
     public String getSrc() {

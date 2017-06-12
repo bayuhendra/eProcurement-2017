@@ -13,7 +13,7 @@
                     <tab label="  DATA DOKUMEN  " />
                     <tab label="  PERALATAN  " />
                     <tab label="  DATA KEUANGAN  " />
-                    <tab label="  DATA PENGALAMAN  " />
+                    <tab label="  DATA PENGALAMAN  " onClick="@command('buttonKlikDataPengalaman')"/>
                 </tabs>
             </tabbox>
         </div>
