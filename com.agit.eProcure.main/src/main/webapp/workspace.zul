@@ -1,5 +1,5 @@
 <?page id="index" title="E-Procurement - Project"?>
-<?link rel="icon" type="image/png" href="/images/logoagit-new.png"?>
+<?link rel="icon" type="image/png" href="/images/animated_favicon.gif"?>
 <?taglib uri="/WEB-INF/security.tld" prefix="sec"?>
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <!--<?link rel="stylesheet" type="text/css"	href="/styles/css/bootstrap.css" ?>-->
@@ -65,7 +65,7 @@
             <south border="none" size="25px">
                 <borderlayout>
                     <west border="none" style="padding: 5px 10px 0px 0px">
-                        Copyright 2017 &#169; AGIT
+                        Copyright 2017 &#169; AGIT E-PROCUREMENT
                     </west>
                     <east border="none" style="padding: 5px 5px 0px 0px">
                         <div align="left">

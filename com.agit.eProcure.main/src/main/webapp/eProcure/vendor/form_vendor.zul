@@ -2,7 +2,7 @@
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="5px"/>
-        <caption label="Data Vendor Perusahaan"/>  
+        <caption label="Data Vendor Perusahaan" />  
         <div height = "50%">
             <tabbox width="100%">
                 <tabs id="tabs" >
@@ -17,8 +17,8 @@
                 </tabs>
             </tabbox>
         </div>
-<!--        <hlayout>
+        <hlayout>
             <include id="incTab1" src="@load(vm.src)" hflex="1"/>
-        </hlayout>-->
+        </hlayout>
     </window>
 </zk>

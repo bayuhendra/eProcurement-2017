@@ -46,17 +46,17 @@ public class DataLoginServiceTest {
         /* step 3 - get Data DataLogin by ID */
         printThisMessage("Step 3 - Get Data by ID");
         DataLoginDTO dataLoginByID = dataLoginService.findByID(p.getIdDataLogin());
-        System.out.println("Data DataLogin by ID " + dataLoginByID);
+        System.out.println("Data Data Login by ID " + dataLoginByID);
 
-        /* step 4 - get All Data DataLogin */
-        printThisMessage("Step 4 - Get All Data DataLogin");
+        /* step 4 - get All Data Data Login */
+        printThisMessage("Step 4 - Get All Data Data Login");
         List<DataLoginDTO> listDataLogin = dataLoginService.findAll();
         for (DataLoginDTO pp : listDataLogin) {
             System.out.println("Data Semua DataLogin" + pp.toString());
         }
 
-        /* step 5 - get data dataLogin by Params*/
-        printThisMessage("Step 5 - Get Data DataLogin by Params");
+        /* step 5 - get data Login by Params*/
+        printThisMessage("Step 5 - Get Data Data Login by Params");
         Map paramater = new HashMap();
         paramater.put("namaPengguna", "BAYU");
 

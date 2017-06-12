@@ -1,5 +1,5 @@
 <?page id="index" title="E-Procurement - Project"?>
-<?link rel="icon" type="image/png" href="/images/logoagit-new.png"?>
+<?link rel="icon" type="image/png" href="/images/animated_favicon.gif"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window width="400px" position="center" mode="overlapped" style="background-color:#323B55;"
             apply="org.zkoss.bind.BindComposer"
