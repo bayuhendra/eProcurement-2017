@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-
+    <window>
+        <groupbox width="1000px" closable="false">
+            <caption label="Data Bank" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="85%"/>
+                    <column align="left" width="15%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <label/>
+                        <button label=" + Tambah" width="100%" />
+                    </row>
+                </rows>
+            </grid>
+            <!--<paging forward="onPaging" />-->
+            <listbox rows = "5">
+                
+                <listhead>
+                    <listheader label="No" width="40%" align="center"/>
+                    <listheader label="Bana Bank" width="15%" align="center"/>
+                    <listheader label="Email" width="20%" align="center"/>
+                    <listheader label="Aksi" width="15%" align="center"/>
+                </listhead>
+                
+                <template name="model">
+                    <listitem>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <a label="EDIT" />
+                            <a label=" | " style="font-size:12pt ;color:black" />
+                            <a label="DELETE" />
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+            
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="50%"/>
+                    <column align="left" width="50%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <button label="Kembali" width="20%" />
+                        <button label="Selanjutnya" width="20%"/>
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>        
+    </window>
 </zk>

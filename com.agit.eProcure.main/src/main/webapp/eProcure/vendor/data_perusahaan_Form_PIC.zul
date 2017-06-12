@@ -36,8 +36,8 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label="Kembali" onClick="@command('buttonBackFormPIC')" width="100%"/>
-                        <button label="Save" onClick="@command('buttonSaveFormPIC')" width="40%"/>
+                        <button label="Kembali" onClick="@command('buttonKlikBackFormPIC')" width="100%"/>
+                        <button label="Save" onClick="@command('buttonKlikSaveFormPIC')" width="40%"/>
                     </row>
                 </rows>
             </grid>

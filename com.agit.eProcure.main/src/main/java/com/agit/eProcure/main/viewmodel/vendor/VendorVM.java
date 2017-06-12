@@ -43,19 +43,42 @@ public class VendorVM extends SelectorComposer<Window> {
     private DataPerusahaanDTO dataPerusahaanDTO = new DataPerusahaanDTO();
 
     private String src = "/eProcure/vendor/data_login.zul";
-
+    
+    /* functional for page Data Login */
     @Command("buttonKlikDataLogin")
     @NotifyChange("src")
     public void buttonKlikDataLogin(@BindingParam("object") DataLoginDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_login.zul";
     }
 
+    /* functional for page Data Perusahaan */
     @Command("buttonKlikDataPerusahaan")
     @NotifyChange("src")
     public void buttonKlikDataPerusahaan(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_perusahaan.zul";
+    }    
+    
+    @Command("buttonKlikDataPerusahaanPICForm")
+    @NotifyChange("dataPerusahaanDTO")
+    public void buttonKlikDataPerusahaanPICForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataPerusahaanDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_perusahaan_Form_PIC.zul", window, params);
+    }
+    
+    @Command("buttonKlikBackFormPIC")
+//    @NotifyChange({"dataPerusahaanDTO", "dataPerusahaanDTOs"})
+    public void buttonBackFormPIC(@BindingParam("object") @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
+    }
+    
+    @Command("buttonKlikSaveFormPIC")
+    @NotifyChange({"dataPerusahaanDTO", "dataPerusahaanDTOs"})
+    public void buttonSaveFormPIC(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
     }
 
+    /* functional for page Data Segmentasi */
     @Command("buttonKlikDataSegmentasi")
     @NotifyChange("src")
     public void buttonKlikDataSegmentasi(@ContextParam(ContextType.VIEW) Window window) {
@@ -70,27 +93,16 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_tambah_segmentasi.zul", window, params);
     }
 
-    @Command("buttonKlikDataPerusahaanPICForm")
-    @NotifyChange("dataPerusahaanDTO")
-    public void buttonKlikDataPerusahaanPICForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("dataPerusahaanDTO", obj);
-        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_perusahaan_Form_PIC.zul", window, params);
+    /* functional for page Data Bank */
+    @Command("buttonKlikDataBank")
+    @NotifyChange("src")
+    public void buttonKlikDataBank (@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/data_bank.zul";
     }
     
-    @Command("buttonBackFormPIC")
-//    @NotifyChange({"dataPerusahaanDTO", "dataPerusahaanDTOs"})
-    public void buttonBackFormPIC(@BindingParam("object") @ContextParam(ContextType.VIEW) Window window) {
-        window.detach();
-    }
-    
-    @Command("buttonSaveFormPIC")
-    @NotifyChange({"dataPerusahaanDTO", "dataPerusahaanDTOs"})
-    public void buttonSaveFormPIC(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        window.detach();
-    }
     
 
+    /* getter setter */
     public String getSrc() {
         return src;
     }
