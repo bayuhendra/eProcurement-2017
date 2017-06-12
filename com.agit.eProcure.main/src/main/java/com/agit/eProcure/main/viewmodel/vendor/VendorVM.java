@@ -1,13 +1,16 @@
 package com.agit.eProcure.main.viewmodel.vendor;
 
 import com.agit.eProcure.common.application.DataLoginService;
+import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
+import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
 import com.agit.eProcure.shared.zul.CommonViewModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -35,6 +38,9 @@ public class VendorVM extends SelectorComposer<Window> {
 
     private List<DataSegmentasiDTO> dataSegmentasiDTOs = new ArrayList();
     private DataSegmentasiDTO dataSegmentasiDTO = new DataSegmentasiDTO();
+    
+    private List<DataPerusahaanDTO> dataPerusahaanDTOs = new ArrayList();
+    private DataPerusahaanDTO dataPerusahaanDTO = new DataPerusahaanDTO();
 
     private String src = "/eProcure/vendor/data_login.zul";
 
@@ -63,6 +69,27 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("dataSegmentasiDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_tambah_segmentasi.zul", window, params);
     }
+
+    @Command("buttonKlikDataPerusahaanPICForm")
+    @NotifyChange("dataPerusahaanDTO")
+    public void buttonKlikDataPerusahaanPICForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataPerusahaanDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_perusahaan_Form_PIC.zul", window, params);
+    }
+    
+    @Command("buttonBackFormPIC")
+//    @NotifyChange({"dataPerusahaanDTO", "dataPerusahaanDTOs"})
+    public void buttonBackFormPIC(@BindingParam("object") @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
+    }
+    
+    @Command("buttonSaveFormPIC")
+    @NotifyChange({"dataPerusahaanDTO", "dataPerusahaanDTOs"})
+    public void buttonSaveFormPIC(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
+    }
+    
 
     public String getSrc() {
         return src;

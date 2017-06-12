@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="5px"/>
-        <groupbox width="600px">
+        <groupbox width="600px" closable="false">
             <caption label="Data Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
@@ -83,7 +84,7 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="600px">
+        <groupbox width="600px" closable="false">
             <caption label="Alamat Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
@@ -176,8 +177,8 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="600px">
-            <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
+        <groupbox width="600px" closable="false">
+            <caption label="Data Penanggung Jawab" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
                     <column width="3%"/>
@@ -214,7 +215,7 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="1000px">
+        <groupbox width="1000px" closable="false">
             <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 
@@ -226,7 +227,7 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label=" + Tambah" width="100%" />
+                        <button label=" + Tambah" width="100%" onClick="@command('buttonKlikDataPerusahaanPICForm')"/>
                     </row>
                 </rows>
             </grid>
@@ -270,7 +271,7 @@
                 <rows>
                     <row>
                         <button label="Kembali" width="20%" />
-                        <button label="Selanjutnya" width="20%" />
+                        <button label="Selanjutnya" width="20%"/>
                     </row>
                 </rows>
             </grid>
