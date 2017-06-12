@@ -2,7 +2,7 @@
 
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <groupbox id="gb" mold="3d" width="100%" style="padding:10px;">
+    <groupbox id="gb" mold="3d" width="100%"  style="padding-top:10px;">
         <caption label="Data Perusahaan" style="font-size:10pt; font-weight: bold"/>
 	 		
         <grid>
@@ -17,7 +17,7 @@
         </grid>
     </groupbox>
     
-    <groupbox id="gb2" mold="3d" width="100%" style="padding:10px;">
+    <groupbox id="gb2" mold="3d" width="100%" style="padding-top:10px;" >
         <caption label="Daftar Pelanggan Aktif Selama % Tahun Terakhir" style="font-size:10pt; font-weight: bold"/>	
         <grid vflex="1">
             <columns menupopup="auto">
@@ -51,7 +51,7 @@
         </grid>
     </groupbox>
     
-    <groupbox id="gbmd" mold="3d" width="100%" style="padding:10px;">
+    <groupbox id="gbmd" mold="3d" width="100%" style="padding-top:10px;">
         <caption label="Daftar Mitra Dagang / Usaha" style="font-size:10pt; font-weight: bold"/>	
         <grid vflex="1">
             <columns menupopup="auto">
@@ -85,7 +85,7 @@
         </grid>
     </groupbox>
     
-    <groupbox id="gbdp" mold="3d" width="100%" style="padding:10px;">
+    <groupbox id="gbdp" mold="3d" width="100%" style="padding-top:10px;">
         <caption label="Daftar Pekerjaan Yang Sedang Berjalan" style="font-size:12pt; font-weight: bold"/>	
         <grid vflex="1">
             <columns menupopup="auto">
@@ -119,7 +119,7 @@
         </grid>
     </groupbox>
     
-    <groupbox style="color:red; margin:10px; border:none;">
+    <groupbox style="color:red;  border:none; padding-top:10px;" >
         <label value="*) "/>
         <label value="Dengan mengisi formulir registrasi ini anda telah menyetujui TERM CONDITION E-PROCUREMENT"/>
         <separator></separator>
