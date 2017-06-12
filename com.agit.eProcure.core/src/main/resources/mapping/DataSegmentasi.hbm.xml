@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataSegmentasi" table="AGIT_DATASEGMENTASI">
+        <id column="id_privilege" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="idDataSegmentasi" name="idDataSegmentasi" not-null="false"/>
+        <property column="bidangUsahaType" name="bidangUsahaType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.BidangUsahaType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="assosiasiType" name="assosiasiType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.AssosiasiType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="nomorAssosiasi" name="nomorAssosiasi"/>
+        <property column="tanggalMulai" name="tanggalMulai"/>
+        <property column="tanggalBerakhir" name="tanggalBerakhir"/>
+        <property column="createdBy" name="createdBy"/>
+        <property column="createdDate" name="createdDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
+    </class>
+</hibernate-mapping>

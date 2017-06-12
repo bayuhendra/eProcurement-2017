@@ -15,5 +15,14 @@
     <bean id="dataLoginRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataLoginHibernateRepository">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="dataPerusahaanRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataPerusahaanHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="dataBankRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataBankHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="dataSegmentasiRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataSegmentasiHibernateRepository">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     
 </beans>

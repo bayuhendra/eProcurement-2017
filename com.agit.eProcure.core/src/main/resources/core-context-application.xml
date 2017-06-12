@@ -11,5 +11,23 @@
         <property name="dataLoginRepository" ref="dataLoginRepository"/>
         <property name="dataLoginDTOAssembler" ref="dataLoginDTOAssembler"/>
     </bean>
+    <bean id="dataPerusahaanDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataPerusahaanDTOAssembler">
+    </bean>
+    <bean id="dataPerusahaanService" class="com.agit.eProcure.core.application.impl.DataPerusahaanServiceImpl">
+        <property name="dataPerusahaanRepository" ref="dataPerusahaanRepository"/>
+        <property name="dataPerusahaanDTOAssembler" ref="dataPerusahaanDTOAssembler"/>
+    </bean>
+    <bean id="dataBankDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataBankDTOAssembler">
+    </bean>
+    <bean id="dataBankService" class="com.agit.eProcure.core.application.impl.DataBankServiceImpl">
+        <property name="dataBankRepository" ref="dataBankRepository"/>
+        <property name="dataBankDTOAssembler" ref="dataBankDTOAssembler"/>
+    </bean>
+    <bean id="dataSegmentasiDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataSegmentasiDTOAssembler">
+    </bean>
+    <bean id="dataSegmentasiService" class="com.agit.eProcure.core.application.impl.DataSegmentasiServiceImpl">
+        <property name="dataSegmentasiRepository" ref="dataSegmentasiRepository"/>
+        <property name="dataSegmentasiDTOAssembler" ref="dataSegmentasiDTOAssembler"/>
+    </bean>
         
 </beans>

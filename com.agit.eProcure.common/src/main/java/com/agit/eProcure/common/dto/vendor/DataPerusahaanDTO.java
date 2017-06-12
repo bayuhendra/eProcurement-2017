@@ -1,6 +1,5 @@
-package com.agit.eProcure.core.domain.vendor;
+package com.agit.eProcure.common.dto.vendor;
 
-import com.agit.eProcure.shared.object.EntityObject;
 import com.agit.eProcure.shared.type.JabatanType;
 import com.agit.eProcure.shared.type.KotaType;
 import com.agit.eProcure.shared.type.KualifikasiType;
@@ -8,16 +7,15 @@ import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
 import com.agit.eProcure.shared.type.PropinsiType;
 import com.agit.eProcure.shared.type.UnitType;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  *
  * @author Bayu Hendra Setiawan
  */
-public class DataPerusahaan implements EntityObject<DataPerusahaan> {
+public class DataPerusahaanDTO implements Serializable {
 
-    long id;
     private String idPerusahaan;
     private PKPType pKPType;
     private KualifikasiType kualifikasiType;
@@ -50,11 +48,10 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     private String modifiedBy;
     private Date modifiedDate;
 
-    public DataPerusahaan() {
+    public DataPerusahaanDTO() {
     }
 
-    public DataPerusahaan(long id, String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, PropinsiType propinsiType, KotaType kotaType, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String namaPenanggungJawab, JabatanType jabatanType, String emailPenanggungJawab, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
-        this.id = id;
+    public DataPerusahaanDTO(String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, PropinsiType propinsiType, KotaType kotaType, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String namaPenanggungJawab, JabatanType jabatanType, String emailPenanggungJawab, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idPerusahaan = idPerusahaan;
         this.pKPType = pKPType;
         this.kualifikasiType = kualifikasiType;
@@ -86,14 +83,6 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getIdPerusahaan() {
@@ -345,97 +334,8 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.idPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.pKPType);
-        hash = 53 * hash + Objects.hashCode(this.kualifikasiType);
-        hash = 53 * hash + Objects.hashCode(this.unitType);
-        hash = 53 * hash + Objects.hashCode(this.namaPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.perusahaanType);
-        hash = 53 * hash + Objects.hashCode(this.npwp);
-        hash = 53 * hash + Objects.hashCode(this.namaSingkatan);
-        hash = 53 * hash + Objects.hashCode(this.jumlahKaryawan);
-        hash = 53 * hash + Objects.hashCode(this.tanggalBerdiri);
-        hash = 53 * hash + Objects.hashCode(this.deskripsi);
-        hash = 53 * hash + Objects.hashCode(this.alamatPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.propinsiType);
-        hash = 53 * hash + Objects.hashCode(this.kotaType);
-        hash = 53 * hash + Objects.hashCode(this.poBox);
-        hash = 53 * hash + Objects.hashCode(this.kodePos);
-        hash = 53 * hash + Objects.hashCode(this.telpPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.noFax);
-        hash = 53 * hash + Objects.hashCode(this.emailPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.website);
-        hash = 53 * hash + Objects.hashCode(this.namaCp);
-        hash = 53 * hash + Objects.hashCode(this.noHP);
-        hash = 53 * hash + Objects.hashCode(this.emailCp);
-        hash = 53 * hash + Objects.hashCode(this.noKtp);
-        hash = 53 * hash + Objects.hashCode(this.namaPenanggungJawab);
-        hash = 53 * hash + Objects.hashCode(this.jabatanType);
-        hash = 53 * hash + Objects.hashCode(this.emailPenanggungJawab);
-        hash = 53 * hash + Objects.hashCode(this.createdBy);
-        hash = 53 * hash + Objects.hashCode(this.createdDate);
-        hash = 53 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 53 * hash + Objects.hashCode(this.modifiedDate);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DataPerusahaan other = (DataPerusahaan) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-
-    public void assignNewDataPerusahaan(DataPerusahaan dataPerusahaan) {
-        this.idPerusahaan = dataPerusahaan.idPerusahaan;
-        this.pKPType = dataPerusahaan.pKPType;
-        this.kualifikasiType = dataPerusahaan.kualifikasiType;
-        this.unitType = dataPerusahaan.unitType;
-        this.namaPerusahaan = dataPerusahaan.namaPerusahaan;
-        this.perusahaanType = dataPerusahaan.perusahaanType;
-        this.npwp = dataPerusahaan.npwp;
-        this.namaSingkatan = dataPerusahaan.namaSingkatan;
-        this.jumlahKaryawan = dataPerusahaan.jumlahKaryawan;
-        this.tanggalBerdiri = dataPerusahaan.tanggalBerdiri;
-        this.deskripsi = dataPerusahaan.deskripsi;
-        this.alamatPerusahaan = dataPerusahaan.alamatPerusahaan;
-        this.propinsiType = dataPerusahaan.propinsiType;
-        this.kotaType = dataPerusahaan.kotaType;
-        this.poBox = dataPerusahaan.poBox;
-        this.kodePos = dataPerusahaan.kodePos;
-        this.telpPerusahaan = dataPerusahaan.telpPerusahaan;
-        this.noFax = dataPerusahaan.noFax;
-        this.emailPerusahaan = dataPerusahaan.emailPerusahaan;
-        this.website = dataPerusahaan.website;
-        this.namaCp = dataPerusahaan.namaCp;
-        this.noHP = dataPerusahaan.noHP;
-        this.emailCp = dataPerusahaan.emailCp;
-        this.noKtp = dataPerusahaan.noKtp;
-        this.namaPenanggungJawab = dataPerusahaan.namaPenanggungJawab;
-        this.jabatanType = dataPerusahaan.jabatanType;
-        this.emailPenanggungJawab = dataPerusahaan.emailPenanggungJawab;
-        this.createdBy = dataPerusahaan.createdBy;
-        this.createdDate = dataPerusahaan.createdDate;
-        this.modifiedBy = dataPerusahaan.modifiedBy;
-        this.modifiedDate = dataPerusahaan.modifiedDate;
-    }
-
-    @Override
-    public boolean sameIdentityAs(DataPerusahaan other) {
-        return this.equals(other);
+    public String toString() {
+        return "DataPerusahaanDTO{" + "idPerusahaan=" + idPerusahaan + ", pKPType=" + pKPType + ", kualifikasiType=" + kualifikasiType + ", unitType=" + unitType + ", namaPerusahaan=" + namaPerusahaan + ", perusahaanType=" + perusahaanType + ", npwp=" + npwp + ", namaSingkatan=" + namaSingkatan + ", jumlahKaryawan=" + jumlahKaryawan + ", tanggalBerdiri=" + tanggalBerdiri + ", deskripsi=" + deskripsi + ", alamatPerusahaan=" + alamatPerusahaan + ", propinsiType=" + propinsiType + ", kotaType=" + kotaType + ", poBox=" + poBox + ", kodePos=" + kodePos + ", telpPerusahaan=" + telpPerusahaan + ", noFax=" + noFax + ", emailPerusahaan=" + emailPerusahaan + ", website=" + website + ", namaCp=" + namaCp + ", noHP=" + noHP + ", emailCp=" + emailCp + ", noKtp=" + noKtp + ", namaPenanggungJawab=" + namaPenanggungJawab + ", jabatanType=" + jabatanType + ", emailPenanggungJawab=" + emailPenanggungJawab + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

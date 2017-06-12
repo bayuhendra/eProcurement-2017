@@ -5,15 +5,15 @@
         <id column="id_privilege" name="id">
             <generator class="increment"/>
         </id>
-        <property column="idDataLogin" name="idDataLogin" unique="true" update="true" not-null="true"/>
-        <property column="namaPengguna" name="namaPengguna" not-null="true" update="true"/>
+        <property column="idDataLogin" name="idDataLogin" not-null="false"/>
+        <property column="namaPengguna" name="namaPengguna"/>
         <property column="idUser" name="idUser"/>
         <property column="password" name="password"/>
         <property column="logo" name="logo"/>
-        <property column="headerImage" name="headerImage" unique="true"/>
-        <property column="createdBy" name="createdBy" not-null="false"/>
-        <property column="createdDate" name="createdDate" not-null="false"/>
-        <property column="modifiedBy" name="modifiedBy" not-null="false"/>
-        <property column="modifiedDate" name="modifiedDate" not-null="false"/>
+        <property column="headerImage" name="headerImage"/>
+        <property column="createdBy" name="createdBy"/>
+        <property column="createdDate" name="createdDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
     </class>
 </hibernate-mapping>

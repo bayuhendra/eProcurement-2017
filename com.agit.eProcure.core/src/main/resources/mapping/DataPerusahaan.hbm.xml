@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataPerusahaan" table="AGIT_DATAPERUSAHAAN">
+        <id column="id_privilege" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="idPerusahaan" name="idPerusahaan" not-null="false"/>
+        <property column="pKPType" name="pKPType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.PKPType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="kualifikasiType" name="kualifikasiType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.KualifikasiType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="unitType" name="unitType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.UnitType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="namaPerusahaan" name="namaPerusahaan"/>
+        <property column="perusahaanType" name="perusahaanType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.PerusahaanType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="npwp" name="npwp"/>
+        <property column="namaSingkatan" name="namaSingkatan"/>
+        <property column="jumlahKaryawan" name="jumlahKaryawan"/>
+        <property column="tanggalBerdiri" name="tanggalBerdiri"/>
+        <property column="deskripsi" name="deskripsi"/>
+        <property column="alamatPerusahaan" name="alamatPerusahaan"/>
+        <property column="propinsiType" name="propinsiType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.PropinsiType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="kotaType" name="kotaType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.KotaType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="poBox" name="poBox"/>
+        <property column="kodePos" name="kodePos"/>
+        <property column="telpPerusahaan" name="telpPerusahaan"/>
+        <property column="noFax" name="noFax"/>
+        <property column="emailPerusahaan" name="emailPerusahaan"/>
+        <property column="website" name="website"/>
+        <property column="namaCp" name="namaCp"/>
+        <property column="noHP" name="noHP"/>
+        <property column="emailCp" name="emailCp"/>
+        <property column="noKtp" name="noKtp"/>
+        <property column="namaPenanggungJawab" name="namaPenanggungJawab"/>
+        <property column="jabatanType" name="jabatanType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.JabatanType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="emailPenanggungJawab" name="emailPenanggungJawab"/>
+        <property column="createdBy" name="createdBy"/>
+        <property column="createdDate" name="createdDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
+    </class>
+</hibernate-mapping>

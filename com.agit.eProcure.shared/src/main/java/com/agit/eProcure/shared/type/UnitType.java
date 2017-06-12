@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.agit.eProcure.shared.type;
 
 /**
  *
- * @author 10991001
+ * @author Bayu Hendra Setiawan
  */
 public enum UnitType {
-    CAR, MOTOR, MULTIFINANCE
+    PT_ASTRA_INTERNATIONAL_Tbk,
+    PT_ASTRA_GRAPHIA_INFORMATION_TECHNOLOGY
 }

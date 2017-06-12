@@ -162,6 +162,7 @@ public class DataLogin implements EntityObject<DataLogin> {
     }
 
     public void assignNewDataLogin(DataLogin dataLogin) {
+        this.idDataLogin = dataLogin.idDataLogin;
         this.namaPengguna = dataLogin.namaPengguna;
         this.idUser = dataLogin.idUser;
         this.password = dataLogin.password;
