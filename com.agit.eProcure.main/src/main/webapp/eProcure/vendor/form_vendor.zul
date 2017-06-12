@@ -9,7 +9,7 @@
                     <tab label="  DATA LOGIN  " onClick="@command('buttonKlikDataLogin')"/>
                     <tab label="  DATA PERUSAHAAN  " onClick = "@command('buttonKlikDataPerusahaan')" />
                     <tab label="  DATA BANK  "/>
-                    <tab label="  DATA SEGMENTASI  "/>
+                    <tab label="  DATA SEGMENTASI  " onClick = "@command('buttonKlikDataSegmentasi')"/>
                     <tab label="  DATA DOKUMEN  "/>
                     <tab label="  PERALATAN  "/>
                     <tab label="  DATA KEUANGAN  "/>

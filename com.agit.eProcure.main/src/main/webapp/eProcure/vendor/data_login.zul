@@ -14,23 +14,23 @@
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Nama Pengguna " style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" constraint="no empty : ID Ticket Tidak Boleh Kosong"/>
+                        <textbox width="100%" disabled="false" constraint="no empty : Nama Pengguna Tidak Boleh Kosong"/>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="User ID" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" constraint="no empty : ID Ticket Tidak Boleh Kosong"/>
+                        <textbox width="100%" disabled="false" constraint="no empty : ID User Tidak Boleh Kosong"/>
                         <button label="Check User ID" width="60%"></button>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Password" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" type="password"/>
+                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Password Tidak Boleh Kosong"/>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Retype Password" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" type="password"/>
+                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong"/>
                     </row>
                     <row>
                         <label value="" style="color:red"/>

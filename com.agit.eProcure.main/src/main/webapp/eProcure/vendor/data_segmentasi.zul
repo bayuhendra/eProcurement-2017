@@ -1,0 +1,71 @@
+<zk xmlns:x="xhtml">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+        <separator spacing="5px"/>
+        <groupbox width="800px">
+            <caption label="Data Segmentasi" style="font-size:16pt;font-weight: bold"/>
+            <groupbox>
+                <grid style="border:0">
+                    <columns>
+                        <column width="80%"/>
+                        <column width="20%"/>
+                        <column />
+                    </columns>
+                    <rows>
+                        <row>
+                            <label/>
+                            <button label=" + Tambah" width="100%" onClick = "@command('buttonKlikDataTambahSegmentasi')"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+            <listbox rows = "4">
+  
+                <listhead>
+                    <listheader label="No" width="5%" align="center"/>
+                    <listheader label="Bidang Usaha" width="15%" align="center"/>
+                    <listheader label="Sub Bidang" width="15%" align="center"/>      
+                    <listheader label="Assosiasi" width="15%" align="center"/>
+                    <listheader label="Nomor" width="15%" align="center"/>
+                    <listheader label="Tanggal Mulai" width="15%" align="center"/>
+                    <listheader label="Tanggal Berakhir" width="15%" align="center"/>
+                    <listheader label="Aksi" width="10%" align="center"/>
+                </listhead>
+                
+                <template name="model">
+                    <listitem>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <a label="EDIT" />
+                            <a label=" | " style="font-size:12pt ;color:black" />
+                            <a label="DELETE" />
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="50%"/>
+                    <column align="left" width="50%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <button label="Kembali" width="30%" />
+                        <button label="Selanjutnya" width="30%" />
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        
+    </window>
+</zk>
