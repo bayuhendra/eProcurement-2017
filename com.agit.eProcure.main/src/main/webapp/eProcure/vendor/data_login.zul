@@ -61,6 +61,20 @@
                 <separator></separator>
                 
             </groupbox>
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="50%"/>
+                    <column align="left" width="50%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <button label="Kembali" width="30%" />
+                        <button label="Selanjutnya" width="30%" />
+                    </row>
+                </rows>
+            </grid>
         </groupbox>
         
     </window>
