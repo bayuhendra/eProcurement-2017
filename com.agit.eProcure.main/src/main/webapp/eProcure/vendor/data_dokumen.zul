@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+        <separator spacing="5px"/>
+        <groupbox width="1000px">
+            <groupbox>
+                <caption label="Data Dokumen" style="font-size:16pt; font-weight: bold"/>
+                <listbox rows = "4">
+                
+                    <listhead>
+                        <listheader label="Subject" width="18%" align="center"/>
+                        <listheader label="Nomor Dokumen" width="14%" align="center"/>
+                        <listheader label="Tanggal Terbit" width="14%" align="center"/>
+                        <listheader label="Tanggal Berakhir" width="14%" align="center"/>
+                        <listheader label="Upload" width="14%" align="center"/>
+                    </listhead>
+                
+                    <template name="model">
+                        <listitem>
+                            <listcell>
+                                <label width="100%" value=""/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value=""/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value=""/>
+                            </listcell>
+                            <listcell>
+                                <a label="EDIT" />
+                                <a label=" | " style="font-size:12pt ;color:black" />
+                                <a label="DELETE" />
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+            </groupbox>
+            <groupbox>
+                <caption label="Data Legal Dan Administrasi" style="font-size:16pt; font-weight: bold"/>
+                <grid style="border:0">
+                    <columns>
+                        <column width="23%"/>
+                        <column width="20%"/>
+                        <column width="20%"/>
+                        <column width="20%"/>
+                        <column width="15%"/>      
+                        <column width="5%"/>
+
+                        <column />
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Vendor Registrasi Form" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    
+                        <row>
+                            <label value="Salinan Akte Pendirian Perusahaan dan Perubahannya" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    
+                        <row>
+                            <label value="Salinan Tanda Daftar Perusahaan (TDP)" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    
+                        <row>
+                            <label value="Salinan Surat Ijin Usaha (SIUP/SIUJK)" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+            <groupbox>
+                <caption label="Dokumentasi Teknis" style="font-size:16pt; font-weight: bold"/>
+                <grid style="border:0">
+                    <columns>
+                        <column width="23%"/>
+                        <column width="20%"/>
+                        <column width="20%"/>
+                        <column width="20%"/>
+                        <column width="15%"/>      
+                        <column width="5%"/>
+
+                        <column />
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Bukti Fisik Perusahaan" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    
+                        <row>
+                            <label value="Dokumen Quality yang dimiliki" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    
+                        <row>
+                            <label value="Dokumen Teknik" style="font-weight: bold"/>
+                            <textbox width="100%" />
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
+                            <textbox width="100%" readonly="true"/>
+                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                        </row>
+                    
+                    </rows>
+                </grid>
+            </groupbox>
+            
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="50%"/>
+                    <column align="left" width="50%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <button label="Kembali" width="30%" />
+                        <button label="Selanjutnya" width="30%" />
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        
+    </window>
+</zk>

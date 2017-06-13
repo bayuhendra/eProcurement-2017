@@ -2,8 +2,50 @@
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="5px"/>
-        <groupbox width="800px">
+        <groupbox width="600px">
             <caption label="Data Segmentasi" style="font-size:16pt;font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"></column>
+                    <column width="30%"></column>
+                    <column></column>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Bidang Usaha" style="font-weight: bold"/>
+                        <combobox autodrop="true" readonly="true" width="50%">
+                            <template name="model">
+                                <comboitem label="" value=""/>
+                            </template>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Bidang Usaha" style="font-weight: bold"/>
+                        <combobox autodrop="true" readonly="true" width="50%">
+                            <template name="model">
+                                <comboitem label="" value=""/>
+                            </template>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="*) " style="color:red"/>
+                        <label value="Nomor" style="font-weight: bold"/>
+                        <textbox width="50%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong"/>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Tanggal Mulai" style="font-weight: bold"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true"/>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Tanggal Berakhir" style="font-weight: bold"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true"/>
+                    </row>
+                </rows>
+            </grid>
             <grid style="border:0">
                 
                 <columns>
@@ -13,8 +55,8 @@
                 
                 <rows>
                     <row>
-                        <button label="Kembali" width="30%" onClick="@command('buttonKembaliDataSegmentasi')" />
-                        <button label="Selanjutnya" width="30%" />
+                        <button label="Kembali" width="30%" onClick = "@command('buttonKembaliDataSegmentasi')"/>
+                        <button label="Save" width="30%" onClick = "@command('buttonCancel')"/>
                     </row>
                 </rows>
             </grid>

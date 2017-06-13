@@ -19,7 +19,7 @@
                     </rows>
                 </grid>
             </groupbox>
-            <listbox rows = "4">
+            <listbox rows = "9">
   
                 <listhead>
                     <listheader label="No" width="5%" align="center"/>
