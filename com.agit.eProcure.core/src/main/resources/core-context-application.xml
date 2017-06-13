@@ -50,5 +50,12 @@
         <property name="pengalamanBerjalanRepository" ref="pengalamanBerjalanRepository"/>
         <property name="pengalamanBerjalanDTOAssembler" ref="pengalamanBerjalanDTOAssembler"/>
     </bean>
+    
+    <bean id="dataKeuanganDTOAssembler" class="com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataKeuanganDTOAssembler">
+    </bean>
+    <bean id="dataKeuanganService" class="com.agit.eProcure.core.application.impl.DataKeuanganServiceImpl">
+        <property name="dataKeuanganRepository" ref="dataKeuanganRepository"/>
+        <property name="dataKeuanganDTOAssembler" ref="dataKeuanganDTOAssembler"/>
+    </bean>
         
 </beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataKeuangan" table="AGIT_DATAKEUANGAN">
+        <id column="id_privilege" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="auditID" name="auditID" not-null="false"/>
+        <property column="tglAudit" name="tglAudit"/>
+        <property column="namaAudit" name="namaAudit"/>
+        <property column="tahunKeuangan" name="tahunKeuangan"/>
+        <property column="kas" name="kas"/>
+        <property column="bank" name="bank"/>
+        <property column="totalPiutang" name="totalPiutang"/>
+        <property column="persediaanBarang" name="persediaanBarang" />
+        <property column="pekerjaanDP" name="pekerjaanDP"/>
+        <property column="totalAktivaLancar" name="totalAktivaLancar"/>
+        <property column="peralatan" name="peralatan"/>
+        <property column="inventaris" name="inventaris"/>
+        <property column="gedung" name="gedung"/>
+        <property column="totalAktivaTetap" name="totalAktivaTetap" />
+        <property column="aktivaLainnya" name="aktivaLainnya"/>
+        <property column="totalAktivaLainnya" name="totalAktivaLainnya"/>
+        <property column="hutangDagang" name="hutangDagang"/>
+        <property column="hutangPajak" name="hutangPajak"/>
+        <property column="hutangLainnya" name="hutangLainnya"/>
+        <property column="totalHutangJangkaPendek" name="totalHutangJangkaPendek" />
+        <property column="hutangJangkaPanjang" name="hutangJangkaPanjang"/>
+        <property column="kekayaanBerih" name="kekayaanBerih"/>
+        <property column="total" name="total"/>
+        
+        <property column="createdBy" name="createdBy"/>
+        <property column="createdDate" name="createdDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
+    </class>
+</hibernate-mapping>
