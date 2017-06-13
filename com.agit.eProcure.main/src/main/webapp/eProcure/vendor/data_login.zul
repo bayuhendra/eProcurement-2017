@@ -1,6 +1,7 @@
 <zk xmlns:x="xhtml">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataLoginDTO) @save(vm.dataLoginDTO, before='buttonSaveDataLogin')">
         <separator spacing="5px"/>
         <groupbox width="600px">
             <caption label="Data Login" style="font-size:16pt;font-weight: bold"/>
@@ -14,36 +15,36 @@
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Nama Pengguna " style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" constraint="no empty : Nama Pengguna Tidak Boleh Kosong"/>
+                        <textbox width="100%" disabled="false" constraint="no empty : Nama Pengguna Tidak Boleh Kosong" value="@bind(fx.namaPengguna)"/>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="User ID" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" constraint="no empty : ID User Tidak Boleh Kosong"/>
+                        <textbox width="100%" disabled="false" constraint="no empty : ID User Tidak Boleh Kosong" value="@bind(fx.idUser)" />
                         <button label="Check User ID" width="60%"></button>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Password" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Password Tidak Boleh Kosong"/>
+                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Password Tidak Boleh Kosong" value="@bind(fx.password)"/>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Retype Password" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong"/>
+                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong" value="@bind(fx.password)"/>
                     </row>
                     <row>
                         <label value="" style="color:red"/>
                         <label value="  Logo" style="font-weight: bold"/>
-                        <textbox width="100%" readonly="true"/>
-                        <button label="  Upload" upload="true" onUpload="@command('uploadFile')" width="60%">
+                        <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadLogo)"/>
+                        <button label="  Upload" upload="true" onUpload="@command('uploadFileLogo')" width="60%">
                         </button>
                     </row>
                     <row>
                         <label value="" style="color:red"/>
                         <label value="Header Image" style="font-weight: bold"/>
-                        <textbox width="100%" readonly="true"/>
-                        <button label="Upload" upload="true" onUpload="@command('uploadFile')" width="60%">
+                        <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadHeaderImage)"/>
+                        <button label="Upload" upload="true" onUpload="@command('uploadFileHeaderImage')" width="60%">
                         </button>
                     </row>
                 </rows>
@@ -68,7 +69,7 @@
                 <rows>
                     <row>
                         <button label="Kembali" width="30%" />
-                        <button label="Selanjutnya" width="30%" />
+                        <button label="Selanjutnya" width="30%" onClick="@command('buttonSaveDataLogin')"/>
                     </row>
                 </rows>
             </grid>
