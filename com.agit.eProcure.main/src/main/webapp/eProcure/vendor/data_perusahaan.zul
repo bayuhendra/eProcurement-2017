@@ -4,7 +4,7 @@
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="5px"/>
-        <groupbox width="600px" closable="false">
+        <groupbox width="600px" closable="true">
             <caption label="Data Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
@@ -84,7 +84,7 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="600px" closable="false">
+        <groupbox width="600px" closable="true">
             <caption label="Alamat Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
@@ -177,7 +177,7 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="600px" closable="false">
+        <groupbox width="600px" closable="true">
             <caption label="Data Penanggung Jawab" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
@@ -215,7 +215,7 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="1000px" closable="false">
+        <groupbox width="1000px" closable="true">
             <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 

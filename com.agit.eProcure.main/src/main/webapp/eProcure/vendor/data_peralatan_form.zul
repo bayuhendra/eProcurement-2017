@@ -1,0 +1,109 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+        <separator spacing="15px"/>
+        <groupbox width="500px" closable="false">
+            <caption label="Peralatan / Asset" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"/>
+                    <column width="25%"/>
+                    <column width="60%"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Jenis" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Jumlah" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Kapasitas" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Merk / Tipe" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Tahun Pembuatan" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Kondisi" style="font-weight: bold"/>
+                        <combobox width="40%" >
+                            <template name="model">
+                                <comboitem label="" value=""/>
+                            </template>
+                        </combobox>
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Lokasi" style="font-weight: bold"/>
+                        <textbox width="100%" />
+                    </row>
+                
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Bukti Kepemilikan" style="font-weight: bold"/>
+                        <combobox width="40%" >
+                            <template name="model">
+                                <comboitem label="" value=""/>
+                            </template>
+                        </combobox>
+                    </row>
+                </rows>
+            </grid>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"/>
+                    <column width="25%"/>
+                    <column width="30%" align="right"/>
+                    <column width="27%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <label />
+                        <label value="Dokumen Kepemilikan" style="font-weight: bold"/>
+                        <textbox width="100%" readonly="true" />
+                        
+                    </row>
+                    
+                    <row>
+                        <label />
+                        <label value="Gambar Peralatan / Asset" style="font-weight: bold"/>
+                        <textbox width="100%" readonly="true" />
+                        
+                    </row>
+                    <row>
+                        <label/>
+                        <label/>
+                        <button label="Kembali" onClick="@command('buttonKlikBackDataBankForm')" width="50%" />
+                        <button label="Simpan" onClick="@command('buttonKlikSaveDataBankForm')" width="50%"/>
+                    </row>
+                </rows>
+            </grid>
+            <grid>
+                <columns>
+                    <column/>
+                </columns>
+            </grid>
+        </groupbox>
+    </window>
+</zk>

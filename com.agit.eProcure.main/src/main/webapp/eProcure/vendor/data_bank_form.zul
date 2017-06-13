@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="15px"/>
         <groupbox width="600px" closable="false">
             <caption label="Data Bank" style="font-size:16pt; font-weight: bold"/>

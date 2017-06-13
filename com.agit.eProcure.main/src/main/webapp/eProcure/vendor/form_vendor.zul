@@ -13,7 +13,7 @@
                     <tab label="  DATA BANK  "  onClick="@command('buttonKlikDataBank')" />
                     <tab label="  DATA SEGMENTASI  " onClick = "@command('buttonKlikDataSegmentasi')"/>
                     <tab label="  DATA DOKUMEN  " />
-                    <tab label="  PERALATAN  " />
+                    <tab label="  PERALATAN  " onClick = "@command('buttonKlikDataPeralatan')"/>
                     <tab label="  DATA KEUANGAN  " />
                     <tab label="  DATA PENGALAMAN  " onClick="@command('buttonKlikDataPengalaman')"/>
                 </tabs>

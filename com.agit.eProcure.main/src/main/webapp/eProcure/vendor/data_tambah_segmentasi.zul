@@ -13,7 +13,7 @@
                 
                 <rows>
                     <row>
-                        <button label="Kembali" width="30%" />
+                        <button label="Kembali" width="30%" onClick="@command('buttonKembaliDataSegmentasi')" />
                         <button label="Selanjutnya" width="30%" />
                     </row>
                 </rows>
