@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataDokumen" table="AGIT_DATADOKUMEN">
+        <id column="id_privilege" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="dokumenID" name="dokumenID" not-null="false"/>
+        <property column="subject" name="subject"/>
+        <property column="noDokumen" name="noDokumen"/>
+        <property column="tglTerbit" name="tglTerbit"/>
+        <property column="tglAkhir" name="tglAkhir"/>
+        <property column="uploadFile" name="uploadFile"/>
+
+        <property column="createBy" name="createBy"/>
+        <property column="createDate" name="createDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
+    </class>
+</hibernate-mapping>
