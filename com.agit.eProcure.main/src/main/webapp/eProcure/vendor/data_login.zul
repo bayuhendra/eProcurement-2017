@@ -50,14 +50,11 @@
             </grid>
             
             <groupbox>
-                <label value="*) " style="color:red"/>
-                <label value="User ID dan Password akan di gunakan saat login"/>
+                <label value="*) User ID dan Password akan di gunakan saat login" style="color:red"/>
                 <separator></separator>
-                <label value="*) " style="color:red"/>
-                <label value="Password minimal 8 karakter, kombinasi huruf besar, kecil dan angka"/>
+                <label value="*) Password minimal 8 karakter, kombinasi huruf besar, kecil dan angka" style="color:red"/>
                 <separator></separator>
-                <label value="*) " style="color:red"/>
-                <label value="Dengan mengisi formulir registrasi ini anda telah menyetujui TERM CONDITION E-PROCUREMENT"/>
+                <label value="*) Dengan mengisi formulir registrasi ini anda telah menyetujui TERM CONDITION E-PROCUREMENT" style="color:red"/>
                 <separator></separator>
                 
             </groupbox>

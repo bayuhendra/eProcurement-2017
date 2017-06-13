@@ -1,3 +1,5 @@
+<?page id="index" title="E-Procurement - Project"?>
+<?link rel="icon" type="image/png" href="/images/animated_favicon.gif"?>
 <zk xmlns:x="xhtml">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
