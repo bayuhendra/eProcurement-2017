@@ -9,6 +9,7 @@
         <property column="namaPengguna" name="namaPengguna"/>
         <property column="idUser" name="idUser"/>
         <property column="password" name="password"/>
+        <property column="retypePassword" name="retypePassword"/>
         <property column="logo" name="logo"/>
         <property column="headerImage" name="headerImage"/>
         <property column="createdBy" name="createdBy"/>

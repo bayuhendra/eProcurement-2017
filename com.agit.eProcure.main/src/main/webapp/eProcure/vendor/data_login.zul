@@ -31,7 +31,7 @@
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Retype Password" style="font-weight: bold"/>
-                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong" value="@bind(fx.password)"/>
+                        <textbox width="100%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong" value="@bind(fx.retypePassword)"/>
                     </row>
                     <row>
                         <label value="" style="color:red"/>
@@ -46,6 +46,13 @@
                         <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadHeaderImage)"/>
                         <button label="Upload" upload="true" onUpload="@command('uploadFileHeaderImage')" width="60%">
                         </button>
+                        
+                    </row>
+                    <row>
+                        <label value="" style="color:red"/>
+                        <label value="" style="color:red"/>
+                        <label value="" style="color:red"/>
+                        <button label="Simpan" width="60%" onClick="@command('buttonSaveDataLogin')">  </button>
                     </row>
                 </rows>
             </grid>
@@ -62,16 +69,10 @@
             <grid style="border:0">
                 
                 <columns>
-                    <column align="right" width="50%"/>
-                    <column align="left" width="50%"/>
+                    <column align="right" width="90%"/>
+                    <column align="left" width="10%"/>
                 </columns>
                 
-                <rows>
-                    <row>
-                        <button label="Kembali" width="30%" />
-                        <button label="Selanjutnya" width="30%" onClick="@command('buttonSaveDataLogin')"/>
-                    </row>
-                </rows>
             </grid>
         </groupbox>
         

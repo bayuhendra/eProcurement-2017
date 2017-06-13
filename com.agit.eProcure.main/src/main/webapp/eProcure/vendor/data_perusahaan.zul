@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataPerusahaanDTO)">
         <separator spacing="5px"/>
         <groupbox width="600px" closable="true">
             <caption label="Data Perusahaan" style="font-size:16pt; font-weight: bold"/>
@@ -112,9 +113,9 @@
                                     <row>
                                         <label value="*)" style="color:red"/>
                                         <label value="Provinsi"/>
-                                        <combobox autodrop="true" readonly="true" width="100%">
-                                            <template name="model">
-                                                <comboitem label="" value=""/>
+                                        <combobox autodrop="true" model="@load(vm.propinsi)" selectedItem="@bind(fx.propinsi)" readonly="true" width="100%" placeholder="- Pilihan Propinsi -">
+                                            <template name="model" var="items">
+                                                <comboitem label="@load(items)" value="@load(items)"/>
                                             </template>
                                         </combobox>
                                     </row>
@@ -123,9 +124,9 @@
                                     <row>
                                         <label value="*)" style="color:red"/>
                                         <label value="Kota"/>
-                                        <combobox autodrop="true" readonly="true" width="100%">
-                                            <template name="model">
-                                                <comboitem label="" value=""/>
+                                        <combobox autodrop="true" model="@load(vm.kota)" selectedItem="@bind(fx.kota)" readonly="true" width="100%" placeholder="- Pilihan Kota -">
+                                            <template name="model" var="items">
+                                                <comboitem label="@load(items)" value="@load(items)"/>
                                             </template>
                                         </combobox>
                                     </row>

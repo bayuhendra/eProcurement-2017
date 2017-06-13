@@ -13,6 +13,7 @@ public class DataLoginDTO implements Serializable {
     private String namaPengguna;
     private String idUser;
     private String password;
+    private String retypePassword;
     private String logo;
     private String headerImage;
     private String createdBy;
@@ -23,11 +24,12 @@ public class DataLoginDTO implements Serializable {
     public DataLoginDTO() {
     }
 
-    public DataLoginDTO(String idDataLogin, String namaPengguna, String idUser, String password, String logo, String headerImage, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataLoginDTO(String idDataLogin, String namaPengguna, String idUser, String password, String retypePassword, String logo, String headerImage, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idDataLogin = idDataLogin;
         this.namaPengguna = namaPengguna;
         this.idUser = idUser;
         this.password = password;
+        this.retypePassword = retypePassword;
         this.logo = logo;
         this.headerImage = headerImage;
         this.createdBy = createdBy;
@@ -66,6 +68,14 @@ public class DataLoginDTO implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
     }
 
     public String getLogo() {
@@ -118,7 +128,7 @@ public class DataLoginDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "DataLoginDTO{" + "idDataLogin=" + idDataLogin + ", namaPengguna=" + namaPengguna + ", idUser=" + idUser + ", password=" + password + ", logo=" + logo + ", headerImage=" + headerImage + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "DataLoginDTO{" + "idDataLogin=" + idDataLogin + ", namaPengguna=" + namaPengguna + ", idUser=" + idUser + ", password=" + password + ", retypePassword=" + retypePassword + ", logo=" + logo + ", headerImage=" + headerImage + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

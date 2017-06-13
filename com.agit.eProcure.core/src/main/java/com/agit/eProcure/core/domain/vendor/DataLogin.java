@@ -15,6 +15,7 @@ public class DataLogin implements EntityObject<DataLogin> {
     private String namaPengguna;
     private String idUser;
     private String password;
+    private String retypePassword;
     private String logo;
     private String headerImage;
     private String createdBy;
@@ -25,12 +26,13 @@ public class DataLogin implements EntityObject<DataLogin> {
     public DataLogin() {
     }
 
-    public DataLogin(long id, String idDataLogin, String namaPengguna, String idUser, String password, String logo, String headerImage, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataLogin(long id, String idDataLogin, String namaPengguna, String idUser, String password, String retypePassword, String logo, String headerImage, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.idDataLogin = idDataLogin;
         this.namaPengguna = namaPengguna;
         this.idUser = idUser;
         this.password = password;
+        this.retypePassword = retypePassword;
         this.logo = logo;
         this.headerImage = headerImage;
         this.createdBy = createdBy;
@@ -127,19 +129,28 @@ public class DataLogin implements EntityObject<DataLogin> {
         this.modifiedDate = modifiedDate;
     }
 
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.idDataLogin);
-        hash = 71 * hash + Objects.hashCode(this.namaPengguna);
-        hash = 71 * hash + Objects.hashCode(this.idUser);
-        hash = 71 * hash + Objects.hashCode(this.password);
-        hash = 71 * hash + Objects.hashCode(this.logo);
-        hash = 71 * hash + Objects.hashCode(this.headerImage);
-        hash = 71 * hash + Objects.hashCode(this.createdBy);
-        hash = 71 * hash + Objects.hashCode(this.createdDate);
-        hash = 71 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 71 * hash + Objects.hashCode(this.modifiedDate);
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.idDataLogin);
+        hash = 67 * hash + Objects.hashCode(this.namaPengguna);
+        hash = 67 * hash + Objects.hashCode(this.idUser);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.retypePassword);
+        hash = 67 * hash + Objects.hashCode(this.logo);
+        hash = 67 * hash + Objects.hashCode(this.headerImage);
+        hash = 67 * hash + Objects.hashCode(this.createdBy);
+        hash = 67 * hash + Objects.hashCode(this.createdDate);
+        hash = 67 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 67 * hash + Objects.hashCode(this.modifiedDate);
         return hash;
     }
 
@@ -166,6 +177,7 @@ public class DataLogin implements EntityObject<DataLogin> {
         this.namaPengguna = dataLogin.namaPengguna;
         this.idUser = dataLogin.idUser;
         this.password = dataLogin.password;
+        this.retypePassword = dataLogin.retypePassword;
         this.logo = dataLogin.logo;
         this.headerImage = dataLogin.headerImage;
         this.createdBy = dataLogin.createdBy;

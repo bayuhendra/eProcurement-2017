@@ -30,8 +30,8 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     private Date tanggalBerdiri;
     private String deskripsi;
     private String alamatPerusahaan;
-    private PropinsiType propinsiType;
-    private KotaType kotaType;
+    private String propinsi;
+    private String kota;
     private String poBox;
     private String kodePos;
     private String telpPerusahaan;
@@ -53,7 +53,7 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     public DataPerusahaan() {
     }
 
-    public DataPerusahaan(long id, String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, PropinsiType propinsiType, KotaType kotaType, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String namaPenanggungJawab, JabatanType jabatanType, String emailPenanggungJawab, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataPerusahaan(long id, String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String namaPenanggungJawab, JabatanType jabatanType, String emailPenanggungJawab, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.idPerusahaan = idPerusahaan;
         this.pKPType = pKPType;
@@ -67,8 +67,8 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.tanggalBerdiri = tanggalBerdiri;
         this.deskripsi = deskripsi;
         this.alamatPerusahaan = alamatPerusahaan;
-        this.propinsiType = propinsiType;
-        this.kotaType = kotaType;
+        this.propinsi = propinsi;
+        this.kota = kota;
         this.poBox = poBox;
         this.kodePos = kodePos;
         this.telpPerusahaan = telpPerusahaan;
@@ -192,20 +192,20 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.alamatPerusahaan = alamatPerusahaan;
     }
 
-    public PropinsiType getPropinsiType() {
-        return propinsiType;
+    public String getPropinsi() {
+        return propinsi;
     }
 
-    public void setPropinsiType(PropinsiType propinsiType) {
-        this.propinsiType = propinsiType;
+    public void setPropinsi(String propinsi) {
+        this.propinsi = propinsi;
     }
 
-    public KotaType getKotaType() {
-        return kotaType;
+    public String getKota() {
+        return kota;
     }
 
-    public void setKotaType(KotaType kotaType) {
-        this.kotaType = kotaType;
+    public void setKota(String kota) {
+        this.kota = kota;
     }
 
     public String getPoBox() {
@@ -346,38 +346,38 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.idPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.pKPType);
-        hash = 53 * hash + Objects.hashCode(this.kualifikasiType);
-        hash = 53 * hash + Objects.hashCode(this.unitType);
-        hash = 53 * hash + Objects.hashCode(this.namaPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.perusahaanType);
-        hash = 53 * hash + Objects.hashCode(this.npwp);
-        hash = 53 * hash + Objects.hashCode(this.namaSingkatan);
-        hash = 53 * hash + Objects.hashCode(this.jumlahKaryawan);
-        hash = 53 * hash + Objects.hashCode(this.tanggalBerdiri);
-        hash = 53 * hash + Objects.hashCode(this.deskripsi);
-        hash = 53 * hash + Objects.hashCode(this.alamatPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.propinsiType);
-        hash = 53 * hash + Objects.hashCode(this.kotaType);
-        hash = 53 * hash + Objects.hashCode(this.poBox);
-        hash = 53 * hash + Objects.hashCode(this.kodePos);
-        hash = 53 * hash + Objects.hashCode(this.telpPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.noFax);
-        hash = 53 * hash + Objects.hashCode(this.emailPerusahaan);
-        hash = 53 * hash + Objects.hashCode(this.website);
-        hash = 53 * hash + Objects.hashCode(this.namaCp);
-        hash = 53 * hash + Objects.hashCode(this.noHP);
-        hash = 53 * hash + Objects.hashCode(this.emailCp);
-        hash = 53 * hash + Objects.hashCode(this.noKtp);
-        hash = 53 * hash + Objects.hashCode(this.namaPenanggungJawab);
-        hash = 53 * hash + Objects.hashCode(this.jabatanType);
-        hash = 53 * hash + Objects.hashCode(this.emailPenanggungJawab);
-        hash = 53 * hash + Objects.hashCode(this.createdBy);
-        hash = 53 * hash + Objects.hashCode(this.createdDate);
-        hash = 53 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 53 * hash + Objects.hashCode(this.modifiedDate);
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.idPerusahaan);
+        hash = 31 * hash + Objects.hashCode(this.pKPType);
+        hash = 31 * hash + Objects.hashCode(this.kualifikasiType);
+        hash = 31 * hash + Objects.hashCode(this.unitType);
+        hash = 31 * hash + Objects.hashCode(this.namaPerusahaan);
+        hash = 31 * hash + Objects.hashCode(this.perusahaanType);
+        hash = 31 * hash + Objects.hashCode(this.npwp);
+        hash = 31 * hash + Objects.hashCode(this.namaSingkatan);
+        hash = 31 * hash + Objects.hashCode(this.jumlahKaryawan);
+        hash = 31 * hash + Objects.hashCode(this.tanggalBerdiri);
+        hash = 31 * hash + Objects.hashCode(this.deskripsi);
+        hash = 31 * hash + Objects.hashCode(this.alamatPerusahaan);
+        hash = 31 * hash + Objects.hashCode(this.propinsi);
+        hash = 31 * hash + Objects.hashCode(this.kota);
+        hash = 31 * hash + Objects.hashCode(this.poBox);
+        hash = 31 * hash + Objects.hashCode(this.kodePos);
+        hash = 31 * hash + Objects.hashCode(this.telpPerusahaan);
+        hash = 31 * hash + Objects.hashCode(this.noFax);
+        hash = 31 * hash + Objects.hashCode(this.emailPerusahaan);
+        hash = 31 * hash + Objects.hashCode(this.website);
+        hash = 31 * hash + Objects.hashCode(this.namaCp);
+        hash = 31 * hash + Objects.hashCode(this.noHP);
+        hash = 31 * hash + Objects.hashCode(this.emailCp);
+        hash = 31 * hash + Objects.hashCode(this.noKtp);
+        hash = 31 * hash + Objects.hashCode(this.namaPenanggungJawab);
+        hash = 31 * hash + Objects.hashCode(this.jabatanType);
+        hash = 31 * hash + Objects.hashCode(this.emailPenanggungJawab);
+        hash = 31 * hash + Objects.hashCode(this.createdBy);
+        hash = 31 * hash + Objects.hashCode(this.createdDate);
+        hash = 31 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 31 * hash + Objects.hashCode(this.modifiedDate);
         return hash;
     }
 
@@ -412,8 +412,8 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.tanggalBerdiri = dataPerusahaan.tanggalBerdiri;
         this.deskripsi = dataPerusahaan.deskripsi;
         this.alamatPerusahaan = dataPerusahaan.alamatPerusahaan;
-        this.propinsiType = dataPerusahaan.propinsiType;
-        this.kotaType = dataPerusahaan.kotaType;
+        this.propinsi = dataPerusahaan.propinsi;
+        this.kota = dataPerusahaan.kota;
         this.poBox = dataPerusahaan.poBox;
         this.kodePos = dataPerusahaan.kodePos;
         this.telpPerusahaan = dataPerusahaan.telpPerusahaan;

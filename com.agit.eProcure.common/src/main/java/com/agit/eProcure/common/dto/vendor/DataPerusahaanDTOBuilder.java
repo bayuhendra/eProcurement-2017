@@ -1,11 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.agit.eProcure.common.dto.vendor;
 
 import com.agit.eProcure.shared.type.JabatanType;
-import com.agit.eProcure.shared.type.KotaType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
-import com.agit.eProcure.shared.type.PropinsiType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
 
@@ -24,8 +27,8 @@ public class DataPerusahaanDTOBuilder {
     private Date tanggalBerdiri;
     private String deskripsi;
     private String alamatPerusahaan;
-    private PropinsiType propinsiType;
-    private KotaType kotaType;
+    private String propinsi;
+    private String kota;
     private String poBox;
     private String kodePos;
     private String telpPerusahaan;
@@ -107,13 +110,13 @@ public class DataPerusahaanDTOBuilder {
         return this;
     }
 
-    public DataPerusahaanDTOBuilder setPropinsiType(PropinsiType propinsiType) {
-        this.propinsiType = propinsiType;
+    public DataPerusahaanDTOBuilder setPropinsi(String propinsi) {
+        this.propinsi = propinsi;
         return this;
     }
 
-    public DataPerusahaanDTOBuilder setKotaType(KotaType kotaType) {
-        this.kotaType = kotaType;
+    public DataPerusahaanDTOBuilder setKota(String kota) {
+        this.kota = kota;
         return this;
     }
 
@@ -203,7 +206,7 @@ public class DataPerusahaanDTOBuilder {
     }
 
     public DataPerusahaanDTO createDataPerusahaanDTO() {
-        return new DataPerusahaanDTO(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsiType, kotaType, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, namaPenanggungJawab, jabatanType, emailPenanggungJawab, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataPerusahaanDTO(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, namaPenanggungJawab, jabatanType, emailPenanggungJawab, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

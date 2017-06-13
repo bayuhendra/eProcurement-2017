@@ -15,6 +15,7 @@ public class DataLoginBuilder {
     private String namaPengguna;
     private String idUser;
     private String password;
+    private String retypePassword;
     private String logo;
     private String headerImage;
     private String createdBy;
@@ -50,6 +51,11 @@ public class DataLoginBuilder {
         return this;
     }
 
+    public DataLoginBuilder setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
+        return this;
+    }
+
     public DataLoginBuilder setLogo(String logo) {
         this.logo = logo;
         return this;
@@ -81,7 +87,7 @@ public class DataLoginBuilder {
     }
 
     public DataLogin createDataLogin() {
-        return new DataLogin(id, idDataLogin, namaPengguna, idUser, password, logo, headerImage, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataLogin(id, idDataLogin, namaPengguna, idUser, password, retypePassword, logo, headerImage, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

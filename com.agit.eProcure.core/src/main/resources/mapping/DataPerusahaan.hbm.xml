@@ -37,18 +37,8 @@
         <property column="tanggalBerdiri" name="tanggalBerdiri"/>
         <property column="deskripsi" name="deskripsi"/>
         <property column="alamatPerusahaan" name="alamatPerusahaan"/>
-        <property column="propinsiType" name="propinsiType" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.agit.eProcure.shared.type.PropinsiType</param>
-                <param name="type">12</param>
-            </type>
-        </property>
-        <property column="kotaType" name="kotaType" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.agit.eProcure.shared.type.KotaType</param>
-                <param name="type">12</param>
-            </type>
-        </property>
+        <property column="propinsi" name="propinsi"/>
+        <property column="kota" name="kota"/>
         <property column="poBox" name="poBox"/>
         <property column="kodePos" name="kodePos"/>
         <property column="telpPerusahaan" name="telpPerusahaan"/>

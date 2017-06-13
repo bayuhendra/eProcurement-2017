@@ -14,6 +14,7 @@ public class DataLoginDTOBuilder {
     private String namaPengguna;
     private String idUser;
     private String password;
+    private String retypePassword;
     private String logo;
     private String headerImage;
     private String createdBy;
@@ -41,6 +42,11 @@ public class DataLoginDTOBuilder {
 
     public DataLoginDTOBuilder setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public DataLoginDTOBuilder setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
         return this;
     }
 
@@ -75,7 +81,7 @@ public class DataLoginDTOBuilder {
     }
 
     public DataLoginDTO createDataLoginDTO() {
-        return new DataLoginDTO(idDataLogin, namaPengguna, idUser, password, logo, headerImage, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataLoginDTO(idDataLogin, namaPengguna, idUser, password, retypePassword, logo, headerImage, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

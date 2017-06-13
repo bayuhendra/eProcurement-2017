@@ -83,6 +83,7 @@ public class DataLoginServiceImpl implements DataLoginService {
                 .setNamaPengguna("BAYU HENDRA SETIAWAN")
                 .setIdUser("ID 001")
                 .setPassword("Password123")
+                .setRetypePassword("retypePassword")
                 .setLogo("LOGO")
                 .setHeaderImage("HEADER IMAGE")
                 .setCreatedBy("ADMIN")

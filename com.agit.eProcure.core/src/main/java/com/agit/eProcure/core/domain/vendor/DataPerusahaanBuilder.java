@@ -6,11 +6,9 @@
 package com.agit.eProcure.core.domain.vendor;
 
 import com.agit.eProcure.shared.type.JabatanType;
-import com.agit.eProcure.shared.type.KotaType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
-import com.agit.eProcure.shared.type.PropinsiType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
 
@@ -30,8 +28,8 @@ public class DataPerusahaanBuilder {
     private Date tanggalBerdiri;
     private String deskripsi;
     private String alamatPerusahaan;
-    private PropinsiType propinsiType;
-    private KotaType kotaType;
+    private String propinsi;
+    private String kota;
     private String poBox;
     private String kodePos;
     private String telpPerusahaan;
@@ -118,13 +116,13 @@ public class DataPerusahaanBuilder {
         return this;
     }
 
-    public DataPerusahaanBuilder setPropinsiType(PropinsiType propinsiType) {
-        this.propinsiType = propinsiType;
+    public DataPerusahaanBuilder setPropinsi(String propinsi) {
+        this.propinsi = propinsi;
         return this;
     }
 
-    public DataPerusahaanBuilder setKotaType(KotaType kotaType) {
-        this.kotaType = kotaType;
+    public DataPerusahaanBuilder setKota(String kota) {
+        this.kota = kota;
         return this;
     }
 
@@ -214,7 +212,7 @@ public class DataPerusahaanBuilder {
     }
 
     public DataPerusahaan createDataPerusahaan() {
-        return new DataPerusahaan(id, idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsiType, kotaType, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, namaPenanggungJawab, jabatanType, emailPenanggungJawab, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataPerusahaan(id, idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, namaPenanggungJawab, jabatanType, emailPenanggungJawab, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }
