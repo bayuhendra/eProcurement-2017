@@ -143,8 +143,8 @@
                 
                 <rows>
                     <row>
-                        <button label="Kembali" width="30%" />
-                        <button label="Selanjutnya" width="30%" />
+                        <label/>
+                        <button label="Simpan" width="30%" />
                     </row>
                 </rows>
             </grid>

@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
@@ -270,8 +268,8 @@
                 
                 <rows>
                     <row>
-                        <button label="Kembali" width="20%" />
-                        <button label="Selanjutnya" width="20%"/>
+                        <label/>
+                        <button label="Simpan" width="20%"/>
                     </row>
                 </rows>
             </grid>

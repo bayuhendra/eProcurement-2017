@@ -13,7 +13,7 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label=" + Tambah" width="100%" />
+                        <button label=" + Tambah" width="70%" />
                     </row>
                 </rows>
             </grid>
@@ -46,6 +46,27 @@
                             <label width="100%" value=""/>
                         </listcell>
                         <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
                             <a label="EDIT" />
                             <a label=" | " style="font-size:12pt ;color:black" />
                             <a label="DELETE" />
@@ -63,8 +84,8 @@
                 
                 <rows>
                     <row>
-                        <button label="Kembali" width="20%" />
-                        <button label="Selanjutnya" width="20%"/>
+                        <label/>
+                        <button label="Simpan" width="20%"/>
                     </row>
                 </rows>
             </grid>

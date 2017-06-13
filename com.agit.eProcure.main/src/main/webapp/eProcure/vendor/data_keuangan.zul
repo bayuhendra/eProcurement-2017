@@ -13,29 +13,46 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label=" + Tambah" width="100%" />
+                        <button label=" + Tambah" width="70%" />
                     </row>
                 </rows>
             </grid>
             <!--<paging forward="onPaging" />-->
-            <listbox rows = "11">
+            <listbox rows = "10">
                 
                 <listhead>
                     <listheader label="No" width="3%" align="center"/>
-                    <listheader label="Jenis" width="12%" align="center"/>
-                    <listheader label="Jumlah" width="5%" align="center"/>
-                    <listheader label="Kapasitas" width="7%" align="center"/>
-                    <listheader label="Merk/Tipe" width="6%" align="center"/>
-                    <listheader label="Tahun Pembuatan" width="10%" align="center"/>
-                    <listheader label="Kondisi" width="4%" align="center"/>
-                    <listheader label="Lokasi" width="4%" align="center"/>
-                    <listheader label="Bukti Kepemilikan" width="8%" align="center"/>
-                    <listheader label="Dokumen Kepemilikan" width="12%" align="center"/>
+                    <listheader label="Tahun Keuangan" width="12%" align="center"/>
+                    <listheader label="Kas" width="10%" align="center"/>
+                    <listheader label="Total Aktiva" width="10%" align="center"/>
+                    <listheader label="Total Kewajiban" width="10%" align="center"/>
+                    <listheader label="Rugi Laba" width="10%" align="center"/>
+                    <listheader label="Aktiva Lancar" width="10%" align="center"/>
+                    <listheader label="Hutang Lancar" width="10%" align="center"/>
+                    <listheader label="Rasio Likuiditas" width="10%" align="center"/>
                     <listheader label="Aksi" width="5%" align="center"/>
                 </listhead>
                 
                 <template name="model">
                     <listitem>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value=""/>
+                        </listcell>
                         <listcell>
                             <label width="100%" value=""/>
                         </listcell>
