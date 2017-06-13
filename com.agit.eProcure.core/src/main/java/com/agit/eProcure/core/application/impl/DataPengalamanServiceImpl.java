@@ -65,6 +65,7 @@ public class DataPengalamanServiceImpl implements DataPengalamanService {
                 .setMulaiKerja(new Date())
                 .setNamaPekerjaan("PO")
                 .setNilaiKontrak(Double.valueOf(4))
+                .setStatusPengalaman(Boolean.TRUE)
                 .createDataPengalaman();
         return dataPengalamanDTOAssembler.toDTO(p);
     }

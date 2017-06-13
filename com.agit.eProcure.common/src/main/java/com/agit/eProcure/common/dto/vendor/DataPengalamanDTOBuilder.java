@@ -21,6 +21,7 @@ public class DataPengalamanDTOBuilder {
     private Date createDate;
     private String modifiedBy;
     private Date modifiedDate;
+    private Boolean statusPengalaman;
 
     public DataPengalamanDTOBuilder() {
     }
@@ -80,8 +81,13 @@ public class DataPengalamanDTOBuilder {
         return this;
     }
 
+    public DataPengalamanDTOBuilder setStatusPengalaman(Boolean statusPengalaman) {
+        this.statusPengalaman = statusPengalaman;
+        return this;
+    }
+
     public DataPengalamanDTO createDataPengalamanDTO() {
-        return new DataPengalamanDTO(idDataPengalaman, namaPekerjaan, lokasiPekerjaan, bidangUsaha, mulaiKerja, nilaiKontrak, buktiKerjasama, createBy, createDate, modifiedBy, modifiedDate);
+        return new DataPengalamanDTO(idDataPengalaman, namaPekerjaan, lokasiPekerjaan, bidangUsaha, mulaiKerja, nilaiKontrak, buktiKerjasama, createBy, createDate, modifiedBy, modifiedDate, statusPengalaman);
     }
 
 }

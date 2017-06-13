@@ -28,6 +28,7 @@ public class DataPengalamanDTOAssembler implements IObjectAssembler<DataPengalam
                 .setMulaiKerja(domainObject.getMulaiKerja())
                 .setNamaPekerjaan(domainObject.getNamaPekerjaan())
                 .setNilaiKontrak(domainObject.getNilaiKontrak())
+                .setStatusPengalaman(domainObject.getStatusPengalaman())
                 .createDataPengalamanDTO();
     }
 
@@ -45,6 +46,7 @@ public class DataPengalamanDTOAssembler implements IObjectAssembler<DataPengalam
                 .setMulaiKerja(dtoObject.getMulaiKerja())
                 .setNamaPekerjaan(dtoObject.getNamaPekerjaan())
                 .setNilaiKontrak(dtoObject.getNilaiKontrak())
+                .setStatusPengalaman(dtoObject.getStatusPengalaman())
                 .createDataPengalaman();
     }
 

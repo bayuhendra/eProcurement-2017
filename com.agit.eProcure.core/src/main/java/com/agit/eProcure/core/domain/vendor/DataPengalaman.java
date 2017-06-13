@@ -23,12 +23,12 @@ public class DataPengalaman implements EntityObject<DataPengalaman> {
     private Date createDate;
     private String modifiedBy;
     private Date modifiedDate;
+    private Boolean statusPengalaman;
 
     public DataPengalaman() {
     }
 
-    public DataPengalaman(long id, String idDataPengalaman, String namaPekerjaan, String lokasiPekerjaan, BidangUsahaType bidangUsaha, Date mulaiKerja, Double nilaiKontrak, String buktiKerjasama, String createBy, Date createDate, String modifiedBy, Date modifiedDate) {
-        this.id = id;
+    public DataPengalaman(String idDataPengalaman, String namaPekerjaan, String lokasiPekerjaan, BidangUsahaType bidangUsaha, Date mulaiKerja, Double nilaiKontrak, String buktiKerjasama, String createBy, Date createDate, String modifiedBy, Date modifiedDate, Boolean statusPengalaman) {
         this.idDataPengalaman = idDataPengalaman;
         this.namaPekerjaan = namaPekerjaan;
         this.lokasiPekerjaan = lokasiPekerjaan;
@@ -40,6 +40,7 @@ public class DataPengalaman implements EntityObject<DataPengalaman> {
         this.createDate = createDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
+        this.statusPengalaman = statusPengalaman;
     }
 
     public void assignNewDatapengalaman(DataPengalaman dataPengalaman) {
@@ -54,6 +55,7 @@ public class DataPengalaman implements EntityObject<DataPengalaman> {
         this.createDate = dataPengalaman.createDate;
         this.modifiedBy = dataPengalaman.modifiedBy;
         this.modifiedDate = dataPengalaman.modifiedDate;
+        this.statusPengalaman = dataPengalaman.statusPengalaman;
     }
 
     public String getIdDataPengalaman() {
@@ -144,6 +146,14 @@ public class DataPengalaman implements EntityObject<DataPengalaman> {
         this.modifiedDate = modifiedDate;
     }
 
+    public Boolean getStatusPengalaman() {
+        return statusPengalaman;
+    }
+
+    public void setStatusPengalaman(Boolean statusPengalaman) {
+        this.statusPengalaman = statusPengalaman;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -158,6 +168,7 @@ public class DataPengalaman implements EntityObject<DataPengalaman> {
         hash = 97 * hash + Objects.hashCode(this.createDate);
         hash = 97 * hash + Objects.hashCode(this.modifiedBy);
         hash = 97 * hash + Objects.hashCode(this.modifiedDate);
+        hash = 97 * hash + Objects.hashCode(this.statusPengalaman);
         return hash;
     }
 

@@ -8,45 +8,43 @@ import java.util.Date;
  *
  * @author 3AD
  */
-public class DataPengalamanDTO implements Serializable {
+public class PengalamanBerjalanDTO implements Serializable{
 
-    private String idDataPengalaman;
+    private String idPengalamanBerjalan;
     private String namaPekerjaan;
     private String lokasiPekerjaan;
     private BidangUsahaType bidangUsaha;
     private Date mulaiKerja;
     private Double nilaiKontrak;
-    private String buktiKerjasama;
+    private String buktiKerja;
     private String createBy;
     private Date createDate;
     private String modifiedBy;
     private Date modifiedDate;
-    private Boolean statusPengalaman;
 
-    public DataPengalamanDTO() {
+    public PengalamanBerjalanDTO() {
     }
 
-    public DataPengalamanDTO(String idDataPengalaman, String namaPekerjaan, String lokasiPekerjaan, BidangUsahaType bidangUsaha, Date mulaiKerja, Double nilaiKontrak, String buktiKerjasama, String createBy, Date createDate, String modifiedBy, Date modifiedDate, Boolean statusPengalaman) {
-        this.idDataPengalaman = idDataPengalaman;
+    public PengalamanBerjalanDTO(String idPengalamanBerjalan, String namaPekerjaan, String lokasiPekerjaan, BidangUsahaType bidangUsaha, Date mulaiKerja, Double nilaiKontrak, String buktiKerja, String createBy, Date createDate, String modifiedBy, Date modifiedDate) {
+        this.idPengalamanBerjalan = idPengalamanBerjalan;
         this.namaPekerjaan = namaPekerjaan;
         this.lokasiPekerjaan = lokasiPekerjaan;
         this.bidangUsaha = bidangUsaha;
         this.mulaiKerja = mulaiKerja;
         this.nilaiKontrak = nilaiKontrak;
-        this.buktiKerjasama = buktiKerjasama;
+        this.buktiKerja = buktiKerja;
         this.createBy = createBy;
         this.createDate = createDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
-        this.statusPengalaman = statusPengalaman;
     }
 
-    public String getIdDataPengalaman() {
-        return idDataPengalaman;
+    public String getIdPengalamanBerjalan() {
+        return idPengalamanBerjalan;
     }
 
-    public void setIdDataPengalaman(String idDataPengalaman) {
-        this.idDataPengalaman = idDataPengalaman;
+    public void setIdPengalamanBerjalan(String idPengalamanBerjalan) {
+        this.idPengalamanBerjalan = idPengalamanBerjalan;
     }
 
     public String getNamaPekerjaan() {
@@ -89,12 +87,12 @@ public class DataPengalamanDTO implements Serializable {
         this.nilaiKontrak = nilaiKontrak;
     }
 
-    public String getBuktiKerjasama() {
-        return buktiKerjasama;
+    public String getBuktiKerja() {
+        return buktiKerja;
     }
 
-    public void setBuktiKerjasama(String buktiKerjasama) {
-        this.buktiKerjasama = buktiKerjasama;
+    public void setBuktiKerja(String buktiKerja) {
+        this.buktiKerja = buktiKerja;
     }
 
     public String getCreateBy() {
@@ -129,17 +127,9 @@ public class DataPengalamanDTO implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public Boolean getStatusPengalaman() {
-        return statusPengalaman;
-    }
-
-    public void setStatusPengalaman(Boolean statusPengalaman) {
-        this.statusPengalaman = statusPengalaman;
-    }
-
     @Override
     public String toString() {
-        return "DataPengalamanDTO{" + "idDataPengalaman=" + idDataPengalaman + ", namaPekerjaan=" + namaPekerjaan + ", lokasiPekerjaan=" + lokasiPekerjaan + ", bidangUsaha=" + bidangUsaha + ", mulaiKerja=" + mulaiKerja + ", nilaiKontrak=" + nilaiKontrak + ", buktiKerjasama=" + buktiKerjasama + ", createBy=" + createBy + ", createDate=" + createDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + ", statusPengalaman=" + statusPengalaman + '}';
+        return "PengalamanBerjalanDTO{" + "idPengalamanBerjalan=" + idPengalamanBerjalan + ", namaPekerjaan=" + namaPekerjaan + ", lokasiPekerjaan=" + lokasiPekerjaan + ", bidangUsaha=" + bidangUsaha + ", mulaiKerja=" + mulaiKerja + ", nilaiKontrak=" + nilaiKontrak + ", buktiKerja=" + buktiKerja + ", createBy=" + createBy + ", createDate=" + createDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

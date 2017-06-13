@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class DataPengalamanBuilder {
 
-    private long id;
     private String idDataPengalaman;
     private String namaPekerjaan;
     private String lokasiPekerjaan;
@@ -22,13 +21,9 @@ public class DataPengalamanBuilder {
     private Date createDate;
     private String modifiedBy;
     private Date modifiedDate;
+    private Boolean statusPengalaman;
 
     public DataPengalamanBuilder() {
-    }
-
-    public DataPengalamanBuilder setId(long id) {
-        this.id = id;
-        return this;
     }
 
     public DataPengalamanBuilder setIdDataPengalaman(String idDataPengalaman) {
@@ -86,8 +81,13 @@ public class DataPengalamanBuilder {
         return this;
     }
 
+    public DataPengalamanBuilder setStatusPengalaman(Boolean statusPengalaman) {
+        this.statusPengalaman = statusPengalaman;
+        return this;
+    }
+
     public DataPengalaman createDataPengalaman() {
-        return new DataPengalaman(id, idDataPengalaman, namaPekerjaan, lokasiPekerjaan, bidangUsaha, mulaiKerja, nilaiKontrak, buktiKerjasama, createBy, createDate, modifiedBy, modifiedDate);
+        return new DataPengalaman(idDataPengalaman, namaPekerjaan, lokasiPekerjaan, bidangUsaha, mulaiKerja, nilaiKontrak, buktiKerjasama, createBy, createDate, modifiedBy, modifiedDate, statusPengalaman);
     }
 
 }

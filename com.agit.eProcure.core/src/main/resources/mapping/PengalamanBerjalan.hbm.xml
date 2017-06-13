@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field">
-    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataPengalaman" table="AGIT_DATAPENGALAMAN">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.PengalamanBerjalan" table="AGIT_PENGALAMAN_BERJALAN">
         <id column="id" name="id">
             <generator class="increment"/>
         </id>
-        <property column="idDataPengalaman" name="idDataPengalaman" unique="true" update="true" not-null="true"/>
+        <property column="idPengalamanBerjalan" name="idPengalamanBerjalan" unique="true" update="true" not-null="true"/>
         <property column="namaPekerjaan" name="namaPekerjaan" not-null="true" update="true"/>
         <property column="lokasiPekerjaan" name="lokasiPekerjaan"/>
         <property column="bidangUsaha" name="bidangUsaha" not-null="false">
@@ -16,11 +16,10 @@
         </property>
         <property column="mulaiKerja" name="mulaiKerja"/>
         <property column="nilaiKontrak" name="nilaiKontrak" unique="true"/>
-        <property column="buktiKerjasama" name="buktiKerjasama" unique="true"/>
+        <property column="buktiKerja" name="buktiKerja" unique="true"/>
         <property column="createBy" name="createBy" not-null="false"/>
         <property column="createDate" name="createDate" not-null="false"/>
         <property column="modifiedBy" name="modifiedBy" not-null="false"/>
         <property column="modifiedDate" name="modifiedDate" not-null="false"/>
-        <property column="statusPengalaman" name="statusPengalaman" not-null="false"/>
     </class>
 </hibernate-mapping>

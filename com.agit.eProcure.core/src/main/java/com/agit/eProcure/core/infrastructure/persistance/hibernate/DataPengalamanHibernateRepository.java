@@ -8,12 +8,14 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author 3AD
  */
+@Repository
 @Transactional
 public class DataPengalamanHibernateRepository extends HibernateRepository implements DataPengalamanRepository {
 
