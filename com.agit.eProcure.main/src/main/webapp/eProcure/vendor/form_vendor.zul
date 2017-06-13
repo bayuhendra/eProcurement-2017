@@ -14,8 +14,8 @@
                     <tab label="  DATA SEGMENTASI  " onClick = "@command('buttonKlikDataSegmentasi')"/>
                     <tab label="  DATA DOKUMEN  " onClick = "@command('buttonKlikDataDokumen')"/>
                     <tab label="  PERALATAN  " onClick = "@command('buttonKlikDataPeralatan')"/>
-                    <tab label="  DATA KEUANGAN  " />
-                    <tab label="  DATA PENGALAMAN  " onClick="@command('buttonKlikDataPengalaman')"/>
+                    <tab label="  DATA KEUANGAN  " onClick = "@command('buttonKlikDataKeuangan')"/>
+                    <tab label="  DATA PENGALAMAN  " onClick= "@command('buttonKlikDataPengalaman')"/>
                 </tabs>
             </tabbox>
         </div>

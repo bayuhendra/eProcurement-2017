@@ -82,14 +82,14 @@
                         <label />
                         <label value="Dokumen Kepemilikan" style="font-weight: bold"/>
                         <textbox width="100%" readonly="true" />
-                        
+                        <button label="Upload Dokumen" upload="true" onClick="@command('ButtonUploadDokumen')" width="85%"/>
                     </row>
                     
                     <row>
                         <label />
                         <label value="Gambar Peralatan / Asset" style="font-weight: bold"/>
                         <textbox width="100%" readonly="true" />
-                        
+                        <button label="Upload Gambar" upload="true" onClick="@command('ButtonUploadGambar')" width="85%" />
                     </row>
                     <row>
                         <label/>
