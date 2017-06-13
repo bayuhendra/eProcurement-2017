@@ -227,7 +227,7 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label=" + Tambah" width="100%" onClick="@command('buttonKlikDataPerusahaanPICForm')"/>
+                        <button label=" + Tambah" width="100%" onClick="@command('buttonKlikDataPerusahaanForm')"/>
                     </row>
                 </rows>
             </grid>

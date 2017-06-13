@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window>
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <groupbox width="1000px" closable="false">
             <caption label="Data Bank" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
@@ -14,18 +13,20 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label=" + Tambah" width="100%" />
+                        <button onClick="@command('buttonKlikDataBankForm')" label=" + Tambah" width="100%" />
                     </row>
                 </rows>
             </grid>
             <!--<paging forward="onPaging" />-->
-            <listbox rows = "5">
+            <listbox rows = "6">
                 
                 <listhead>
-                    <listheader label="No" width="40%" align="center"/>
-                    <listheader label="Bana Bank" width="15%" align="center"/>
-                    <listheader label="Email" width="20%" align="center"/>
-                    <listheader label="Aksi" width="15%" align="center"/>
+                    <listheader label="No" width="5%" align="center"/>
+                    <listheader label="Nama Bank" width="30%" align="center"/>
+                    <listheader label="Nomor Rekening" width="10%" align="center"/>
+                    <listheader label="Nama Nasabah" width="10%" align="center"/>
+                    <listheader label="Mata Uang" width="5%" align="center"/>
+                    <listheader label="Aksi" width="10%" align="center"/>
                 </listhead>
                 
                 <template name="model">
