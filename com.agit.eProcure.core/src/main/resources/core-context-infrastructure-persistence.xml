@@ -45,4 +45,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="dataPeralatanRepository" class="com.agit.eProcure.core.infrastructure.persistance.hibernate.DataPeralatanHibernateRepository" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
 </beans>

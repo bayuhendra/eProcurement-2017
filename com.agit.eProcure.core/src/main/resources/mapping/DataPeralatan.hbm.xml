@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataPeralatan" table="AGIT_DATAPERALATAN">
+        <id column="id_privilege" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="idDataPeralatan" name="idDataPeralatan" not-null="false"/>
+        <property column="jenis" name="jenis"/>
+        <property column="jumlah" name="jumlah"/>
+        <property column="kapasitas" name="kapasitas"/>
+        <property column="merkTipe" name="merkTipe"/>
+        <property column="tahunPembuatan" name="tahunPembuatan"/>
+        <property column="kondisiPeralatan" name="kondisiPeralatan" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.KondisiPeralatan</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="lokasi" name="lokasi"/>
+        <property column="buktiKepemilikan" name="buktiKepemilikan" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.BuktiKepemilikan</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="dokumenBuktiKepemilikan" name="dokumenBuktiKepemilikan"/>
+        <property column="gambarPeralatanAset" name="gambarPeralatanAset"/>
+        <property column="createdBy" name="createdBy"/>
+        <property column="createdDate" name="createdDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
+    </class>
+</hibernate-mapping>
