@@ -39,10 +39,10 @@
                             <label width="100%" value="@bind(each.namaBank)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value="@bind(each.namaBank)"/>
+                            <label width="100%" value="@bind(each.noRekening)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value="@bind(each.noRekening)"/>
+                            <label width="100%" value="@bind(each.namaNasabah)"/>
                         </listcell>
                         <listcell>
                             <label width="100%" value="@bind(each.mataUangType)"/>

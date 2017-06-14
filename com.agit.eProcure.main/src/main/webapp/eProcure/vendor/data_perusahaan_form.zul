@@ -3,7 +3,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
-            form="@id('fx') @load(vm.dataPerusahaanDTO)@save(vm.dataPerusahaanDTO, before='buttonKlikSaveDataPerusahaanForm')">
+            form="@id('fx') @load(vm.dataPenanggungJawabDTO)@save(vm.dataPenanggungJawabDTO, before='buttonKlikSaveDataPenanggungJawabForm')">
         <groupbox width="400px" closable="false">
             <caption label="Tambah Data PIC" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
@@ -30,7 +30,7 @@
                     
                     <row>
                         <label value="Email" />
-                        <textbox  width="100%" value="@bind(fx.emailPenanggungJawab)"/>
+                        <textbox  width="100%" value="@bind(fx.emailPenanggungJawab)" constraint="/.+@.+\.[a-z]+/: Email tidak sesuai dengan format"/>
                     </row>
                 </rows>
             </grid>
@@ -45,7 +45,7 @@
                     <row>
                         <label/>
                         <button label="Kembali" onClick="@command('buttonKlikBackDataPerusahaanForm')" width="50%"/>
-                        <button label="Save" onClick="@command('buttonKlikSaveDataPerusahaanForm')" width="50%"/>
+                        <button label="Save" onClick="@command('buttonKlikSaveDataPenanggungJawabForm')" width="50%"/>
                     </row>
                 </rows>
             </grid>

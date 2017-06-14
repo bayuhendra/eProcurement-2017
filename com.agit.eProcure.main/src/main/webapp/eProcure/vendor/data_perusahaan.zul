@@ -220,7 +220,7 @@
         </groupbox>
         
         <separator spacing="15px"/>
-        <groupbox width="1000px" closable="true">
+        <groupbox width="800px" closable="true">
             <caption label="Contact Person" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 
@@ -237,7 +237,7 @@
                 </rows>
             </grid>
             <!--<paging forward="onPaging" />-->
-            <listbox rows = "4">
+            <listbox rows = "6" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataPenanggungJawabDTOs)">
                 
                 <listhead>
                     <listheader label="Nama" width="40%" align="center"/>
@@ -249,18 +249,18 @@
                 <template name="model">
                     <listitem>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.namaPenanggungJawab)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.jabatanType)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.emailPenanggungJawab)"/>
                         </listcell>
                         <listcell>
-                            <a label="EDIT" />
-                            <a label=" | " style="font-size:12pt ;color:black" />
-                            <a label="DELETE" />
+                            <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                            <a label=" | " style="font-size:12pt ;color:black"></a>
+                            <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
                         </listcell>
                     </listitem>
                 </template>

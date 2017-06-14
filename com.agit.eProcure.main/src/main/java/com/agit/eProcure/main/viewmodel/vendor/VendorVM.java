@@ -2,6 +2,7 @@ package com.agit.eProcure.main.viewmodel.vendor;
 
 import com.agit.eProcure.common.application.DataBankService;
 import com.agit.eProcure.common.application.DataLoginService;
+import com.agit.eProcure.common.application.DataPenanggungJawabService;
 import com.agit.eProcure.common.application.DataPengalamanService;
 import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
@@ -9,6 +10,8 @@ import com.agit.eProcure.common.dto.vendor.DataBankDTO;
 import com.agit.eProcure.common.dto.vendor.DataBankDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
+import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTO;
+import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPengalamanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTOBuilder;
@@ -78,8 +81,12 @@ public class VendorVM extends SelectorComposer<Window> {
     @WireVariable
     DataPengalamanService dataPengalamanService;
 
+    @WireVariable
+    DataPenanggungJawabService dataPenanggungJawabService;
+
     private String idDataLogin;
     private String idDataPerusahaan;
+    private String idPenanggungJawab;
     private String idDataBank;
     private String nama;
     private JabatanType jabatan;
@@ -106,6 +113,9 @@ public class VendorVM extends SelectorComposer<Window> {
 
     private DataBankDTO dataBankDTO = new DataBankDTO();
     private List<DataBankDTO> dataBankDTOs = new ArrayList();
+
+    private DataPenanggungJawabDTO dataPenanggungJawabDTO = new DataPenanggungJawabDTO();
+    private List<DataPenanggungJawabDTO> dataPenanggungJawabDTOs = new ArrayList();
 
     private DataSegmentasiDTO dataSegmentasiDTO = new DataSegmentasiDTO();
     private List<DataSegmentasiDTO> dataSegmentasiDTOs = new ArrayList();
@@ -138,6 +148,7 @@ public class VendorVM extends SelectorComposer<Window> {
     public void init(
             @ExecutionArgParam("dataLoginDTO") DataLoginDTO dataLogin,
             @ExecutionArgParam("dataPerusahaanDTO") DataPerusahaanDTO dataPerusahaan,
+            @ExecutionArgParam("dataPenanggungJawabDTO") DataPenanggungJawabDTO dataPenanggungJawab,
             @ExecutionArgParam("dataBankDTO") DataBankDTO dataBank,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
@@ -145,7 +156,7 @@ public class VendorVM extends SelectorComposer<Window> {
         initData();
 
         /* Check Validity */
-        checkValidity(dataLogin, dataPerusahaan, dataBank, previous);
+        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, previous);
     }
 
     private void initData() {
@@ -161,7 +172,10 @@ public class VendorVM extends SelectorComposer<Window> {
         if (dataBankDTOs.isEmpty()) {
             dataBankDTOs = Collections.emptyList();
         }
-
+        dataPenanggungJawabDTOs = dataPenanggungJawabService.findAll();
+        if (dataPenanggungJawabDTOs.isEmpty()) {
+            dataPenanggungJawabDTOs = Collections.emptyList();
+        }
         kota.add("SEMARANG");
         kota.add("SURABAYA");
         kota.add("BANDUNG");
@@ -185,7 +199,7 @@ public class VendorVM extends SelectorComposer<Window> {
         //        }
     }
 
-    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, PageNavigation previous) {
+    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, PageNavigation previous) {
         if (dataLogin == null) {
             ListModelList<DataLoginDTO> parameterList = new ListModelList<>(dataLoginService.findAll());
             String idDataLogin = "";
@@ -241,6 +255,27 @@ public class VendorVM extends SelectorComposer<Window> {
         } else {
             this.dataBankDTO = dataBank;
             idDataBank = dataBankDTO.getIdDataBank();
+            this.previous = previous;
+        }
+
+        if (dataPenanggungJawab == null) {
+            ListModelList<DataPenanggungJawabDTO> parameterList = new ListModelList<>(dataPenanggungJawabService.findAll());
+            String idPenanggungJawab = "";
+            if (parameterList.isEmpty()) {
+                idPenanggungJawab = "1";
+            } else {
+                idPenanggungJawab = getLatestObjectID(parameterList, "idPenanggungJawab");
+            }
+            dataPenanggungJawabDTO = new DataPenanggungJawabDTOBuilder()
+                    .setIdPerusahaan(idDataPerusahaan)
+                    .setIdPenanggungJawab(idPenanggungJawab)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createDataPenanggungJawabDTO();
+        } else {
+            this.dataPenanggungJawabDTO = dataPenanggungJawab;
+            idPenanggungJawab = dataPenanggungJawabDTO.getIdPenanggungJawab();
+            idDataPerusahaan = dataPenanggungJawabDTO.getIdPerusahaan();
             this.previous = previous;
         }
     }
@@ -416,6 +451,16 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateTo("/eProcure/vendor/data_perusahaan.zul", window, params);
     }
 
+    @Command("buttonKlikSaveDataPenanggungJawabForm")
+    @NotifyChange({"dataPenanggungJawabDTO", "dataPenanggungJawabDTOs"})
+    public void buttonKlikSaveDataPenanggungJawabForm(@BindingParam("object") DataPenanggungJawabDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataPenanggungJawabService.SaveOrUpdate(dataPenanggungJawabDTO);
+        showInformationMessagebox("Data PenanggungJawab Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataPenanggungJawab", null);
+        window.detach();
+
+    }
+
     @Command("buttonSaveDataBank")
     @NotifyChange({"dataBankDTO", "dataBankDTOs"})
     public void buttonSaveDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -473,6 +518,12 @@ public class VendorVM extends SelectorComposer<Window> {
         dataPerusahaanDTOs = dataPerusahaanService.findAll();
     }
 
+    @GlobalCommand
+    @NotifyChange("dataPenanggungJawabDTOs")
+    public void refreshDataPenanggungJawab() {
+        dataPenanggungJawabDTOs = dataPenanggungJawabService.findAll();
+    }
+
 
     /*======================================= functional for page Data Login =======================================*/
     @Command("buttonKlikDataLogin")
@@ -527,6 +578,12 @@ public class VendorVM extends SelectorComposer<Window> {
     @Command("buttonKlikBackDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikBackDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
+    }
+
+    @Command("buttonKlikBackDataPerusahaan")
+    @NotifyChange("dataBankDTO")
+    public void buttonKlikBackDataPerusahaan(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         window.detach();
     }
 
@@ -911,6 +968,22 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setNamaBank(ListModelList<String> namaBank) {
         this.namaBank = namaBank;
+    }
+
+    public DataPenanggungJawabDTO getDataPenanggungJawabDTO() {
+        return dataPenanggungJawabDTO;
+    }
+
+    public void setDataPenanggungJawabDTO(DataPenanggungJawabDTO dataPenanggungJawabDTO) {
+        this.dataPenanggungJawabDTO = dataPenanggungJawabDTO;
+    }
+
+    public List<DataPenanggungJawabDTO> getDataPenanggungJawabDTOs() {
+        return dataPenanggungJawabDTOs;
+    }
+
+    public void setDataPenanggungJawabDTOs(List<DataPenanggungJawabDTO> dataPenanggungJawabDTOs) {
+        this.dataPenanggungJawabDTOs = dataPenanggungJawabDTOs;
     }
 
 }
