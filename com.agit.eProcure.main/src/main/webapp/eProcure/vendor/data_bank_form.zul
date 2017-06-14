@@ -3,32 +3,34 @@
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
             form="@id('fx') @load(vm.dataBankDTO) @save(vm.dataBankDTO, before='buttonSaveDataBank')">
         <separator spacing="15px"/>
-        <groupbox width="600px" closable="false">
+        <groupbox width="400px" closable="false">
             <caption label="Data Bank" style="font-size:16pt; font-weight: bold"/>
             
             <grid style="border:0">
                 <columns>
                     <column width="2%"/>
                     <column width="16%"/>
-                    <column width="35%"/>
-                    <column width="25%"/>
+                    <column width="30%"/>
                 </columns>
                 <rows>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nama Bank" style="font-weight: bold"/>
-                        <textbox width="100%" value="@bind(fx.namaBank)"/>
-                        <button label="Cari Bank" />
+                        <listbox model="@load(vm.namaBank)" mold="select" width="100%"
+                                 selectedItem="@bind(fx.namaBank)">
+                            <template name="model">
+                                <listitem label="@load(each)" />
+                            </template>
+                        </listbox>
                     </row>
                 </rows>
             </grid>
             
             <grid style="border:0">
                 <columns>
-                    <column width="3%"/>
-                    <column width="20%"/>
-                    <column width="60%"/>
-                    <column />
+                    <column width="2%"/>
+                    <column width="16%"/>
+                    <column width="30%"/>
                 </columns>
                 <rows>
                     <row>

@@ -102,6 +102,7 @@ public class VendorVM extends SelectorComposer<Window> {
     private ListModelList<String> kota = new ListModelList<>();
     private ListModelList<String> propinsi = new ListModelList<>();
     private ListModelList<String> negara = new ListModelList<>();
+    private ListModelList<String> namaBank = new ListModelList<>();
 
     private DataBankDTO dataBankDTO = new DataBankDTO();
     private List<DataBankDTO> dataBankDTOs = new ArrayList();
@@ -173,12 +174,15 @@ public class VendorVM extends SelectorComposer<Window> {
         negara.add("MALAYSIA");
         negara.add("SINGAPORE");
 
+        namaBank.add("BANK BRI");
+        namaBank.add("BANK BCA");
+        namaBank.add("BANK DANAMON");
         /* for button PKP disable enable purpose */
-//        if (pkpTypeDisable.getpKPType().PKP)) {
-//            disablePKP = false;
-//        } else {
-//            disablePKP = true;
-//        }
+        //        if (pkpTypeDisable.getpKPType().PKP)) {
+        //            disablePKP = false;
+        //        } else {
+        //            disablePKP = true;
+        //        }
     }
 
     private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, PageNavigation previous) {
@@ -904,6 +908,14 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setNegara(ListModelList<String> negara) {
         this.negara = negara;
+    }
+
+    public ListModelList<String> getNamaBank() {
+        return namaBank;
+    }
+
+    public void setNamaBank(ListModelList<String> namaBank) {
+        this.namaBank = namaBank;
     }
 
 }

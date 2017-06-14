@@ -56,20 +56,6 @@
                 </template>
             </listbox>
             
-            <grid style="border:0">
-                
-                <columns>
-                    <column align="right" width="50%"/>
-                    <column align="left" width="50%"/>
-                </columns>
-                
-                <rows>
-                    <row>
-                        <label/>
-                        <button label="Simpan" width="20%"/>
-                    </row>
-                </rows>
-            </grid>
         </groupbox>
     </window>
 </zk>
