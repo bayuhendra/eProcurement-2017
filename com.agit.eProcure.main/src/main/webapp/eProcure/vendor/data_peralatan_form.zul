@@ -94,8 +94,8 @@
                     <row>
                         <label/>
                         <label/>
-                        <button label="Kembali" onClick="@command('buttonKlikBackDataBankForm')" width="50%" />
-                        <button label="Simpan" onClick="@command('buttonKlikSaveDataBankForm')" width="50%"/>
+                        <button label="Kembali" onClick="@command('buttonKlikBackDataPeralatanForm')" width="50%" />
+                        <button label="Simpan" onClick="@command('buttonKlikBackDataPeralatanForm')" width="50%"/>
                     </row>
                 </rows>
             </grid>

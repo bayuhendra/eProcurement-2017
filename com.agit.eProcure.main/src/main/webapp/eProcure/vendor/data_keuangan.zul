@@ -13,7 +13,7 @@
                 <rows>
                     <row>
                         <label/>
-                        <button label=" + Tambah" width="70%" />
+                        <button label=" + Tambah" width="70%" onClick="@command('buttonKlikDataKeuanganForm')" />
                     </row>
                 </rows>
             </grid>

@@ -8,11 +8,13 @@ import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
 import com.agit.eProcure.common.dto.vendor.DataBankDTO;
 import com.agit.eProcure.common.dto.vendor.DataBankDTOBuilder;
+import com.agit.eProcure.common.dto.vendor.DataKeuanganDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTO;
 import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPengalamanDTO;
+import com.agit.eProcure.common.dto.vendor.DataPeralatanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
@@ -566,7 +568,6 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataBank(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_bank.zul";
     }
-
     @Command("buttonKlikDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -574,19 +575,11 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("dataBankDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_bank_form.zul", window, params);
     }
-
     @Command("buttonKlikBackDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikBackDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         window.detach();
     }
-
-    @Command("buttonKlikBackDataPerusahaan")
-    @NotifyChange("dataBankDTO")
-    public void buttonKlikBackDataPerusahaan(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        window.detach();
-    }
-
     @Command("buttonKlikSaveDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikSaveDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -599,7 +592,6 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataSegmentasi(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_segmentasi.zul";
     }
-
     @Command("buttonKlikDataTambahSegmentasi")
     @NotifyChange("dataSegmentasiDTO")
     public void buttonKlikDataTambahSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -607,7 +599,6 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("dataSegmentasiDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_tambah_segmentasi.zul", window, params);
     }
-
     @Command("buttonKembaliDataSegmentasi")
     @NotifyChange("dataSegmentasiDTO")
     public void buttonKembaliDataSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -620,6 +611,18 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataPeralatan(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_peralatan.zul";
     }
+    @Command("buttonKlikDataPeralatanForm")
+    @NotifyChange("dataPeralatanDTO")
+    public void buttonKlikDataPeralatanForm(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("DataPeralatanDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_peralatan_form.zul", window, params);
+    }
+    @Command("buttonKlikBackDataPeralatanForm")
+    @NotifyChange("dataPeralatanDTO")
+    public void buttonKlikBackDataPeralatanForm(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
+    }
 
     /*======================================= functional for page Data Keuangan =======================================*/
     @Command("buttonKlikDataKeuangan")
@@ -627,15 +630,19 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataKeuangan(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_keuangan.zul";
     }
-
-
-    /*======================================= functional for page Data Pengalaman =======================================*/
-    @Command("buttonKlikDataPengalaman")
-    @NotifyChange("src")
-    public void buttonKlikDataPengalaman(@ContextParam(ContextType.VIEW) Window window) {
-        src = "/eProcure/vendor/data_pengalaman.zul";
+    @Command("buttonKlikDataKeuanganForm")
+    @NotifyChange("dataKeuanganDTO")
+    public void buttonKlikDataKeuanganForm(@BindingParam("object") DataKeuanganDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("DataKeuanganDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_keuangan_form.zul", window, params);
     }
-
+    @Command("buttonKlikBackDataKeuanganForm")
+    @NotifyChange("dataKeuanganDTO")
+    public void buttonKlikBackDataKeuanganForm(@BindingParam("object") DataKeuanganDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        window.detach();
+    }
+    
     /*======================================= functional for page Data Dokumentasi  =======================================*/
     @Command("buttonKlikDataDokumen")
     @NotifyChange("src")
@@ -643,6 +650,12 @@ public class VendorVM extends SelectorComposer<Window> {
         src = "/eProcure/vendor/data_dokumen.zul";
     }
 
+    /*======================================= functional for page Data Pengalaman =======================================*/
+    @Command("buttonKlikDataPengalaman")
+    @NotifyChange("src")
+    public void buttonKlikDataPengalaman(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/data_pengalaman.zul";
+    }
     @Command("buttonKlikDataPengalamanPelanggan")
     @NotifyChange("dataPengalamanDTO")
     public void buttonKlikDataPengalamanPelanggan(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
