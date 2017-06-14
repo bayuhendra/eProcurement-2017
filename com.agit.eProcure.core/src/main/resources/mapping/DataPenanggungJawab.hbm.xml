@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataPenanggungJawab" table="AGIT_DATAPENANGGUNGJAWAB">
+        <id column="id_privilege" name="id">
+            <generator class="increment"/>
+        </id>
+        <property column="idPerusahaan" name="idPerusahaan" not-null="false"/>
+        <property column="idPenanggungJawab" name="idPenanggungJawab" not-null="false"/>
+        <property column="namaPenanggungJawab" name="namaPenanggungJawab"/>
+        <property column="jabatanType" name="jabatanType" not-null="false">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.agit.eProcure.shared.type.JabatanType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property column="emailPenanggungJawab" name="emailPenanggungJawab"/>
+        <property column="createdBy" name="createdBy"/>
+        <property column="createdDate" name="createdDate"/>
+        <property column="modifiedBy" name="modifiedBy"/>
+        <property column="modifiedDate" name="modifiedDate"/>
+    </class>
+</hibernate-mapping>

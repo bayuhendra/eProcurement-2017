@@ -38,9 +38,6 @@ public class DataPerusahaanDTO implements Serializable {
     private String noHP;
     private String emailCp;
     private String noKtp;
-    private String namaPenanggungJawab;
-    private JabatanType jabatanType;
-    private String emailPenanggungJawab;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -49,7 +46,7 @@ public class DataPerusahaanDTO implements Serializable {
     public DataPerusahaanDTO() {
     }
 
-    public DataPerusahaanDTO(String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String namaPenanggungJawab, JabatanType jabatanType, String emailPenanggungJawab, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataPerusahaanDTO(String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idPerusahaan = idPerusahaan;
         this.pKPType = pKPType;
         this.kualifikasiType = kualifikasiType;
@@ -74,9 +71,6 @@ public class DataPerusahaanDTO implements Serializable {
         this.noHP = noHP;
         this.emailCp = emailCp;
         this.noKtp = noKtp;
-        this.namaPenanggungJawab = namaPenanggungJawab;
-        this.jabatanType = jabatanType;
-        this.emailPenanggungJawab = emailPenanggungJawab;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -275,30 +269,6 @@ public class DataPerusahaanDTO implements Serializable {
         this.noKtp = noKtp;
     }
 
-    public String getNamaPenanggungJawab() {
-        return namaPenanggungJawab;
-    }
-
-    public void setNamaPenanggungJawab(String namaPenanggungJawab) {
-        this.namaPenanggungJawab = namaPenanggungJawab;
-    }
-
-    public JabatanType getJabatanType() {
-        return jabatanType;
-    }
-
-    public void setJabatanType(JabatanType jabatanType) {
-        this.jabatanType = jabatanType;
-    }
-
-    public String getEmailPenanggungJawab() {
-        return emailPenanggungJawab;
-    }
-
-    public void setEmailPenanggungJawab(String emailPenanggungJawab) {
-        this.emailPenanggungJawab = emailPenanggungJawab;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
@@ -333,7 +303,7 @@ public class DataPerusahaanDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "DataPerusahaanDTO{" + "idPerusahaan=" + idPerusahaan + ", pKPType=" + pKPType + ", kualifikasiType=" + kualifikasiType + ", unitType=" + unitType + ", namaPerusahaan=" + namaPerusahaan + ", perusahaanType=" + perusahaanType + ", npwp=" + npwp + ", namaSingkatan=" + namaSingkatan + ", jumlahKaryawan=" + jumlahKaryawan + ", tanggalBerdiri=" + tanggalBerdiri + ", deskripsi=" + deskripsi + ", alamatPerusahaan=" + alamatPerusahaan + ", propinsi=" + propinsi + ", kota=" + kota + ", poBox=" + poBox + ", kodePos=" + kodePos + ", telpPerusahaan=" + telpPerusahaan + ", noFax=" + noFax + ", emailPerusahaan=" + emailPerusahaan + ", website=" + website + ", namaCp=" + namaCp + ", noHP=" + noHP + ", emailCp=" + emailCp + ", noKtp=" + noKtp + ", namaPenanggungJawab=" + namaPenanggungJawab + ", jabatanType=" + jabatanType + ", emailPenanggungJawab=" + emailPenanggungJawab + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "DataPerusahaanDTO{" + "idPerusahaan=" + idPerusahaan + ", pKPType=" + pKPType + ", kualifikasiType=" + kualifikasiType + ", unitType=" + unitType + ", namaPerusahaan=" + namaPerusahaan + ", perusahaanType=" + perusahaanType + ", npwp=" + npwp + ", namaSingkatan=" + namaSingkatan + ", jumlahKaryawan=" + jumlahKaryawan + ", tanggalBerdiri=" + tanggalBerdiri + ", deskripsi=" + deskripsi + ", alamatPerusahaan=" + alamatPerusahaan + ", propinsi=" + propinsi + ", kota=" + kota + ", poBox=" + poBox + ", kodePos=" + kodePos + ", telpPerusahaan=" + telpPerusahaan + ", noFax=" + noFax + ", emailPerusahaan=" + emailPerusahaan + ", website=" + website + ", namaCp=" + namaCp + ", noHP=" + noHP + ", emailCp=" + emailCp + ", noKtp=" + noKtp + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
-
+    
 }

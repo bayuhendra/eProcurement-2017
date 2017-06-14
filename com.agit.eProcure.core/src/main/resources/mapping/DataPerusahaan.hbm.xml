@@ -50,14 +50,6 @@
         <property column="noHP" name="noHP"/>
         <property column="emailCp" name="emailCp"/>
         <property column="noKtp" name="noKtp"/>
-        <property column="namaPenanggungJawab" name="namaPenanggungJawab"/>
-        <property column="jabatanType" name="jabatanType" not-null="false">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.agit.eProcure.shared.type.JabatanType</param>
-                <param name="type">12</param>
-            </type>
-        </property>
-        <property column="emailPenanggungJawab" name="emailPenanggungJawab"/>
         <property column="createdBy" name="createdBy"/>
         <property column="createdDate" name="createdDate"/>
         <property column="modifiedBy" name="modifiedBy"/>

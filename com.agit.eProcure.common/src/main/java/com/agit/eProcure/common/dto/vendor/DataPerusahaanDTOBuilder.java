@@ -39,9 +39,6 @@ public class DataPerusahaanDTOBuilder {
     private String noHP;
     private String emailCp;
     private String noKtp;
-    private String namaPenanggungJawab;
-    private JabatanType jabatanType;
-    private String emailPenanggungJawab;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -171,21 +168,6 @@ public class DataPerusahaanDTOBuilder {
         return this;
     }
 
-    public DataPerusahaanDTOBuilder setNamaPenanggungJawab(String namaPenanggungJawab) {
-        this.namaPenanggungJawab = namaPenanggungJawab;
-        return this;
-    }
-
-    public DataPerusahaanDTOBuilder setJabatanType(JabatanType jabatanType) {
-        this.jabatanType = jabatanType;
-        return this;
-    }
-
-    public DataPerusahaanDTOBuilder setEmailPenanggungJawab(String emailPenanggungJawab) {
-        this.emailPenanggungJawab = emailPenanggungJawab;
-        return this;
-    }
-
     public DataPerusahaanDTOBuilder setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
@@ -207,7 +189,7 @@ public class DataPerusahaanDTOBuilder {
     }
 
     public DataPerusahaanDTO createDataPerusahaanDTO() {
-        return new DataPerusahaanDTO(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, namaPenanggungJawab, jabatanType, emailPenanggungJawab, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataPerusahaanDTO(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

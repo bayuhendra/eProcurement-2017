@@ -40,9 +40,6 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     private String noHP;
     private String emailCp;
     private String noKtp;
-    private String namaPenanggungJawab;
-    private JabatanType jabatanType;
-    private String emailPenanggungJawab;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -51,7 +48,7 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     public DataPerusahaan() {
     }
 
-    public DataPerusahaan(long id, String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String namaPenanggungJawab, JabatanType jabatanType, String emailPenanggungJawab, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataPerusahaan(long id, String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.idPerusahaan = idPerusahaan;
         this.pKPType = pKPType;
@@ -77,15 +74,12 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.noHP = noHP;
         this.emailCp = emailCp;
         this.noKtp = noKtp;
-        this.namaPenanggungJawab = namaPenanggungJawab;
-        this.jabatanType = jabatanType;
-        this.emailPenanggungJawab = emailPenanggungJawab;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
     }
-
+    
     public long getId() {
         return id;
     }
@@ -286,30 +280,6 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.noKtp = noKtp;
     }
 
-    public String getNamaPenanggungJawab() {
-        return namaPenanggungJawab;
-    }
-
-    public void setNamaPenanggungJawab(String namaPenanggungJawab) {
-        this.namaPenanggungJawab = namaPenanggungJawab;
-    }
-
-    public JabatanType getJabatanType() {
-        return jabatanType;
-    }
-
-    public void setJabatanType(JabatanType jabatanType) {
-        this.jabatanType = jabatanType;
-    }
-
-    public String getEmailPenanggungJawab() {
-        return emailPenanggungJawab;
-    }
-
-    public void setEmailPenanggungJawab(String emailPenanggungJawab) {
-        this.emailPenanggungJawab = emailPenanggungJawab;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
@@ -369,9 +339,6 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         hash = 31 * hash + Objects.hashCode(this.noHP);
         hash = 31 * hash + Objects.hashCode(this.emailCp);
         hash = 31 * hash + Objects.hashCode(this.noKtp);
-        hash = 31 * hash + Objects.hashCode(this.namaPenanggungJawab);
-        hash = 31 * hash + Objects.hashCode(this.jabatanType);
-        hash = 31 * hash + Objects.hashCode(this.emailPenanggungJawab);
         hash = 31 * hash + Objects.hashCode(this.createdBy);
         hash = 31 * hash + Objects.hashCode(this.createdDate);
         hash = 31 * hash + Objects.hashCode(this.modifiedBy);
@@ -422,9 +389,6 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.noHP = dataPerusahaan.noHP;
         this.emailCp = dataPerusahaan.emailCp;
         this.noKtp = dataPerusahaan.noKtp;
-        this.namaPenanggungJawab = dataPerusahaan.namaPenanggungJawab;
-        this.jabatanType = dataPerusahaan.jabatanType;
-        this.emailPenanggungJawab = dataPerusahaan.emailPenanggungJawab;
         this.createdBy = dataPerusahaan.createdBy;
         this.createdDate = dataPerusahaan.createdDate;
         this.modifiedBy = dataPerusahaan.modifiedBy;

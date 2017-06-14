@@ -40,9 +40,6 @@ public class DataPerusahaanBuilder {
     private String noHP;
     private String emailCp;
     private String noKtp;
-    private String namaPenanggungJawab;
-    private JabatanType jabatanType;
-    private String emailPenanggungJawab;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -177,21 +174,6 @@ public class DataPerusahaanBuilder {
         return this;
     }
 
-    public DataPerusahaanBuilder setNamaPenanggungJawab(String namaPenanggungJawab) {
-        this.namaPenanggungJawab = namaPenanggungJawab;
-        return this;
-    }
-
-    public DataPerusahaanBuilder setJabatanType(JabatanType jabatanType) {
-        this.jabatanType = jabatanType;
-        return this;
-    }
-
-    public DataPerusahaanBuilder setEmailPenanggungJawab(String emailPenanggungJawab) {
-        this.emailPenanggungJawab = emailPenanggungJawab;
-        return this;
-    }
-
     public DataPerusahaanBuilder setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
@@ -213,7 +195,7 @@ public class DataPerusahaanBuilder {
     }
 
     public DataPerusahaan createDataPerusahaan() {
-        return new DataPerusahaan(id, idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, namaPenanggungJawab, jabatanType, emailPenanggungJawab, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataPerusahaan(id, idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }
