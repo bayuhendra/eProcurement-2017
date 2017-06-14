@@ -2,11 +2,9 @@ package com.agit.eProcure.core.domain.vendor;
 
 import com.agit.eProcure.shared.object.EntityObject;
 import com.agit.eProcure.shared.type.JabatanType;
-import com.agit.eProcure.shared.type.KotaType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
-import com.agit.eProcure.shared.type.PropinsiType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
 import java.util.Objects;

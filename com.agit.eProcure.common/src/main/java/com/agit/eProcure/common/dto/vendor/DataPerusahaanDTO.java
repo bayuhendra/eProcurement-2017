@@ -1,11 +1,9 @@
 package com.agit.eProcure.common.dto.vendor;
 
 import com.agit.eProcure.shared.type.JabatanType;
-import com.agit.eProcure.shared.type.KotaType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
-import com.agit.eProcure.shared.type.PropinsiType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.io.Serializable;
 import java.util.Date;

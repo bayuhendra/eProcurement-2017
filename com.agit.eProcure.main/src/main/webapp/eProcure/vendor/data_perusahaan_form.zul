@@ -2,42 +2,50 @@
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
-        <groupbox width="600px" closable="false">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataPerusahaanDTO)@save(vm.dataPerusahaanDTO, before='buttonKlikSaveDataPerusahaanForm')">
+        <groupbox width="400px" closable="false">
             <caption label="Tambah Data PIC" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
-                    <column width="50%" />
-                    <column width="50%" />
+                    <column width="20%" />
+                    <column width="60%" />       
+                    <column/>
+
                 </columns>
                 <rows>
                     <row>
-                      <label value="Nama" />
-                      <textbox />
+                        <label value="Nama" />
+                        <textbox  width="100%" value="@bind(fx.namaPenanggungJawab)"/>
                     </row>
                     
                     <row>
-                      <label value="Jabatan" />
-                      <textbox />
+                        <label value="Jabatan" />
+                        <combobox autodrop="true" model="@load(vm.jabatanTypes)" selectedItem="@bind(fx.jabatanType)" readonly="true" width="100%" placeholder="- Pilihan Jabatan -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
+                            </template>
+                        </combobox>
                     </row>
                     
                     <row>
-                      <label value="Email" />
-                      <textbox />
+                        <label value="Email" />
+                        <textbox  width="100%" value="@bind(fx.emailPenanggungJawab)"/>
                     </row>
                 </rows>
             </grid>
             <grid style="border:0">
                 <columns>
-                    <column width="50%"/>
-                    <column width="15%"/>
+                    <column align="left" width="20%"/>
+                    <column align="right" width="40%"/>
+                    <column align="left" width="40%"/>
                     <column />
                 </columns>
                 <rows>
                     <row>
                         <label/>
-                        <button label="Kembali" onClick="@command('buttonKlikBackDataPerusahaanForm')" width="100%"/>
-                        <button label="Save" onClick="@command('buttonKlikSaveDataPerusahaanForm')" width="40%"/>
+                        <button label="Kembali" onClick="@command('buttonKlikBackDataPerusahaanForm')" width="50%"/>
+                        <button label="Save" onClick="@command('buttonKlikSaveDataPerusahaanForm')" width="50%"/>
                     </row>
                 </rows>
             </grid>

@@ -51,6 +51,7 @@ public class DataPerusahaanBuilder {
     public DataPerusahaanBuilder() {
     }
 
+    
     public DataPerusahaanBuilder setId(long id) {
         this.id = id;
         return this;

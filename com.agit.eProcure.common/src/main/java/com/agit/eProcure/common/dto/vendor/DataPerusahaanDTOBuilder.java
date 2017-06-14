@@ -54,6 +54,7 @@ public class DataPerusahaanDTOBuilder {
         this.idPerusahaan = idPerusahaan;
         return this;
     }
+    
 
     public DataPerusahaanDTOBuilder setPKPType(PKPType pKPType) {
         this.pKPType = pKPType;

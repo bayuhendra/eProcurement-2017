@@ -39,6 +39,7 @@
         <property column="alamatPerusahaan" name="alamatPerusahaan"/>
         <property column="propinsi" name="propinsi"/>
         <property column="kota" name="kota"/>
+        
         <property column="poBox" name="poBox"/>
         <property column="kodePos" name="kodePos"/>
         <property column="telpPerusahaan" name="telpPerusahaan"/>

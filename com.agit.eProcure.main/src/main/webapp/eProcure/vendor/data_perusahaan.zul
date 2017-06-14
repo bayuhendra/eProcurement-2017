@@ -1,7 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
-            form="@id('fx') @load(vm.dataPerusahaanDTO)">
+            form="@id('fx') @load(vm.dataPerusahaanDTO)@save(vm.dataPerusahaanDTO, before='buttonSaveDataPerusahaan')">
         <separator spacing="5px"/>
         <groupbox width="600px" closable="true">
             <caption label="Data Perusahaan" style="font-size:16pt; font-weight: bold"/>
@@ -16,23 +16,20 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="PKP / Non-PKP" style="font-weight: bold"/>
-                        <radiogroup width="100%">
-                            <radio label="PKP"/>
-                            <radio label="Non-PKP"/>
-                        </radiogroup>
+                        <radiogroup model="@bind(vm.listPKPType)" selectedItem="@bind(vm.dataPerusahaanDTO.pKPType)" />
                     </row>
                     
                     <row>
                         <label/>
                         <label/>
-                        <textbox width="100%" disabled="true" />
+                        <textbox width="100%" disabled="true"/>
                     </row>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Kualifikasi" style="font-weight: bold"/>
-                        <combobox autodrop="true" readonly="true" width="100%">
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.kualifikasiTypes)" selectedItem="@bind(fx.kualifikasiType)" readonly="true" width="100%" placeholder="- Pilihan Kualifikasi -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
@@ -41,42 +38,51 @@
                         <label value="*)" style="color:red"/>
                         <label value="Mendaftar di Unit" style="font-weight: bold"/>
                         <textbox width="100%"/>
-                        <combobox autodrop="true" readonly="true" width="70%">
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.unitTypes)" selectedItem="@bind(fx.unitType)" readonly="true" width="100%" placeholder="- Pilihan Unit -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
-                    
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Nama Perusahaan" style="font-weight: bold"/>
+                        <textbox width="100%" value="@bind(fx.namaPerusahaan)"/>
+                        <combobox autodrop="true" model="@load(vm.perusahaanTypes)" selectedItem="@bind(fx.perusahaanType)" readonly="true" width="100%" placeholder="- Pilihan Tipe Perusahaan -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
+                            </template>
+                        </combobox>
+                    </row>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="NPWP Perusahaan" style="font-weight: bold"/>
-                        <textbox width="100%"/>
+                        <textbox width="100%" value="@bind(fx.npwp)" constraint="/.[0-9]+/: NPWP tidak sesuai dengan format"/>
                         <button label="Check NPWP" width="70%" />
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nama Singkatan" style="font-weight: bold"/>
-                        <textbox width="100%"/>
+                        <textbox width="100%" value="@bind(fx.namaSingkatan)"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Jumlah Karyawan" style="font-weight: bold"/>
-                        <textbox width="100%"/>
+                        <textbox width="100%" value="@bind(fx.jumlahKaryawan)" constraint="/.[0-9]+/: Jumlah Karyawan tidak sesuai dengan format"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tanggal Berdiri" style="font-weight: bold"/>
-                        <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" />
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" value="@bind(fx.tanggalBerdiri)" readonly="true"/>
                     </row>
                     
                     <row>
                         <label></label>
                         <label value="Deskripsi"  style="font-weight: bold"/>
-                        <textbox rows="7" width="100%"></textbox>
+                        <textbox rows="7" width="100%" value="@bind(fx.deskripsi)"></textbox>
                     </row>
                 </rows>
             </grid>
@@ -96,7 +102,7 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Alamat Perusahaan" style="font-weight: bold"/>
-                        <textbox rows="5" width="100%" />
+                        <textbox rows="5" width="100%" value="@bind(fx.alamatPerusahaan)" />
                     </row>
                 
                     <row>
@@ -134,13 +140,13 @@
                                     <row>
                                         <label />
                                         <label value="PO BOX"/>
-                                        <textbox width="100%"/>
+                                        <textbox width="100%" value="@bind(fx.poBox)" constraint="/.[0-9]+/: PO BOX tidak sesuai dengan format"/>
                                     </row>
                                     
                                     <row>
                                         <label />
                                         <label value="Kode Pos"/>
-                                        <textbox width="100%"/>
+                                        <textbox width="100%" value="@bind(fx.kodePos)" constraint="/.[0-9]+/: Kode Pos tidak sesuai dengan format"/>
                                     </row>
                                 </rows>
                             </grid>
@@ -150,25 +156,25 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Telepon Perusahaan" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.telpPerusahaan)" constraint="/.[0-9]+/: Telepon tidak sesuai dengan format"/>
                     </row>
                 
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="No. Fax" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.noFax)"/>
                     </row>
                 
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Email" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.emailPerusahaan)" constraint="/.+@.+\.[a-z]+/: Email tidak sesuai dengan format" />
                     </row>
                 
                     <row>
                         <label />
                         <label value="Website" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.website)"/>
                     </row>
                 
                 </rows>
@@ -189,25 +195,25 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nama" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.namaCp)"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="No. HP" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.noHP)" constraint="/.[0-9]+/: No. HP tidak sesuai dengan format"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Email" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.emailCp)" constraint="/.+@.+\.[a-z]+/: Email tidak sesuai dengan format"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="No. KTP" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.noKtp)" constraint="/.[0-9]+/: No. Ktp tidak sesuai dengan format"/>
                     </row>
                 </rows>
             </grid>
@@ -263,14 +269,14 @@
             <grid style="border:0">
                 
                 <columns>
-                    <column align="right" width="50%"/>
-                    <column align="left" width="50%"/>
+                    <column align="right" width="70%"/>
+                    <column align="right" width="30%"/>
                 </columns>
                 
                 <rows>
                     <row>
                         <label/>
-                        <button label="Simpan" width="20%"/>
+                        <button label="Simpan" width="40%" onClick="@command('buttonSaveDataPerusahaan')"/>
                     </row>
                 </rows>
             </grid>

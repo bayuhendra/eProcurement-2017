@@ -10,8 +10,14 @@ import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPengalamanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
+import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
 import com.agit.eProcure.common.security.SecurityUtil;
+import com.agit.eProcure.shared.type.JabatanType;
+import com.agit.eProcure.shared.type.KualifikasiType;
+import com.agit.eProcure.shared.type.PKPType;
+import com.agit.eProcure.shared.type.PerusahaanType;
+import com.agit.eProcure.shared.type.UnitType;
 import com.agit.eProcure.shared.zul.CommonViewModel;
 import static com.agit.eProcure.shared.zul.CommonViewModel.showInformationMessagebox;
 import com.agit.eProcure.shared.zul.PageNavigation;
@@ -25,7 +31,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static org.codehaus.groovy.ast.tools.GeneralUtils.params;
 import org.zkoss.bind.BindContext;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
@@ -71,6 +76,17 @@ public class VendorVM extends SelectorComposer<Window> {
     DataPengalamanService dataPengalamanService;
 
     private String idDataLogin;
+    private String idDataPerusahaan;
+    private String nama;
+    private JabatanType jabatan;
+    private String email;
+
+    private ListModelList<KualifikasiType> kualifikasiTypes;
+    private ListModelList<UnitType> unitTypes;
+    private ListModelList<PerusahaanType> perusahaanTypes;
+    private ListModelList<JabatanType> jabatanTypes;
+    private ListModelList<PKPType> listPKPType = new ListModelList<>();
+
 
     /* Object Binding for Form Data Login */
     private DataLoginDTO dataLoginDTO = new DataLoginDTO();
@@ -96,6 +112,9 @@ public class VendorVM extends SelectorComposer<Window> {
 
     /* for home instance */
     private String src = "/eProcure/vendor/data_login.zul";
+    private PKPType pKPType;
+    private boolean disablePKP;
+    private DataPerusahaanDTO pkpTypeDisable;
 
     /* attribut for upload file Data Login */
     private PageNavigation previous;
@@ -110,41 +129,49 @@ public class VendorVM extends SelectorComposer<Window> {
 
     @Init
     public void init(
-            @ExecutionArgParam("petunjukRKAPDTO") DataLoginDTO dataLogin,
+            @ExecutionArgParam("dataLoginDTO") DataLoginDTO dataLogin,
+            @ExecutionArgParam("dataPerusahaanDTO") DataPerusahaanDTO dataPerusahaan,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
         /* Load Data */
         initData();
 
         /* Check Validity */
-        checkValidity(dataLogin, previous);
+        checkValidity(dataLogin, dataPerusahaan, previous);
     }
 
     private void initData() {
-        /* get all pelayanan */
         dataLoginDTOs = dataLoginService.findAll();
         if (dataLoginDTOs.isEmpty()) {
             dataLoginDTOs = Collections.emptyList();
+        }
+        dataPerusahaanDTOs = dataPerusahaanService.findAll();
+        if (dataPerusahaanDTOs.isEmpty()) {
+            dataPerusahaanDTOs = Collections.emptyList();
         }
 
         kota.add("SEMARANG");
         kota.add("SURABAYA");
         kota.add("BANDUNG");
-        
+
         propinsi.add("JAWA TENGAH");
         propinsi.add("JAWA TIMUR");
         propinsi.add("JAWA BARAT");
-                        
-                
-                
+
+        /* for button PKP disable enable purpose */
+//        if (pkpTypeDisable.getpKPType().PKP)) {
+//            disablePKP = false;
+//        } else {
+//            disablePKP = true;
+//        }
     }
 
-    private void checkValidity(DataLoginDTO dataLogin, PageNavigation previous) {
+    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, PageNavigation previous) {
         if (dataLogin == null) {
             ListModelList<DataLoginDTO> parameterList = new ListModelList<>(dataLoginService.findAll());
             String idDataLogin = "";
             if (parameterList.isEmpty()) {
-                idDataLogin = "P001";
+                idDataLogin = "IdLogin-001";
             } else {
                 idDataLogin = getLatestObjectID(parameterList, "idDataLogin");
             }
@@ -158,6 +185,27 @@ public class VendorVM extends SelectorComposer<Window> {
             mediaNameUploadLogo = dataLoginDTO.getLogo();
             mediaNameUploadHeaderImage = dataLoginDTO.getHeaderImage();
             idDataLogin = dataLoginDTO.getIdDataLogin();
+            this.previous = previous;
+        }
+        if (dataPerusahaan == null) {
+            ListModelList<DataPerusahaanDTO> parameterList = new ListModelList<>(dataPerusahaanService.findAll());
+            String idPerusahaan = "";
+            if (parameterList.isEmpty()) {
+                idPerusahaan = "IdPerusahaan-001";
+            } else {
+                idPerusahaan = getLatestObjectID(parameterList, "idPerusahaan");
+            }
+            dataPerusahaanDTO = new DataPerusahaanDTOBuilder()
+                    .setIdPerusahaan(idPerusahaan)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createDataPerusahaanDTO();
+        } else {
+            this.dataPerusahaanDTO = dataPerusahaan;
+            idDataPerusahaan = dataPerusahaanDTO.getIdPerusahaan();
+            nama = dataPerusahaanDTO.getNamaPenanggungJawab();
+            email = dataPerusahaanDTO.getEmailPenanggungJawab();
+
             this.previous = previous;
         }
 
@@ -304,7 +352,7 @@ public class VendorVM extends SelectorComposer<Window> {
     }
 
     @Command("buttonSaveDataLogin")
-    @NotifyChange({"dataLoginDTO", "mediaNameUploadHeaderImage", "pathLocationUploadHeaderImage", "mediaNameUploadLogo", "pathLocationUploadLogo", "src"})
+    @NotifyChange({"dataLoginDTO", "dataLoginDTOs", "mediaNameUploadHeaderImage", "pathLocationUploadHeaderImage", "mediaNameUploadLogo", "pathLocationUploadLogo", "src"})
     public void buttonSaveDataLogin(@BindingParam("object") DataLoginDTO obj, @ContextParam(ContextType.VIEW) Window window) {
 
         if (pathLocationUploadLogo == null) {
@@ -323,11 +371,29 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateTo("/eProcure/vendor/data_login.zul", window, params);
     }
 
+    @Command("buttonSaveDataPerusahaan")
+    @NotifyChange({"dataPerusahaanDTO"})
+    public void buttonSaveDataPerusahaan(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataPerusahaanService.SaveOrUpdate(dataPerusahaanDTO);
+        showInformationMessagebox("Data Perusahaan Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataPerusahaan", null);
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataPerusahaanDTO", obj);
+        CommonViewModel.navigateTo("/eProcure/vendor/data_perusahaan.zul", window, params);
+    }
+
     @GlobalCommand
     @NotifyChange("dataLoginDTOs")
     public void refreshDataLogin() {
         dataLoginDTOs = dataLoginService.findAll();
     }
+
+    @GlobalCommand
+    @NotifyChange("dataPerusahaanDTOs")
+    public void refreshDataPerusahaan() {
+        dataPerusahaanDTOs = dataPerusahaanService.findAll();
+    }
+
 
     /*======================================= functional for page Data Login =======================================*/
     @Command("buttonKlikDataLogin")
@@ -360,6 +426,10 @@ public class VendorVM extends SelectorComposer<Window> {
     @Command("buttonKlikSaveDataPerusahaanForm")
     @NotifyChange("dataPerusahaanDTO")
     public void buttonKlikSaveDataPerusahaanForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        nama = dataPerusahaanDTO.getNamaPenanggungJawab();
+        jabatan = dataPerusahaanDTO.getJabatanType();
+        email = dataPerusahaanDTO.getEmailPenanggungJawab();
+        dataPerusahaanService.SaveOrUpdate(dataPerusahaanDTO);
         window.detach();
     }
 
@@ -645,6 +715,102 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setPrevious(PageNavigation previous) {
         this.previous = previous;
+    }
+
+    public ListModelList<KualifikasiType> getKualifikasiTypes() {
+        return new ListModelList<>(KualifikasiType.values());
+    }
+
+    public void setIdDataLogin(String idDataLogin) {
+        this.idDataLogin = idDataLogin;
+    }
+
+    public void setIdDataPerusahaan(String idDataPerusahaan) {
+        this.idDataPerusahaan = idDataPerusahaan;
+    }
+
+    public void setKualifikasiTypes(ListModelList<KualifikasiType> kualifikasiTypes) {
+        this.kualifikasiTypes = kualifikasiTypes;
+    }
+
+    public ListModelList<UnitType> getUnitTypes() {
+        return new ListModelList<>(UnitType.values());
+    }
+
+    public void setUnitTypes(ListModelList<UnitType> unitTypes) {
+        this.unitTypes = unitTypes;
+    }
+
+    public ListModelList<PerusahaanType> getPerusahaanTypes() {
+        return new ListModelList<>(PerusahaanType.values());
+    }
+
+    public void setPerusahaanTypes(ListModelList<PerusahaanType> perusahaanTypes) {
+        this.perusahaanTypes = perusahaanTypes;
+    }
+
+    public ListModelList<PKPType> getListPKPType() {
+        return new ListModelList<>(PKPType.values());
+    }
+
+    public void setListPKPType(ListModelList<PKPType> listPKPType) {
+        this.listPKPType = listPKPType;
+    }
+
+    public PKPType getpKPType() {
+        return pKPType;
+    }
+
+    public void setpKPType(PKPType pKPType) {
+        this.pKPType = pKPType;
+    }
+
+    public boolean isDisablePKP() {
+        return disablePKP;
+    }
+
+    public void setDisablePKP(boolean disablePKP) {
+        this.disablePKP = disablePKP;
+    }
+
+    public DataPerusahaanDTO getPkpTypeDisable() {
+        return pkpTypeDisable;
+    }
+
+    public void setPkpTypeDisable(DataPerusahaanDTO pkpTypeDisable) {
+        this.pkpTypeDisable = pkpTypeDisable;
+    }
+
+    public ListModelList<JabatanType> getJabatanTypes() {
+        return new ListModelList<>(JabatanType.values());
+    }
+
+    public void setJabatanTypes(ListModelList<JabatanType> jabatanTypes) {
+        this.jabatanTypes = jabatanTypes;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public JabatanType getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(JabatanType jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
