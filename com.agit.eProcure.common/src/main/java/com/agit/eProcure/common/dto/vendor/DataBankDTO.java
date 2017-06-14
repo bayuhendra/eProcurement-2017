@@ -12,6 +12,7 @@ public class DataBankDTO implements Serializable {
 
     private String idDataBank;
     private String namaBank;
+    private String cabangBank;
     private String alamatBank;
     private String kota;
     private String negara;
@@ -26,9 +27,10 @@ public class DataBankDTO implements Serializable {
     public DataBankDTO() {
     }
 
-    public DataBankDTO(String idDataBank, String namaBank, String alamatBank, String kota, String negara, String noRekening, String namaNasabah, MataUangType mataUangType, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataBankDTO(String idDataBank, String namaBank, String cabangBank, String alamatBank, String kota, String negara, String noRekening, String namaNasabah, MataUangType mataUangType, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idDataBank = idDataBank;
         this.namaBank = namaBank;
+        this.cabangBank = cabangBank;
         this.alamatBank = alamatBank;
         this.kota = kota;
         this.negara = negara;
@@ -55,6 +57,14 @@ public class DataBankDTO implements Serializable {
 
     public void setNamaBank(String namaBank) {
         this.namaBank = namaBank;
+    }
+
+    public String getCabangBank() {
+        return cabangBank;
+    }
+
+    public void setCabangBank(String cabangBank) {
+        this.cabangBank = cabangBank;
     }
 
     public String getAlamatBank() {
@@ -139,7 +149,7 @@ public class DataBankDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "DataBankDTO{" + "idDataBank=" + idDataBank + ", namaBank=" + namaBank + ", alamatBank=" + alamatBank + ", kota=" + kota + ", negara=" + negara + ", noRekening=" + noRekening + ", namaNasabah=" + namaNasabah + ", mataUangType=" + mataUangType + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "DataBankDTO{" + "idDataBank=" + idDataBank + ", namaBank=" + namaBank + ", cabangBank=" + cabangBank + ", alamatBank=" + alamatBank + ", kota=" + kota + ", negara=" + negara + ", noRekening=" + noRekening + ", namaNasabah=" + namaNasabah + ", mataUangType=" + mataUangType + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

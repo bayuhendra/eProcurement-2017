@@ -82,6 +82,7 @@ public class DataBankServiceImpl implements DataBankService {
         DataBank p = new DataBankBuilder()
                 .setIdDataBank((UUID.randomUUID().toString()))
                 .setNamaBank("namaBank")
+                .setCabangBank("cabangBank")
                 .setAlamatBank("alamatBank")
                 .setKota("kota")
                 .setNegara("negara")

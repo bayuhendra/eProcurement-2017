@@ -14,6 +14,7 @@ public class DataBankBuilder {
     private long id;
     private String idDataBank;
     private String namaBank;
+    private String cabangBank;
     private String alamatBank;
     private String kota;
     private String negara;
@@ -40,6 +41,11 @@ public class DataBankBuilder {
 
     public DataBankBuilder setNamaBank(String namaBank) {
         this.namaBank = namaBank;
+        return this;
+    }
+
+    public DataBankBuilder setCabangBank(String cabangBank) {
+        this.cabangBank = cabangBank;
         return this;
     }
 
@@ -94,7 +100,7 @@ public class DataBankBuilder {
     }
 
     public DataBank createDataBank() {
-        return new DataBank(id, idDataBank, namaBank, alamatBank, kota, negara, noRekening, namaNasabah, mataUangType, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataBank(id, idDataBank, namaBank, cabangBank, alamatBank, kota, negara, noRekening, namaNasabah, mataUangType, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

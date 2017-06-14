@@ -6,6 +6,7 @@ import com.agit.eProcure.common.application.DataPengalamanService;
 import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
 import com.agit.eProcure.common.dto.vendor.DataBankDTO;
+import com.agit.eProcure.common.dto.vendor.DataBankDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPengalamanDTO;
@@ -15,6 +16,7 @@ import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
 import com.agit.eProcure.common.security.SecurityUtil;
 import com.agit.eProcure.shared.type.JabatanType;
 import com.agit.eProcure.shared.type.KualifikasiType;
+import com.agit.eProcure.shared.type.MataUangType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
 import com.agit.eProcure.shared.type.UnitType;
@@ -44,6 +46,7 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.io.Files;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
@@ -77,6 +80,7 @@ public class VendorVM extends SelectorComposer<Window> {
 
     private String idDataLogin;
     private String idDataPerusahaan;
+    private String idDataBank;
     private String nama;
     private JabatanType jabatan;
     private String email;
@@ -85,6 +89,7 @@ public class VendorVM extends SelectorComposer<Window> {
     private ListModelList<UnitType> unitTypes;
     private ListModelList<PerusahaanType> perusahaanTypes;
     private ListModelList<JabatanType> jabatanTypes;
+    private ListModelList<MataUangType> mataUangTypes;
     private ListModelList<PKPType> listPKPType = new ListModelList<>();
 
 
@@ -96,6 +101,7 @@ public class VendorVM extends SelectorComposer<Window> {
     private List<DataPerusahaanDTO> dataPerusahaanDTOs = new ArrayList();
     private ListModelList<String> kota = new ListModelList<>();
     private ListModelList<String> propinsi = new ListModelList<>();
+    private ListModelList<String> negara = new ListModelList<>();
 
     private DataBankDTO dataBankDTO = new DataBankDTO();
     private List<DataBankDTO> dataBankDTOs = new ArrayList();
@@ -131,13 +137,14 @@ public class VendorVM extends SelectorComposer<Window> {
     public void init(
             @ExecutionArgParam("dataLoginDTO") DataLoginDTO dataLogin,
             @ExecutionArgParam("dataPerusahaanDTO") DataPerusahaanDTO dataPerusahaan,
+            @ExecutionArgParam("dataBankDTO") DataBankDTO dataBank,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
         /* Load Data */
         initData();
 
         /* Check Validity */
-        checkValidity(dataLogin, dataPerusahaan, previous);
+        checkValidity(dataLogin, dataPerusahaan, dataBank, previous);
     }
 
     private void initData() {
@@ -149,6 +156,10 @@ public class VendorVM extends SelectorComposer<Window> {
         if (dataPerusahaanDTOs.isEmpty()) {
             dataPerusahaanDTOs = Collections.emptyList();
         }
+        dataBankDTOs = dataBankService.findAll();
+        if (dataBankDTOs.isEmpty()) {
+            dataBankDTOs = Collections.emptyList();
+        }
 
         kota.add("SEMARANG");
         kota.add("SURABAYA");
@@ -158,6 +169,10 @@ public class VendorVM extends SelectorComposer<Window> {
         propinsi.add("JAWA TIMUR");
         propinsi.add("JAWA BARAT");
 
+        negara.add("INDONESIA");
+        negara.add("MALAYSIA");
+        negara.add("SINGAPORE");
+
         /* for button PKP disable enable purpose */
 //        if (pkpTypeDisable.getpKPType().PKP)) {
 //            disablePKP = false;
@@ -166,12 +181,12 @@ public class VendorVM extends SelectorComposer<Window> {
 //        }
     }
 
-    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, PageNavigation previous) {
+    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, PageNavigation previous) {
         if (dataLogin == null) {
             ListModelList<DataLoginDTO> parameterList = new ListModelList<>(dataLoginService.findAll());
             String idDataLogin = "";
             if (parameterList.isEmpty()) {
-                idDataLogin = "IdLogin-001";
+                idDataLogin = "1";
             } else {
                 idDataLogin = getLatestObjectID(parameterList, "idDataLogin");
             }
@@ -191,7 +206,7 @@ public class VendorVM extends SelectorComposer<Window> {
             ListModelList<DataPerusahaanDTO> parameterList = new ListModelList<>(dataPerusahaanService.findAll());
             String idPerusahaan = "";
             if (parameterList.isEmpty()) {
-                idPerusahaan = "IdPerusahaan-001";
+                idPerusahaan = "1";
             } else {
                 idPerusahaan = getLatestObjectID(parameterList, "idPerusahaan");
             }
@@ -208,7 +223,24 @@ public class VendorVM extends SelectorComposer<Window> {
 
             this.previous = previous;
         }
-
+        if (dataBank == null) {
+            ListModelList<DataBankDTO> parameterList = new ListModelList<>(dataBankService.findAll());
+            String idDataBank = "";
+            if (parameterList.isEmpty()) {
+                idDataBank = "1";
+            } else {
+                idDataBank = getLatestObjectID(parameterList, "idDataBank");
+            }
+            dataBankDTO = new DataBankDTOBuilder()
+                    .setIdDataBank(idDataBank)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createDataBankDTO();
+        } else {
+            this.dataBankDTO = dataBank;
+            idDataBank = dataBankDTO.getIdDataBank();
+            this.previous = previous;
+        }
     }
 
     protected String getLatestObjectID(ListModelList list, String attribute) {
@@ -382,10 +414,55 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateTo("/eProcure/vendor/data_perusahaan.zul", window, params);
     }
 
+    @Command("buttonSaveDataBank")
+    @NotifyChange({"dataBankDTO", "dataBankDTOs"})
+    public void buttonSaveDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataBankService.SaveOrUpdate(dataBankDTO);
+        showInformationMessagebox("Data Bank Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataBank", null);
+        window.detach();
+    }
+
+    @Command("detailDataBank")
+    @NotifyChange("dataBankDTO")
+    public void detailDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataBankDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_bank_form.zul", window, params);
+    }
+
+    @Command("deleteDataBank")
+    @NotifyChange("dataBankDTOs")
+    public void deleteDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataBankDTO = (DataBankDTO) obj;
+
+        Messagebox.show("Apakah anda yakin ingin menghapus Data Bank?", "Konfirmasi", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+                new org.zkoss.zk.ui.event.EventListener() {
+            @Override
+            public void onEvent(Event evt) throws InterruptedException {
+                if (evt.getName().equals("onOK")) {
+                    dataBankService.deleteData(dataBankDTO);
+                    showInformationMessagebox("Data Bank Berhasil Dihapus");
+                    BindUtils.postGlobalCommand(null, null, "refreshDataBank", null);
+                } else {
+                    System.out.println("Operasi dibatalkan");
+                }
+            }
+        }
+        );
+
+    }
+
     @GlobalCommand
     @NotifyChange("dataLoginDTOs")
     public void refreshDataLogin() {
         dataLoginDTOs = dataLoginService.findAll();
+    }
+
+    @GlobalCommand
+    @NotifyChange("dataBankDTOs")
+    public void refreshDataBank() {
+        dataBankDTOs = dataBankService.findAll();
     }
 
     @GlobalCommand
@@ -811,6 +888,22 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public ListModelList<MataUangType> getMataUangTypes() {
+        return new ListModelList<>(MataUangType.values());
+    }
+
+    public void setMataUangTypes(ListModelList<MataUangType> mataUangTypes) {
+        this.mataUangTypes = mataUangTypes;
+    }
+
+    public ListModelList<String> getNegara() {
+        return negara;
+    }
+
+    public void setNegara(ListModelList<String> negara) {
+        this.negara = negara;
     }
 
 }

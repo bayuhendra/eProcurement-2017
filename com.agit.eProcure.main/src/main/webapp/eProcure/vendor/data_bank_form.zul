@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataBankDTO) @save(vm.dataBankDTO, before='buttonSaveDataBank')">
         <separator spacing="15px"/>
         <groupbox width="600px" closable="false">
             <caption label="Data Bank" style="font-size:16pt; font-weight: bold"/>
@@ -16,7 +17,7 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nama Bank" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.namaBank)"/>
                         <button label="Cari Bank" />
                     </row>
                 </rows>
@@ -33,27 +34,27 @@
                     <row>
                         <label />
                         <label value="Cabang Bank" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.cabangBank)"/>
                     </row>
                 
                     <row>
                         <label />
                         <label value="Alamat Bank" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.alamatBank)"/>
                     </row>
                 
                     <row>
                         <label />
                         <label value="Kota" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.kota)"/>
                     </row>
                 
                     <row>
                         <label />
                         <label value="Negara" style="font-weight: bold"/>
-                        <combobox width="40%" >
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.negara)" selectedItem="@bind(fx.negara)" readonly="true" width="100%" placeholder="- Pilihan Negara -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
@@ -61,21 +62,21 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nomor Rekening" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.noRekening)" constraint="/.[0-9]+/: Nomor Rekening tidak sesuai dengan format"/>
                     </row>
                 
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nama Nasabah" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.namaNasabah)"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Mata Uang" style="font-weight: bold"/>
-                        <combobox width="40%" >
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.mataUangTypes)" selectedItem="@bind(fx.mataUangType)" readonly="true" width="100%" placeholder="- Pilihan Mata Uang -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
@@ -92,7 +93,7 @@
                 <rows>
                     <row>
                         <button label="Kembali" onClick="@command('buttonKlikBackDataBankForm')" width="40%" />
-                        <button label="Simpan" onClick="@command('buttonKlikSaveDataBankForm')" width="40%"/>
+                        <button label="Simpan" onClick="@command('buttonSaveDataBank')" width="40%"/>
                     </row>
                 </rows>
             </grid>            

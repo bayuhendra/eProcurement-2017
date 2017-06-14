@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.agit.eProcure.common.dto.vendor;
 
 import com.agit.eProcure.shared.type.MataUangType;
@@ -8,6 +13,7 @@ public class DataBankDTOBuilder {
 
     private String idDataBank;
     private String namaBank;
+    private String cabangBank;
     private String alamatBank;
     private String kota;
     private String negara;
@@ -29,6 +35,11 @@ public class DataBankDTOBuilder {
 
     public DataBankDTOBuilder setNamaBank(String namaBank) {
         this.namaBank = namaBank;
+        return this;
+    }
+
+    public DataBankDTOBuilder setCabangBank(String cabangBank) {
+        this.cabangBank = cabangBank;
         return this;
     }
 
@@ -83,7 +94,7 @@ public class DataBankDTOBuilder {
     }
 
     public DataBankDTO createDataBankDTO() {
-        return new DataBankDTO(idDataBank, namaBank, alamatBank, kota, negara, noRekening, namaNasabah, mataUangType, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataBankDTO(idDataBank, namaBank, cabangBank, alamatBank, kota, negara, noRekening, namaNasabah, mataUangType, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

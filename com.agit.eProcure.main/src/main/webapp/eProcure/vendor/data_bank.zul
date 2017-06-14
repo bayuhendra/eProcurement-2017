@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataBankDTO) @save(vm.dataBankDTO, before='buttonSaveDataBank')">
         <groupbox width="1000px" closable="false">
             <caption label="Data Bank" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
@@ -18,10 +19,10 @@
                 </rows>
             </grid>
             <!--<paging forward="onPaging" />-->
-            <listbox rows = "6">
+            <listbox rows = "6" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataBankDTOs)">
                 
                 <listhead>
-                    <listheader label="No" width="5%" align="center"/>
+                    <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataBank)"/>
                     <listheader label="Nama Bank" width="30%" align="center"/>
                     <listheader label="Nomor Rekening" width="10%" align="center"/>
                     <listheader label="Nama Nasabah" width="10%" align="center"/>
@@ -30,26 +31,26 @@
                 </listhead>
                 
                 <template name="model">
-                    <listitem>
+                    <listitem value="${each}">
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.idDataBank)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.namaBank)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.namaBank)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.noRekening)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.mataUangType)"/>
                         </listcell>
                         <listcell>
-                            <a label="EDIT" />
-                            <a label=" | " style="font-size:12pt ;color:black" />
-                            <a label="DELETE" />
+                            <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                            <a label=" | " style="font-size:12pt ;color:black"></a>
+                            <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
                         </listcell>
                     </listitem>
                 </template>

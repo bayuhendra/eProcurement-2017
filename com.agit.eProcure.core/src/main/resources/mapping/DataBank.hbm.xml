@@ -7,6 +7,7 @@
         </id>
         <property column="idDataBank" name="idDataBank" not-null="false"/>
         <property column="namaBank" name="namaBank"/>
+        <property column="cabangBank" name="cabangBank"/>
         <property column="alamatBank" name="alamatBank"/>
         <property column="kota" name="kota"/>
         <property column="negara" name="negara"/>

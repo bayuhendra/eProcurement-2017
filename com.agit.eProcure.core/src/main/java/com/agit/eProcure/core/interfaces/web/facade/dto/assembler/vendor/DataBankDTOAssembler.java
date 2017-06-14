@@ -13,12 +13,13 @@ import com.agit.eProcure.core.domain.vendor.DataBankBuilder;
  * @author Bayu Hendra Setiawan
  */
 public class DataBankDTOAssembler implements IObjectAssembler<DataBank, DataBankDTO> {
-
+    
     @Override
     public DataBankDTO toDTO(DataBank domainObject) {
         return new DataBankDTOBuilder()
                 .setIdDataBank(domainObject.getIdDataBank())
                 .setNamaBank(domainObject.getNamaBank())
+                .setCabangBank(domainObject.getCabangBank())
                 .setAlamatBank(domainObject.getAlamatBank())
                 .setKota(domainObject.getKota())
                 .setNegara(domainObject.getNegara())
@@ -31,12 +32,13 @@ public class DataBankDTOAssembler implements IObjectAssembler<DataBank, DataBank
                 .setModifiedDate(domainObject.getModifiedDate())
                 .createDataBankDTO();
     }
-
+    
     @Override
     public DataBank toDomain(DataBankDTO dtoObject) {
         return new DataBankBuilder()
                 .setIdDataBank(dtoObject.getIdDataBank())
                 .setNamaBank(dtoObject.getNamaBank())
+                .setCabangBank(dtoObject.getCabangBank())
                 .setAlamatBank(dtoObject.getAlamatBank())
                 .setKota(dtoObject.getKota())
                 .setNegara(dtoObject.getNegara())
@@ -49,7 +51,7 @@ public class DataBankDTOAssembler implements IObjectAssembler<DataBank, DataBank
                 .setModifiedDate(dtoObject.getModifiedDate())
                 .createDataBank();
     }
-
+    
     public List<DataBank> toDomain(List<DataBankDTO> arg0) {
         List<DataBank> res = new ArrayList<>();
         for (DataBankDTO t : arg0) {
@@ -57,7 +59,7 @@ public class DataBankDTOAssembler implements IObjectAssembler<DataBank, DataBank
         }
         return res;
     }
-
+    
     public List<DataBankDTO> toDTO(List<DataBank> arg0) {
         List<DataBankDTO> res = new ArrayList<>();
         for (DataBank t : arg0) {
@@ -65,5 +67,5 @@ public class DataBankDTOAssembler implements IObjectAssembler<DataBank, DataBank
         }
         return res;
     }
-
+    
 }

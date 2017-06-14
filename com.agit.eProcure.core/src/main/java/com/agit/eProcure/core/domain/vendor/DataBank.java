@@ -14,6 +14,7 @@ public class DataBank implements EntityObject<DataBank> {
     long id;
     private String idDataBank;
     private String namaBank;
+    private String cabangBank;
     private String alamatBank;
     private String kota;
     private String negara;
@@ -28,10 +29,11 @@ public class DataBank implements EntityObject<DataBank> {
     public DataBank() {
     }
 
-    public DataBank(long id, String idDataBank, String namaBank, String alamatBank, String kota, String negara, String noRekening, String namaNasabah, MataUangType mataUangType, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataBank(long id, String idDataBank, String namaBank, String cabangBank, String alamatBank, String kota, String negara, String noRekening, String namaNasabah, MataUangType mataUangType, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.id = id;
         this.idDataBank = idDataBank;
         this.namaBank = namaBank;
+        this.cabangBank = cabangBank;
         this.alamatBank = alamatBank;
         this.kota = kota;
         this.negara = negara;
@@ -148,11 +150,20 @@ public class DataBank implements EntityObject<DataBank> {
         this.modifiedDate = modifiedDate;
     }
 
+    public String getCabangBank() {
+        return cabangBank;
+    }
+
+    public void setCabangBank(String cabangBank) {
+        this.cabangBank = cabangBank;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.idDataBank);
         hash = 53 * hash + Objects.hashCode(this.namaBank);
+        hash = 53 * hash + Objects.hashCode(this.cabangBank);
         hash = 53 * hash + Objects.hashCode(this.alamatBank);
         hash = 53 * hash + Objects.hashCode(this.kota);
         hash = 53 * hash + Objects.hashCode(this.negara);
@@ -187,6 +198,7 @@ public class DataBank implements EntityObject<DataBank> {
     public void assignNewDataBank(DataBank dataBank) {
         this.idDataBank = dataBank.idDataBank;
         this.namaBank = dataBank.namaBank;
+        this.cabangBank = dataBank.cabangBank;
         this.alamatBank = dataBank.alamatBank;
         this.kota = dataBank.kota;
         this.negara = dataBank.negara;
