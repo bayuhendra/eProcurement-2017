@@ -1,0 +1,71 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <!--            viewModel="@id('vm') @init('com.bitozen.training.viewmodel.pelayanan.PelayananVM')"
+        form="@id('fx') @load(vm.pelayananDTO) @save(vm.pelayananDTO, before='buttonSavePelayanan')">-->
+        <groupbox closable="false" mold="3d">
+            <caption label="Dashboard Data Login" />
+            <groupbox closable="false">
+                <caption label="Parameter Pencarian" />
+                <grid>
+                    <columns>
+                        <column width="15%" />
+                        <column width="30%" />
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="ID User" />
+                            <textbox width="100%" value="@bind(vm.layananID)"/>
+                        </row>
+                        <row>
+                            <label value="Nama Pengguna" />
+                            <textbox width="100%" value="@bind(vm.namaLayanan)"/>
+                        </row>
+                        <row>
+                            <cell></cell>
+                            <cell></cell>
+                            <cell align="center">
+                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('buttonPencarian')"/>
+                                
+                            </cell>
+                            <cell colspan="2"></cell> 
+                        </row>
+                    </rows>
+                </grid>
+                <separator></separator>
+            </groupbox>
+            <groupbox closable="false">
+                <paging forward="onPaging" />
+                <listbox rows="5" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.pelayananDTOs)">
+                    <listhead>
+                        <listheader label="ID Data Login" width="15%" align="center"/>
+                        <listheader label="User ID" width="25%" align="center"/>
+                        <listheader label="Nama Pengguna" width="25%" align="center"/>
+                        <listheader label="Password" width="30%" align="center"/>
+                        <listheader label="Aksi" width="10%" align="center"/>
+                    </listhead>
+                    <template name="model">
+                        <listitem value="${each}">
+                            <listcell >
+                                <label width="100%" value="@bind(each.layananID)"/>
+                            </listcell>
+                            <listcell >
+                                <label width="100%" value="@bind(each.kelompokLayanan)"/>
+                            </listcell>
+                            <listcell >
+                                <label width="100%" value="@bind(each.namaLayanan)"/>
+                            </listcell>
+                            <listcell >
+                                <label width="100%" value="@bind(each.deskripsiLayanan)"/>
+                            </listcell>
+                            <listcell>
+                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailLayanan', object=each)"></a>
+                                <a label="|" style="font-size:12pt ;color:black"></a>
+                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteLayanan', object=each)"></a>
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>
+            </groupbox>
+        </groupbox>
+    </window>
+</zk>
