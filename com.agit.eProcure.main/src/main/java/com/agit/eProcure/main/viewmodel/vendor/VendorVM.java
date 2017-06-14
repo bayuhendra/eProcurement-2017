@@ -222,8 +222,6 @@ public class VendorVM extends SelectorComposer<Window> {
         } else {
             this.dataPerusahaanDTO = dataPerusahaan;
             idDataPerusahaan = dataPerusahaanDTO.getIdPerusahaan();
-            nama = dataPerusahaanDTO.getNamaPenanggungJawab();
-            email = dataPerusahaanDTO.getEmailPenanggungJawab();
 
             this.previous = previous;
         }
@@ -507,9 +505,6 @@ public class VendorVM extends SelectorComposer<Window> {
     @Command("buttonKlikSaveDataPerusahaanForm")
     @NotifyChange("dataPerusahaanDTO")
     public void buttonKlikSaveDataPerusahaanForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
-        nama = dataPerusahaanDTO.getNamaPenanggungJawab();
-        jabatan = dataPerusahaanDTO.getJabatanType();
-        email = dataPerusahaanDTO.getEmailPenanggungJawab();
         dataPerusahaanService.SaveOrUpdate(dataPerusahaanDTO);
         window.detach();
     }
