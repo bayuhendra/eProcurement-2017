@@ -2,7 +2,7 @@
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <separator spacing="15px"/>
-        <groupbox width="500px" closable="true">
+        <groupbox width="500px" >
             <caption label="Data Auditor" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
@@ -31,7 +31,7 @@
         </groupbox>
         
         
-        <groupbox width="88%" closable="true">
+        <groupbox width="100%" closable="true">
             <caption label="Data Keuangan Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>

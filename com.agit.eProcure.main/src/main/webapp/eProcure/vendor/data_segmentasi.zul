@@ -1,14 +1,15 @@
 <zk xmlns:x="xhtml">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataSegmentasiDTO) @save(vm.dataSegmentasiDTO, before='buttonSaveDataSegmentasi')">
         <separator spacing="5px"/>
-        <groupbox width="800px">
+        <groupbox width="1000px">
             <caption label="Data Segmentasi" style="font-size:16pt;font-weight: bold"/>
             <groupbox>
                 <grid style="border:0">
                     <columns>
-                        <column width="80%"/>
-                        <column width="20%"/>
+                        <column width="90%"/>
+                        <column width="10%"/>
                         <column />
                     </columns>
                     <rows>
@@ -19,12 +20,11 @@
                     </rows>
                 </grid>
             </groupbox>
-            <listbox rows = "9">
-  
+            <listbox rows = "9" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataSegmentasiDTOs)">
                 <listhead>
-                    <listheader label="No" width="5%" align="center"/>
+                    <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataSegmentasi)"/>
                     <listheader label="Bidang Usaha" width="15%" align="center"/>
-                    <listheader label="Sub Bidang" width="15%" align="center"/>      
+                    <!--                    <listheader label="Sub Bidang" width="15%" align="center"/>      -->
                     <listheader label="Assosiasi" width="15%" align="center"/>
                     <listheader label="Nomor" width="15%" align="center"/>
                     <listheader label="Tanggal Mulai" width="15%" align="center"/>
@@ -35,36 +35,31 @@
                 <template name="model">
                     <listitem>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.idDataSegmentasi)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.bidangUsahaType)"/>
                         </listcell>
                         <listcell>
-                            <label width="100%" value=""/>
+                            <label width="100%" value="@bind(each.assosiasiType)"/>
                         </listcell>
                         <listcell>
-                            <a label="EDIT" />
-                            <a label=" | " style="font-size:12pt ;color:black" />
-                            <a label="DELETE" />
+                            <label width="100%" value="@bind(each.nomorAssosiasi)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.tanggalMulai)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.tanggalBerakhir)"/>
+                        </listcell>
+                        <listcell>
+                            <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataSegmentasi', object=each)"></a>
+                            <a label=" | " style="font-size:12pt ;color:black"></a>
+                            <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataSegmentasi', object=each)"></a>
                         </listcell>
                     </listitem>
                 </template>
             </listbox>
-            <grid style="border:0">
-                
-                <columns>
-                    <column align="right" width="50%"/>
-                    <column align="left" width="50%"/>
-                </columns>
-                
-                <rows>
-                    <row>
-                        <label/>
-                        <button label="Simpan" width="30%" />
-                    </row>
-                </rows>
-            </grid>
         </groupbox>
         
     </window>

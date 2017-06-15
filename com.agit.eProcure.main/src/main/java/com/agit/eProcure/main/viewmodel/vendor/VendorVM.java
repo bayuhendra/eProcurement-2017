@@ -1,6 +1,7 @@
 package com.agit.eProcure.main.viewmodel.vendor;
 
 import com.agit.eProcure.common.application.DataBankService;
+import com.agit.eProcure.common.application.DataDokumenService;
 import com.agit.eProcure.common.application.DataLoginService;
 import com.agit.eProcure.common.application.DataPenanggungJawabService;
 import com.agit.eProcure.common.application.DataPengalamanService;
@@ -8,6 +9,8 @@ import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
 import com.agit.eProcure.common.dto.vendor.DataBankDTO;
 import com.agit.eProcure.common.dto.vendor.DataBankDTOBuilder;
+import com.agit.eProcure.common.dto.vendor.DataDokumenDTO;
+import com.agit.eProcure.common.dto.vendor.DataDokumenDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataKeuanganDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
@@ -18,7 +21,10 @@ import com.agit.eProcure.common.dto.vendor.DataPeralatanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
+import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTOBuilder;
 import com.agit.eProcure.common.security.SecurityUtil;
+import com.agit.eProcure.shared.type.AssosiasiType;
+import com.agit.eProcure.shared.type.BidangUsahaType;
 import com.agit.eProcure.shared.type.JabatanType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.MataUangType;
@@ -86,47 +92,52 @@ public class VendorVM extends SelectorComposer<Window> {
     @WireVariable
     DataPenanggungJawabService dataPenanggungJawabService;
 
+    @WireVariable
+    DataDokumenService dataDokumenService;
+
+    /* Paramater Data Login */
     private String idDataLogin;
     private String idDataPerusahaan;
     private String idPenanggungJawab;
     private String idDataBank;
+    private String idDataSegmentasi;
     private String nama;
     private JabatanType jabatan;
     private String email;
+    private String dokumenID;
 
+    /* Function For Combobox  */
     private ListModelList<KualifikasiType> kualifikasiTypes;
     private ListModelList<UnitType> unitTypes;
     private ListModelList<PerusahaanType> perusahaanTypes;
     private ListModelList<JabatanType> jabatanTypes;
     private ListModelList<MataUangType> mataUangTypes;
+    private ListModelList<BidangUsahaType> bidangUsahaTypes;
+    private ListModelList<AssosiasiType> assosiasiTypes;
     private ListModelList<PKPType> listPKPType = new ListModelList<>();
+    private ListModelList<String> kota = new ListModelList<>();
+    private ListModelList<String> propinsi = new ListModelList<>();
+    private ListModelList<String> negara = new ListModelList<>();
+    private ListModelList<String> namaBank = new ListModelList<>();
+    private ListModelList<String> subjectDokumenLegal = new ListModelList<>();
+    private ListModelList<String> subjectDokumenTeknis = new ListModelList<>();
 
 
     /* Object Binding for Form Data Login */
     private DataLoginDTO dataLoginDTO = new DataLoginDTO();
     private List<DataLoginDTO> dataLoginDTOs = new ArrayList();
-
     private DataPerusahaanDTO dataPerusahaanDTO = new DataPerusahaanDTO();
     private List<DataPerusahaanDTO> dataPerusahaanDTOs = new ArrayList();
-    private ListModelList<String> kota = new ListModelList<>();
-    private ListModelList<String> propinsi = new ListModelList<>();
-    private ListModelList<String> negara = new ListModelList<>();
-    private ListModelList<String> namaBank = new ListModelList<>();
-
     private DataBankDTO dataBankDTO = new DataBankDTO();
     private List<DataBankDTO> dataBankDTOs = new ArrayList();
-
     private DataPenanggungJawabDTO dataPenanggungJawabDTO = new DataPenanggungJawabDTO();
     private List<DataPenanggungJawabDTO> dataPenanggungJawabDTOs = new ArrayList();
-
     private DataSegmentasiDTO dataSegmentasiDTO = new DataSegmentasiDTO();
     private List<DataSegmentasiDTO> dataSegmentasiDTOs = new ArrayList();
-
-//    SLOT FOR DOKUMEN
-//    SLOT FOR PERALATAN
-//    SLOT FOR KEUANGAN
     private DataPengalamanDTO dataPengalamanDTO = new DataPengalamanDTO();
     private List<DataPengalamanDTO> dataPengalamanDTOs = new ArrayList();
+    private DataDokumenDTO dataDokumenDTO = new DataDokumenDTO();
+    private List<DataDokumenDTO> dataDokumenDTOs = new ArrayList();
 
 
     /* for home instance */
@@ -138,12 +149,16 @@ public class VendorVM extends SelectorComposer<Window> {
     /* attribut for upload file Data Login */
     private PageNavigation previous;
     Media mediaUploadLogo;
+    Media mediaUploadDataDokumen;
     Media mediaUploadHeaderImage;
     String mediaNameUploadLogo;
+    String mediaNameUploadDataDokumen;
     String mediaNameUploadHeaderImage;
     private String filepathUploadLogo;
+    private String filepathUploadDataDokumen;
     private String filepathUploadHeaderImage;
     private String pathLocationUploadLogo;
+    private String pathLocationUploadDataDokumen;
     private String pathLocationUploadHeaderImage;
 
     @Init
@@ -152,13 +167,15 @@ public class VendorVM extends SelectorComposer<Window> {
             @ExecutionArgParam("dataPerusahaanDTO") DataPerusahaanDTO dataPerusahaan,
             @ExecutionArgParam("dataPenanggungJawabDTO") DataPenanggungJawabDTO dataPenanggungJawab,
             @ExecutionArgParam("dataBankDTO") DataBankDTO dataBank,
+            @ExecutionArgParam("dataSegmentasiDTO") DataSegmentasiDTO dataSegmentasi,
+            @ExecutionArgParam("dataDokumenDTO") DataDokumenDTO dataDokumen,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
         /* Load Data */
         initData();
 
         /* Check Validity */
-        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, previous);
+        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, dataSegmentasi, dataDokumen, previous);
     }
 
     private void initData() {
@@ -178,6 +195,16 @@ public class VendorVM extends SelectorComposer<Window> {
         if (dataPenanggungJawabDTOs.isEmpty()) {
             dataPenanggungJawabDTOs = Collections.emptyList();
         }
+        dataSegmentasiDTOs = dataSegmentasiService.findAll();
+        if (dataSegmentasiDTOs.isEmpty()) {
+            dataSegmentasiDTOs = Collections.emptyList();
+        }
+
+        dataDokumenDTOs = dataDokumenService.findAll();
+        if (dataDokumenDTOs.isEmpty()) {
+            dataDokumenDTOs = Collections.emptyList();
+        }
+
         kota.add("SEMARANG");
         kota.add("SURABAYA");
         kota.add("BANDUNG");
@@ -193,15 +220,17 @@ public class VendorVM extends SelectorComposer<Window> {
         namaBank.add("BANK BRI");
         namaBank.add("BANK BCA");
         namaBank.add("BANK DANAMON");
-        /* for button PKP disable enable purpose */
-        //        if (pkpTypeDisable.getpKPType().PKP)) {
-        //            disablePKP = false;
-        //        } else {
-        //            disablePKP = true;
-        //        }
+
+        subjectDokumenLegal.add("1. Vendor Registrasi Form");
+        subjectDokumenLegal.add("2. Salinan Akte Pendirian Perusahaan dan Perubahannya");
+        subjectDokumenLegal.add("3. Salinan Tanda Daftar Perusahaan (TDP)");
+        subjectDokumenLegal.add("4. Salinan Surat Ijin Usaha (SIUP/SIUJK)");
+        subjectDokumenLegal.add("5. Bukti Fisik Perusahaan");
+        subjectDokumenLegal.add("6. Dokumen Quality yang dimiliki");
+        subjectDokumenLegal.add("7. Dokumen Teknik");
     }
 
-    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, PageNavigation previous) {
+    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, DataSegmentasiDTO dataSegmentasi, DataDokumenDTO dataDokumen, PageNavigation previous) {
         if (dataLogin == null) {
             ListModelList<DataLoginDTO> parameterList = new ListModelList<>(dataLoginService.findAll());
             String idDataLogin = "";
@@ -280,6 +309,43 @@ public class VendorVM extends SelectorComposer<Window> {
             idDataPerusahaan = dataPenanggungJawabDTO.getIdPerusahaan();
             this.previous = previous;
         }
+        if (dataSegmentasi == null) {
+            ListModelList<DataSegmentasiDTO> parameterList = new ListModelList<>(dataSegmentasiService.findAll());
+            String idDataSegmentasi = "";
+            if (parameterList.isEmpty()) {
+                idDataSegmentasi = "1";
+            } else {
+                idDataSegmentasi = getLatestObjectID(parameterList, "idDataSegmentasi");
+            }
+            dataSegmentasiDTO = new DataSegmentasiDTOBuilder()
+                    .setIdDataSegmentasi(idDataSegmentasi)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createDataSegmentasiDTO();
+        } else {
+            this.dataSegmentasiDTO = dataSegmentasi;
+            idDataSegmentasi = dataSegmentasiDTO.getIdDataSegmentasi();
+            this.previous = previous;
+        }
+        if (dataDokumen == null) {
+            ListModelList<DataDokumenDTO> parameterList = new ListModelList<>(dataDokumenService.findAll());
+            String dokumenID = "";
+            if (parameterList.isEmpty()) {
+                dokumenID = "1";
+            } else {
+                dokumenID = getLatestObjectID(parameterList, "dokumenID");
+            }
+            dataDokumenDTO = new DataDokumenDTOBuilder()
+                    .setDokumenID(dokumenID)
+                    .setCreateBy(SecurityUtil.getUserName())
+                    .setCreateDate(new Date())
+                    .createDataDokumenDTO();
+        } else {
+            this.dataDokumenDTO = dataDokumen;
+            mediaNameUploadDataDokumen = dataDokumenDTO.getUploadFile();
+            dokumenID = dataDokumenDTO.getDokumenID();
+            this.previous = previous;
+        }
     }
 
     protected String getLatestObjectID(ListModelList list, String attribute) {
@@ -330,6 +396,7 @@ public class VendorVM extends SelectorComposer<Window> {
         return s + String.format("%0" + count + "d", max + 1);
     }
 
+    /* Function upload data login for login */
     @Command("uploadFileLogo")
     @NotifyChange({"mediaNameUploadLogo", "pathLocationUploadLogo"})
     public void uploadFileLogo(@ContextParam(ContextType.BIND_CONTEXT) BindContext ctx) throws IOException {
@@ -376,6 +443,47 @@ public class VendorVM extends SelectorComposer<Window> {
         }
     }
 
+    /* Function upload data dokumen */
+    @Command("uploadFileDataDokumen")
+    @NotifyChange({"mediaNameUploadDataDokumen", "pathLocationUploadDataDokumen"})
+    public void uploadFileDataDokumen(@ContextParam(ContextType.BIND_CONTEXT) BindContext ctx) throws IOException {
+        UploadEvent upEvent = null;
+        Object objUploadEvent = ctx.getTriggerEvent();
+
+        if (objUploadEvent != null && (objUploadEvent instanceof UploadEvent)) {
+            upEvent = (UploadEvent) objUploadEvent;
+        }
+
+        if (upEvent != null) {
+            mediaUploadDataDokumen = upEvent.getMedia();
+            Calendar now = Calendar.getInstance();
+            int year = now.get(Calendar.YEAR);
+            int month = now.get(Calendar.MONTH);
+            int day = now.get(Calendar.DAY_OF_MONTH);
+            filepathUploadDataDokumen = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/");
+            filepathUploadDataDokumen = filepathUploadDataDokumen + "\\" + "files" + "\\" + "eProcure-dokument" + "\\" + year + "\\" + month + "\\" + day + "\\";
+
+            File baseDir = new File(filepathUploadDataDokumen);
+            if (!baseDir.exists()) {
+                baseDir.mkdirs();
+            }
+
+            Files.copy(new File(filepathUploadDataDokumen + mediaUploadDataDokumen.getName()), mediaUploadDataDokumen.getStreamData());
+            setMediaNameUploadDataDokumen(filepathUploadDataDokumen + mediaUploadDataDokumen.getName());
+            pathLocationUploadDataDokumen = "/" + "files" + "/" + "eProcure-dokument" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadDataDokumen.getName();
+        } else {
+            Calendar now = Calendar.getInstance();
+            int year = now.get(Calendar.YEAR);
+            int month = now.get(Calendar.MONTH);
+            int day = now.get(Calendar.DAY_OF_MONTH);
+            mediaNameUploadDataDokumen = "";
+            pathLocationUploadDataDokumen = "/" + "files" + "/" + "eProcure-logo" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadDataDokumen.getName();
+            Messagebox.show("File : " + mediaUploadDataDokumen + " Bukan File PDF", "Error", Messagebox.OK, Messagebox.ERROR);
+        }
+
+    }
+
+    /* Function upload data login for header image */
     @Command("uploadFileHeaderImage")
     @NotifyChange({"mediaNameUploadHeaderImage", "pathLocationUploadHeaderImage"})
     public void uploadFileHeaderImage(@ContextParam(ContextType.BIND_CONTEXT) BindContext ctx) throws IOException {
@@ -422,6 +530,7 @@ public class VendorVM extends SelectorComposer<Window> {
         }
     }
 
+    /* Function button save data login */
     @Command("buttonSaveDataLogin")
     @NotifyChange({"dataLoginDTO", "dataLoginDTOs", "mediaNameUploadHeaderImage", "pathLocationUploadHeaderImage", "mediaNameUploadLogo", "pathLocationUploadLogo", "src"})
     public void buttonSaveDataLogin(@BindingParam("object") DataLoginDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -442,6 +551,7 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateTo("/eProcure/vendor/data_login.zul", window, params);
     }
 
+    /* Function button save data perusahaan */
     @Command("buttonSaveDataPerusahaan")
     @NotifyChange({"dataPerusahaanDTO"})
     public void buttonSaveDataPerusahaan(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -453,6 +563,7 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateTo("/eProcure/vendor/data_perusahaan.zul", window, params);
     }
 
+    /* Function button save data penanggung jawab */
     @Command("buttonKlikSaveDataPenanggungJawabForm")
     @NotifyChange({"dataPenanggungJawabDTO", "dataPenanggungJawabDTOs"})
     public void buttonKlikSaveDataPenanggungJawabForm(@BindingParam("object") DataPenanggungJawabDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -463,6 +574,7 @@ public class VendorVM extends SelectorComposer<Window> {
 
     }
 
+    /* Function button save data bank */
     @Command("buttonSaveDataBank")
     @NotifyChange({"dataBankDTO", "dataBankDTOs"})
     public void buttonSaveDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -472,6 +584,33 @@ public class VendorVM extends SelectorComposer<Window> {
         window.detach();
     }
 
+    /* Function button save data segmentasi */
+    @Command("buttonSaveDataSegmentasi")
+    @NotifyChange({"dataSegmentasiDTO", "dataSegmentasiDTOs"})
+    public void buttonSaveDataSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataSegmentasiService.SaveOrUpdate(dataSegmentasiDTO);
+        showInformationMessagebox("Data Segmentasi Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataSegmentasi", null);
+        window.detach();
+    }
+
+    /* Function button save data Dokumen */
+    @Command("buttonSaveDataDokumen")
+    @NotifyChange({"dataDokumenDTO", "dataDokumenDTOs"})
+    public void buttonSaveDataDokumen(@BindingParam("object") DataDokumenDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        if (pathLocationUploadDataDokumen == null) {
+            pathLocationUploadDataDokumen = dataDokumenDTO.getUploadFile();
+        }
+        dataDokumenDTO.setUploadFile(pathLocationUploadDataDokumen);
+        dataDokumenService.saveOrUpdate(dataDokumenDTO);
+        showInformationMessagebox("Data Dokumen Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataDokumen", null);
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataDokumenDTO", obj);
+        CommonViewModel.navigateTo("/eProcure/vendor/data_dokumen.zul", window, params);
+    }
+
+    /* Function button detail data bank */
     @Command("detailDataBank")
     @NotifyChange("dataBankDTO")
     public void detailDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -480,6 +619,16 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_bank_form.zul", window, params);
     }
 
+    /* Function button detail data segmentasi */
+    @Command("detailDataSegmentasi")
+    @NotifyChange("dataSegmentasiDTO")
+    public void detailDataSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataSegmentasiDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_tambah_segmentasi.zul", window, params);
+    }
+
+    /* Function button detele data bank */
     @Command("deleteDataBank")
     @NotifyChange("dataBankDTOs")
     public void deleteDataBank(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -502,24 +651,88 @@ public class VendorVM extends SelectorComposer<Window> {
 
     }
 
+    /* Function button detele data bank */
+    @Command("deleteDataDokumen")
+    @NotifyChange("dataDokumenDTOs")
+    public void deleteDataDokumen(@BindingParam("object") DataDokumenDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataDokumenDTO = (DataDokumenDTO) obj;
+
+        Messagebox.show("Apakah anda yakin ingin menghapus Data Dokumen?", "Konfirmasi", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+                new org.zkoss.zk.ui.event.EventListener() {
+            @Override
+            public void onEvent(Event evt) throws InterruptedException {
+                if (evt.getName().equals("onOK")) {
+                    dataDokumenService.delete(dataDokumenDTO);
+                    showInformationMessagebox("Data Dokumen Berhasil Dihapus");
+                    BindUtils.postGlobalCommand(null, null, "refreshDataDokumen", null);
+                } else {
+                    System.out.println("Operasi dibatalkan");
+                }
+            }
+        }
+        );
+
+    }
+
+    /* Function button delete data segmentasi */
+    @Command("deleteDataSegmentasi")
+    @NotifyChange("dataSegmentasiDTOs")
+    public void deleteDataSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataSegmentasiDTO = (DataSegmentasiDTO) obj;
+
+        Messagebox.show("Apakah anda yakin ingin menghapus Data Segmentasi?", "Konfirmasi", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+                new org.zkoss.zk.ui.event.EventListener() {
+            @Override
+            public void onEvent(Event evt) throws InterruptedException {
+                if (evt.getName().equals("onOK")) {
+                    dataSegmentasiService.deleteData(dataSegmentasiDTO);
+                    showInformationMessagebox("Data Segmentasi Berhasil Dihapus");
+                    BindUtils.postGlobalCommand(null, null, "refreshDataSegmentasi", null);
+                } else {
+                    System.out.println("Operasi dibatalkan");
+                }
+            }
+        }
+        );
+
+    }
+
+    /* Function refresh data login */
     @GlobalCommand
     @NotifyChange("dataLoginDTOs")
     public void refreshDataLogin() {
         dataLoginDTOs = dataLoginService.findAll();
     }
 
+    /* Function refresh data bank */
     @GlobalCommand
     @NotifyChange("dataBankDTOs")
     public void refreshDataBank() {
         dataBankDTOs = dataBankService.findAll();
     }
 
+    /* Function refresh data perusahaan */
     @GlobalCommand
     @NotifyChange("dataPerusahaanDTOs")
     public void refreshDataPerusahaan() {
         dataPerusahaanDTOs = dataPerusahaanService.findAll();
     }
 
+    /* Function refresh data segmentasi */
+    @GlobalCommand
+    @NotifyChange("dataSegmentasiDTOs")
+    public void refreshDataSegmentasi() {
+        dataSegmentasiDTOs = dataSegmentasiService.findAll();
+    }
+
+    /* Function refresh data dokumen */
+    @GlobalCommand
+    @NotifyChange("dataDokumenDTOs")
+    public void refreshDataDokumen() {
+        dataDokumenDTOs = dataDokumenService.findAll();
+    }
+
+    /* Function refresh data penanggung jawab */
     @GlobalCommand
     @NotifyChange("dataPenanggungJawabDTOs")
     public void refreshDataPenanggungJawab() {
@@ -527,20 +740,21 @@ public class VendorVM extends SelectorComposer<Window> {
     }
 
 
-    /*======================================= functional for page Data Login =======================================*/
+    /* Function button klik data login */
     @Command("buttonKlikDataLogin")
     @NotifyChange("src")
     public void buttonKlikDataLogin(@BindingParam("object") DataLoginDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_login.zul";
     }
 
-    /*======================================= functional for page Data Perusahaan =======================================*/
+    /* Function button klik data perusahaan */
     @Command("buttonKlikDataPerusahaan")
     @NotifyChange("src")
     public void buttonKlikDataPerusahaan(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_perusahaan.zul";
     }
 
+    /* Function button klik data perusahaan form */
     @Command("buttonKlikDataPerusahaanForm")
     @NotifyChange("dataPerusahaanDTO")
     public void buttonKlikDataPerusahaanForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -549,12 +763,14 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_perusahaan_form.zul", window, params);
     }
 
+    /* Function button klik back data perusahaan form */
     @Command("buttonKlikBackDataPerusahaanForm")
     @NotifyChange("dataPerusahaanDTO")
     public void buttonKlikBackDataPerusahaanForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         window.detach();
     }
 
+    /* Function button klik save data perusahaan form */
     @Command("buttonKlikSaveDataPerusahaanForm")
     @NotifyChange("dataPerusahaanDTO")
     public void buttonKlikSaveDataPerusahaanForm(@BindingParam("object") DataPerusahaanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -562,12 +778,14 @@ public class VendorVM extends SelectorComposer<Window> {
         window.detach();
     }
 
-    /*======================================= functional for page Data Bank =======================================*/
+    /* Function button klik data bank*/
     @Command("buttonKlikDataBank")
     @NotifyChange("src")
     public void buttonKlikDataBank(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_bank.zul";
     }
+
+    /* Function button klik data bank form*/
     @Command("buttonKlikDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -575,11 +793,15 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("dataBankDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_bank_form.zul", window, params);
     }
+
+    /* Function button klik back data bank */
     @Command("buttonKlikBackDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikBackDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         window.detach();
     }
+
+    /* Function button klik save data bank */
     @Command("buttonKlikSaveDataBankForm")
     @NotifyChange("dataBankDTO")
     public void buttonKlikSaveDataBankForm(@BindingParam("object") DataBankDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -592,6 +814,7 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataSegmentasi(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_segmentasi.zul";
     }
+
     @Command("buttonKlikDataTambahSegmentasi")
     @NotifyChange("dataSegmentasiDTO")
     public void buttonKlikDataTambahSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -599,6 +822,7 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("dataSegmentasiDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_tambah_segmentasi.zul", window, params);
     }
+
     @Command("buttonKembaliDataSegmentasi")
     @NotifyChange("dataSegmentasiDTO")
     public void buttonKembaliDataSegmentasi(@BindingParam("object") DataSegmentasiDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -611,6 +835,7 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataPeralatan(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_peralatan.zul";
     }
+
     @Command("buttonKlikDataPeralatanForm")
     @NotifyChange("dataPeralatanDTO")
     public void buttonKlikDataPeralatanForm(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -618,6 +843,7 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("DataPeralatanDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_peralatan_form.zul", window, params);
     }
+
     @Command("buttonKlikBackDataPeralatanForm")
     @NotifyChange("dataPeralatanDTO")
     public void buttonKlikBackDataPeralatanForm(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -630,6 +856,7 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataKeuangan(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_keuangan.zul";
     }
+
     @Command("buttonKlikDataKeuanganForm")
     @NotifyChange("dataKeuanganDTO")
     public void buttonKlikDataKeuanganForm(@BindingParam("object") DataKeuanganDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -637,12 +864,13 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("DataKeuanganDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_keuangan_form.zul", window, params);
     }
+
     @Command("buttonKlikBackDataKeuanganForm")
     @NotifyChange("dataKeuanganDTO")
     public void buttonKlikBackDataKeuanganForm(@BindingParam("object") DataKeuanganDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         window.detach();
     }
-    
+
     /*======================================= functional for page Data Dokumentasi  =======================================*/
     @Command("buttonKlikDataDokumen")
     @NotifyChange("src")
@@ -656,6 +884,7 @@ public class VendorVM extends SelectorComposer<Window> {
     public void buttonKlikDataPengalaman(@ContextParam(ContextType.VIEW) Window window) {
         src = "/eProcure/vendor/data_pengalaman.zul";
     }
+
     @Command("buttonKlikDataPengalamanPelanggan")
     @NotifyChange("dataPengalamanDTO")
     public void buttonKlikDataPengalamanPelanggan(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
@@ -997,6 +1226,118 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setDataPenanggungJawabDTOs(List<DataPenanggungJawabDTO> dataPenanggungJawabDTOs) {
         this.dataPenanggungJawabDTOs = dataPenanggungJawabDTOs;
+    }
+
+    public String getIdPenanggungJawab() {
+        return idPenanggungJawab;
+    }
+
+    public void setIdPenanggungJawab(String idPenanggungJawab) {
+        this.idPenanggungJawab = idPenanggungJawab;
+    }
+
+    public String getIdDataBank() {
+        return idDataBank;
+    }
+
+    public void setIdDataBank(String idDataBank) {
+        this.idDataBank = idDataBank;
+    }
+
+    public String getIdDataSegmentasi() {
+        return idDataSegmentasi;
+    }
+
+    public void setIdDataSegmentasi(String idDataSegmentasi) {
+        this.idDataSegmentasi = idDataSegmentasi;
+    }
+
+    public ListModelList<BidangUsahaType> getBidangUsahaTypes() {
+        return new ListModelList<>(BidangUsahaType.values());
+    }
+
+    public void setBidangUsahaTypes(ListModelList<BidangUsahaType> bidangUsahaTypes) {
+        this.bidangUsahaTypes = bidangUsahaTypes;
+    }
+
+    public ListModelList<AssosiasiType> getAssosiasiTypes() {
+        return new ListModelList<>(AssosiasiType.values());
+    }
+
+    public void setAssosiasiTypes(ListModelList<AssosiasiType> assosiasiTypes) {
+        this.assosiasiTypes = assosiasiTypes;
+    }
+
+    public String getDokumenID() {
+        return dokumenID;
+    }
+
+    public void setDokumenID(String dokumenID) {
+        this.dokumenID = dokumenID;
+    }
+
+    public DataDokumenDTO getDataDokumenDTO() {
+        return dataDokumenDTO;
+    }
+
+    public void setDataDokumenDTO(DataDokumenDTO dataDokumenDTO) {
+        this.dataDokumenDTO = dataDokumenDTO;
+    }
+
+    public List<DataDokumenDTO> getDataDokumenDTOs() {
+        return dataDokumenDTOs;
+    }
+
+    public void setDataDokumenDTOs(List<DataDokumenDTO> dataDokumenDTOs) {
+        this.dataDokumenDTOs = dataDokumenDTOs;
+    }
+
+    public ListModelList<String> getSubjectDokumenLegal() {
+        return subjectDokumenLegal;
+    }
+
+    public void setSubjectDokumenLegal(ListModelList<String> subjectDokumenLegal) {
+        this.subjectDokumenLegal = subjectDokumenLegal;
+    }
+
+    public ListModelList<String> getSubjectDokumenTeknis() {
+        return subjectDokumenTeknis;
+    }
+
+    public void setSubjectDokumenTeknis(ListModelList<String> subjectDokumenTeknis) {
+        this.subjectDokumenTeknis = subjectDokumenTeknis;
+    }
+
+    public String getFilepathUploadDataDokumen() {
+        return filepathUploadDataDokumen;
+    }
+
+    public void setFilepathUploadDataDokumen(String filepathUploadDataDokumen) {
+        this.filepathUploadDataDokumen = filepathUploadDataDokumen;
+    }
+
+    public String getPathLocationUploadDataDokumen() {
+        return pathLocationUploadDataDokumen;
+    }
+
+    public void setPathLocationUploadDataDokumen(String pathLocationUploadDataDokumen) {
+        this.pathLocationUploadDataDokumen = pathLocationUploadDataDokumen;
+    }
+
+    public Media getMediaUploadDataDokumen() {
+        return mediaUploadDataDokumen;
+    }
+
+    public void setMediaUploadDataDokumen(Media mediaUploadDataDokumen) {
+        this.mediaUploadDataDokumen = mediaUploadDataDokumen;
+    }
+
+    public String getMediaNameUploadDataDokumen() {
+        return mediaNameUploadDataDokumen;
+    }
+
+    public void setMediaNameUploadDataDokumen(String mediaNameUploadDataDokumen) {
+        this.mediaNameUploadDataDokumen = mediaNameUploadDataDokumen;
     }
 
 }

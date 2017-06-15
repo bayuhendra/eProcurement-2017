@@ -1,6 +1,7 @@
 <zk xmlns:x="xhtml">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataSegmentasiDTO) @save(vm.dataSegmentasiDTO, before='buttonSaveDataSegmentasi')">
         <separator spacing="5px"/>
         <groupbox width="600px">
             <caption label="Data Segmentasi" style="font-size:16pt;font-weight: bold"/>
@@ -14,35 +15,35 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Bidang Usaha" style="font-weight: bold"/>
-                        <combobox autodrop="true" readonly="true" width="50%">
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.bidangUsahaTypes)" selectedItem="@bind(fx.bidangUsahaType)" readonly="true" width="50%" placeholder="- Pilihan Bidang Usaha -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
                     <row>
                         <label value="*)" style="color:red"/>
-                        <label value="Bidang Usaha" style="font-weight: bold"/>
-                        <combobox autodrop="true" readonly="true" width="50%">
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <label value="Assosiasi" style="font-weight: bold"/>
+                        <combobox autodrop="true" model="@load(vm.assosiasiTypes)" selectedItem="@bind(fx.assosiasiType)" readonly="true" width="50%" placeholder="- Pilihan Assosiasi -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
                     <row>
                         <label value="*) " style="color:red"/>
                         <label value="Nomor" style="font-weight: bold"/>
-                        <textbox width="50%" disabled="false" type="password" constraint="no empty : Retype Password Tidak Boleh Kosong"/>
+                        <textbox width="50%" disabled="false" value="@bind(fx.nomorAssosiasi)"/>
                     </row>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tanggal Mulai" style="font-weight: bold"/>
-                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true" value="@bind(fx.tanggalMulai)"/>
                     </row>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tanggal Berakhir" style="font-weight: bold"/>
-                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true" value="@bind(fx.tanggalBerakhir)"/>
                     </row>
                 </rows>
             </grid>
@@ -56,7 +57,7 @@
                 <rows>
                     <row>
                         <button label="Kembali" width="30%" onClick = "@command('buttonKembaliDataSegmentasi')"/>
-                        <button label="Save" width="30%" onClick = "@command('buttonCancel')"/>
+                        <button label="Save" width="30%" onClick = "@command('buttonSaveDataSegmentasi')"/>
                     </row>
                 </rows>
             </grid>

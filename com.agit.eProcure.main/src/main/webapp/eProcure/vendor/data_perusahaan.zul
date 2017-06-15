@@ -37,7 +37,6 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Mendaftar di Unit" style="font-weight: bold"/>
-                        <textbox width="100%"/>
                         <combobox autodrop="true" model="@load(vm.unitTypes)" selectedItem="@bind(fx.unitType)" readonly="true" width="100%" placeholder="- Pilihan Unit -">
                             <template name="model" var="items">
                                 <comboitem label="@load(items)" value="@load(items)"/>

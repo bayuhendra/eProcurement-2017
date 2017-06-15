@@ -2,152 +2,118 @@
 
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataDokumenDTO) @save(vm.dataDokumenDTO, before='buttonSaveDataDokumen')">
         <separator spacing="5px"/>
         <groupbox width="1000px">
             <groupbox>
                 <caption label="Data Dokumen" style="font-size:16pt; font-weight: bold"/>
-                <listbox rows = "4">
+                <listbox rows = "4" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataDokumenDTOs)">
                 
                     <listhead>
-                        <listheader label="Subject" width="18%" align="center"/>
-                        <listheader label="Nomor Dokumen" width="14%" align="center"/>
-                        <listheader label="Tanggal Terbit" width="14%" align="center"/>
-                        <listheader label="Tanggal Berakhir" width="14%" align="center"/>
-                        <listheader label="Upload" width="14%" align="center"/>
+                        <listheader label="Subject" width="24%" align="center"/>
+                        <listheader label="Nomor Dokumen" width="12%" align="center"/>
+                        <listheader label="Tanggal Terbit" width="12%" align="center"/>
+                        <listheader label="Tanggal Berakhir" width="12%" align="center"/>
+                        <listheader label="Upload" width="18%" align="center"/>
+                        <listheader label="Aksi" width="5%" align="center"/>
                     </listhead>
                 
                     <template name="model">
                         <listitem>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="200%" value="@bind(each.subject)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.noDokumen)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.tglTerbit)"/>
                             </listcell>
                             <listcell>
-                                <a label="EDIT" />
-                                <a label=" | " style="font-size:12pt ;color:black" />
-                                <a label="DELETE" />
+                                <label width="100%" value="@bind(each.tglAkhir)"/>
+                            </listcell>
+                            <listcell>
+                                <label width="100%" value="@bind(each.uploadFile)"/>
+                            </listcell>
+                            <listcell>
+                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataDokumen', object=each)"></a>
                             </listcell>
                         </listitem>
                     </template>
                 </listbox>
             </groupbox>
             <groupbox>
-                <caption label="Data Legal Dan Administrasi" style="font-size:16pt; font-weight: bold"/>
+                <caption label="Data Legal, Administrasi dan Teknis" style="font-size:16pt; font-weight: bold"/>
                 <grid style="border:0">
                     <columns>
-                        <column width="23%"/>
+                        <column width="2%"/>
+                        <column width="6%"/>
                         <column width="20%"/>
-                        <column width="20%"/>
-                        <column width="20%"/>
-                        <column width="15%"/>      
-                        <column width="5%"/>
-
+                        <column width="13%"/>
+                        <column width="13%"/>   
+                        <column width="13%"/>    
+                        <column width="13%"/>
+                        <column width="10%"/>
+                        <column width="13%"/>
                         <column />
                     </columns>
                     <rows>
                         <row>
-                            <label value="Vendor Registrasi Form" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
-                        </row>
-                    
-                        <row>
-                            <label value="Salinan Akte Pendirian Perusahaan dan Perubahannya" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
-                        </row>
-                    
-                        <row>
-                            <label value="Salinan Tanda Daftar Perusahaan (TDP)" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
-                        </row>
-                    
-                        <row>
-                            <label value="Salinan Surat Ijin Usaha (SIUP/SIUJK)" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                            <label value="*)" style="color:red"/>
+                            <label value="Subject"/>
+                            <combobox autodrop="true" model="@load(vm.subjectDokumenLegal)" selectedItem="@bind(fx.subject)" readonly="true" width="100%" placeholder="- Pilihan Subject -">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
+                            <textbox width="100%" value="@bind(fx.noDokumen)"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true" value="@bind(fx.tglTerbit)"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true" value="@bind(fx.tglAkhir)"/>
+                            <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadDataDokumen)"/>
+                            <button label="upload" upload="true" onUpload="@command('uploadFileDataDokumen')" width="100%">
+                            </button>
+                            <button label="Simpan" onClick = "@command('buttonSaveDataDokumen')"/>
                         </row>
                     </rows>
                 </grid>
             </groupbox>
-            <groupbox>
+<!--            <groupbox>
                 <caption label="Dokumentasi Teknis" style="font-size:16pt; font-weight: bold"/>
                 <grid style="border:0">
                     <columns>
-                        <column width="23%"/>
+                        <column width="2%"/>
+                        <column width="6%"/>
                         <column width="20%"/>
-                        <column width="20%"/>
-                        <column width="20%"/>
-                        <column width="15%"/>      
+                        <column width="13%"/>
+                        <column width="13%"/>   
+                        <column width="13%"/>    
+                        <column width="13%"/>
                         <column width="5%"/>
-
+                        <column width="13%"/>
                         <column />
                     </columns>
-                    <rows>
+                    <rows>           
                         <row>
-                            <label value="Bukti Fisik Perusahaan" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
-                        </row>
-                    
-                        <row>
-                            <label value="Dokumen Quality yang dimiliki" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
-                        </row>
-                    
-                        <row>
-                            <label value="Dokumen Teknik" style="font-weight: bold"/>
-                            <textbox width="100%" />
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true"/>
-                            <textbox width="100%" readonly="true"/>
-                            <button label="" upload="true" onUpload="@command('uploadFile')" width="10%"></button>
+                            <label value="*)" style="color:red"/>
+                            <label value="Subject"/>
+                            <combobox autodrop="true" model="@load(vm.subjectDokumenTeknis)" selectedItem="@bind(fx.subject)" readonly="true" width="100%" placeholder="- Pilihan Subject -">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
+                            <textbox width="100%" value="@bind(fx.noDokumen)"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true" value="@bind(fx.tglTerbit)"/>
+                            <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true" value="@bind(fx.tglAkhir)"/>
+                            <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadDataDokumen)"/>
+                            <button label="" upload="true" onUpload="@command('uploadFileDataDokumen')" width="10%">
+                            </button>
+                            <button label="Simpan" onClick = "@command('buttonSaveDataDokumen')"/>
                         </row>
                     
                     </rows>
                 </grid>
-            </groupbox>
-            
-            <grid style="border:0">
-                
-                <columns>
-                    <column align="right" width="50%"/>
-                    <column align="left" width="50%"/>
-                </columns>
-                
-                <rows>
-                    <row>
-                        <label/>
-                        <button label="Simpan" width="30%" />
-                    </row>
-                </rows>
-            </grid>
+            </groupbox>-->
         </groupbox>
         
     </window>
