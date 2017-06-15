@@ -1,0 +1,81 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataBankDTO) @save(vm.dataBankDTO, before='buttonSaveDataBank')">
+        <groupbox width="1000px" closable="false" mold="3d">
+            <caption label="Data Pengalaman Pelanggan" style="font-size:16pt; font-weight: bold"/>
+            <groupbox closable="false">
+                <caption label="Parameter Pencarian" />
+                <grid style="border:0">
+                    <columns>
+                        <column width="20%"/>
+                        <column width="30%"/>
+                        <column width="20%"/>
+                        <column width="30%"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="ID Data Pengalaman" />
+                            <textbox width="60%" />
+                            <label value="Nama Perusahaan" />
+                            <textbox width="60%" />
+                        </row>
+                        <row>
+                            <cell/>
+                            <cell/>
+                            <button width="60%" label="Pencarian" mold="trendy" onClick="@command('buttonPencarian')"/>
+                            <cell/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+            <separator spacing="20px"></separator>
+            
+            <paging forward="onPaging" />
+            <listbox rows = "8" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataBankDTOs)">                
+                <listhead>
+                    <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataBank)"/>
+                    <listheader label="Nama" width="15%" align="center"/>
+                    <listheader label="Alamat" width="25%" align="center"/>
+                    <listheader label="Bidang Usaha" width="12.5%" align="center"/>
+                    <listheader label="Mulai Kerjasama" width="12.5%" align="center"/>
+                    <listheader label="Nilai Kontrak" width="12.5%" align="center"/>
+                    <listheader label="Bukti Kerjasama" width="12.5%" align="center"/>
+                    <listheader label="Aksi" width="5%" align="center"/>
+                </listhead>                
+                <template name="model">
+                    <listitem value="${each}">
+                        <listcell>
+                            <label width="100%" value="@bind(each.idDataBank)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.namaBank)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.noRekening)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.namaNasabah)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.mataUangType)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.mataUangType)"/>
+                        </listcell>
+                        <listcell>
+                            <label width="100%" value="@bind(each.mataUangType)"/>
+                        </listcell>
+                        <listcell>
+                            <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                            <a label=" | " style="font-size:12pt ;color:black"></a>
+                            <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+            
+             
+        </groupbox>
+    </window>
+</zk>
