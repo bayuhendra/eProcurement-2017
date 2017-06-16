@@ -77,7 +77,7 @@
                                 <label width="100%" value="@bind(each.tanggalBerakhir)"/>
                             </listcell>
                             <listcell>
-                                <a label="EDIT" style="text-decoration:underline ;color:blue" onClick="@command('detailDataSegmentasi', object=each)"/>
+                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailDataSegmentasi', object=each)"/>
                                 
                             </listcell>
                         </listitem>

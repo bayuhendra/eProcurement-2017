@@ -15,10 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Zaky
  */
-
 @Repository
 @Transactional
-public class DataPeralatanHibernateRepository extends HibernateRepository implements DataPeralatanRepository{
+public class DataPeralatanHibernateRepository extends HibernateRepository implements DataPeralatanRepository {
 
     @Override
     public void SaveOrUpdate(DataPeralatan dataPeralatan) {
@@ -56,7 +55,13 @@ public class DataPeralatanHibernateRepository extends HibernateRepository implem
         if (StringUtil.hasValue(map.get("jenis"))) {
             criteria.add(Restrictions.like("jenis", "%" + map.get("jenis") + "%").ignoreCase());
         }
+        if (StringUtil.hasValue(map.get("tahunPembuatan"))) {
+            criteria.add(Restrictions.like("tahunPembuatan", "%" + map.get("tahunPembuatan") + "%").ignoreCase());
+        }
+        if (StringUtil.hasValue(map.get("kondisiPeralatanSelect"))) {
+            criteria.add(Restrictions.eq("kondisiPeralatan", map.get("kondisiPeralatanSelect")));
+        }
         return criteria.list();
     }
-    
+
 }

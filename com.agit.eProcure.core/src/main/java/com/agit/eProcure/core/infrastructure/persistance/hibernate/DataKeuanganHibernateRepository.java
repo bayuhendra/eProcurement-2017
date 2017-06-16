@@ -48,8 +48,11 @@ public class DataKeuanganHibernateRepository extends HibernateRepository impleme
     @Override
     public List<DataKeuangan> findByParam(Map map) {
         Criteria criteria = getSession().createCriteria(DataKeuangan.class);
-        if (StringUtil.hasValue(map.get("auditID"))) {
-            criteria.add(Restrictions.like("auditID", "%" + map.get("auditID") + "%").ignoreCase());
+        if (StringUtil.hasValue(map.get("idDataKeuangan"))) {
+            criteria.add(Restrictions.like("idDataKeuangan", "%" + map.get("idDataKeuangan") + "%").ignoreCase());
+        }
+        if (StringUtil.hasValue(map.get("tahunKeuangan"))) {
+            criteria.add(Restrictions.like("tahunKeuangan", "%" + map.get("tahunKeuangan") + "%").ignoreCase());
         }
         return criteria.list();
     }

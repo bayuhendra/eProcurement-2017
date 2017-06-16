@@ -1,6 +1,8 @@
 package com.agit.eProcure.main.viewmodel.vendor;
 
 import com.agit.eProcure.common.application.DataBankService;
+import com.agit.eProcure.common.application.DataDokumenService;
+import com.agit.eProcure.common.application.DataKeuanganService;
 import com.agit.eProcure.common.application.DataLoginService;
 import com.agit.eProcure.common.application.DataPenanggungJawabService;
 import com.agit.eProcure.common.application.DataPengalamanService;
@@ -8,11 +10,15 @@ import com.agit.eProcure.common.application.DataPeralatanService;
 import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
 import com.agit.eProcure.common.dto.vendor.DataBankDTO;
+import com.agit.eProcure.common.dto.vendor.DataDokumenDTO;
+import com.agit.eProcure.common.dto.vendor.DataKeuanganDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
+import com.agit.eProcure.common.dto.vendor.DataPeralatanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
 import com.agit.eProcure.shared.type.BankType;
 import com.agit.eProcure.shared.type.BidangUsahaType;
+import com.agit.eProcure.shared.type.KondisiPeralatan;
 import com.agit.eProcure.shared.zul.CommonViewModel;
 import com.agit.eProcure.shared.zul.PageNavigation;
 import java.util.ArrayList;
@@ -59,7 +65,13 @@ public class DashboardVendorVM {
     DataPenanggungJawabService dataPenanggungJawabService;
 
     @WireVariable
-    DataPeralatanService peralatanService;
+    DataPeralatanService dataPeralatanService;
+
+    @WireVariable
+    DataDokumenService dataDokumenService;
+
+    @WireVariable
+    DataKeuanganService dataKeuanganService;
 
     //    parameter Filter DataLogin
     private String idDatalogin;
@@ -78,10 +90,24 @@ public class DashboardVendorVM {
     private String nomorAssosiasi;
     private BidangUsahaType bidangUsahaSelect;
     private Date tanggalMulai;
+    //    Parameter Filter DataSegmentasi
+    private String dokumenID;
+    private String subject;
+    //    Parameter Filter DataKeuangan
+    private String idDataKeuangan;
+    private String tahunKeuangan;
+    //    Parameter Filter DataPeralatan
+    private String idDataPeralatan;
+    private String tahunPembuatan;
+    private String jenis;
+    private KondisiPeralatan kondisiPeralatanSelect;
+
 
     /* ----------Function ComboBox---------------   */
     private ListModelList<BankType> bankTypes;
     private ListModelList<BidangUsahaType> bidangUsahaTypes;
+    private ListModelList<String> subjectDokumenLegal = new ListModelList<>();
+    private ListModelList<KondisiPeralatan> kondisiPeralatans;
 
     //    Object Binding For Data Grid
     private DataLoginDTO dataLoginDTO = new DataLoginDTO();
@@ -95,6 +121,15 @@ public class DashboardVendorVM {
 
     private DataSegmentasiDTO dataSegmentasiDTO = new DataSegmentasiDTO();
     private List<DataSegmentasiDTO> dataSegmentasiDTOs = new ArrayList<>();
+
+    private DataDokumenDTO dataDokumenDTO = new DataDokumenDTO();
+    private List<DataDokumenDTO> dataDokumenDTOs = new ArrayList<>();
+
+    private DataKeuanganDTO dataKeuanganDTO = new DataKeuanganDTO();
+    private List<DataKeuanganDTO> dataKeuanganDTOs = new ArrayList<>();
+
+    private DataPeralatanDTO dataPeralatanDTO = new DataPeralatanDTO();
+    private List<DataPeralatanDTO> dataPeralatanDTOs = new ArrayList<>();
 
     // Paging
     private PageNavigation previous;
@@ -113,6 +148,9 @@ public class DashboardVendorVM {
             @ExecutionArgParam("dataPerusahaanDTO") DataPerusahaanDTO dataPerusahaan,
             @ExecutionArgParam("dataBankDTO") DataBankDTO dataBank,
             @ExecutionArgParam("dataSegmentasiDTO") DataSegmentasiDTO dataSegmentasi,
+            @ExecutionArgParam("dataDokumenDTO") DataDokumenDTO dataDokumen,
+            @ExecutionArgParam("dataKeuanganDTO") DataKeuanganDTO dataKeuangan,
+            @ExecutionArgParam("dataPeralatanDTO") DataPeralatanDTO dataPeralatan,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
         initData();
@@ -127,6 +165,9 @@ public class DashboardVendorVM {
         dataBankDTOs = dataBankService.findAll();
         dataPerusahaanDTOs = dataPerusahaanService.findAll();
         dataSegmentasiDTOs = dataSegmentasiService.findAll();
+        dataDokumenDTOs = dataDokumenService.findAll();
+        dataKeuanganDTOs = dataKeuanganService.findAll();
+        dataPeralatanDTOs = dataPeralatanService.findAll();
 
         //vaidate data is empty
         if (dataLoginDTOs.isEmpty()) {
@@ -141,6 +182,23 @@ public class DashboardVendorVM {
         if (dataSegmentasiDTOs.isEmpty()) {
             dataSegmentasiDTOs = Collections.emptyList();
         }
+        if (dataDokumenDTOs.isEmpty()) {
+            dataDokumenDTOs = Collections.emptyList();
+        }
+        if (dataKeuanganDTOs.isEmpty()) {
+            dataKeuanganDTOs = Collections.emptyList();
+        }
+        if (dataPeralatanDTOs.isEmpty()) {
+            dataPeralatanDTOs = Collections.emptyList();
+        }
+
+        subjectDokumenLegal.add("1. Vendor Registrasi Form");
+        subjectDokumenLegal.add("2. Salinan Akte Pendirian Perusahaan dan Perubahannya");
+        subjectDokumenLegal.add("3. Salinan Tanda Daftar Perusahaan (TDP)");
+        subjectDokumenLegal.add("4. Salinan Surat Ijin Usaha (SIUP/SIUJK)");
+        subjectDokumenLegal.add("5. Bukti Fisik Perusahaan");
+        subjectDokumenLegal.add("6. Dokumen Quality yang dimiliki");
+        subjectDokumenLegal.add("7. Dokumen Teknik");
 
     }
 
@@ -258,12 +316,50 @@ public class DashboardVendorVM {
         src = "/eProcure/dashboard_vendor/Dashboard_DataDokumen.zul";
     }
 
+    @Command("searchDataDokumen")
+    @NotifyChange("dataDokumenDTOs")
+    public void searchDataDokumen(@ContextParam(ContextType.VIEW) Window window) {
+        Map params = new HashMap();
+        params.put("dokumenID", dokumenID);
+        params.put("subject", subject);
+
+        dataDokumenDTOs = dataDokumenService.findByParams(params);
+    }
+
+    @Command("detailDataDokumen")
+    @NotifyChange("dataSegmentasi")
+    public void detailDataDokumen(@BindingParam("object") DataDokumenDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataDokumenDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_dokumen.zul", window, params);
+    }
+
     /*======================================= functional for page Data Peralatan =======================================*/
-//    @Command("buttonKlikDataPeralatan")
-//    @NotifyChange("src")
-//    public void buttonKlikDataPeralatan(@ContextParam(ContextType.VIEW) Window window) {
-//        src = "/eProcure/dashboard_vendor/Dashboard_DataPeralatan.zul";
-//    }
+    @Command("buttonKlikDataPeralatan")
+    @NotifyChange("src")
+    public void buttonKlikDataPeralatan(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/dashboard_vendor/Dashboard_DataPeralatan.zul";
+    }
+
+    @Command("searchDataPeralatan")
+    @NotifyChange("dataPeralatanDTOs")
+    public void searchDataPeralatan(@ContextParam(ContextType.VIEW) Window window) {
+        Map params = new HashMap();
+        params.put("idDataPeralatan", idDataPeralatan);
+        params.put("tahunPembuatan", tahunPembuatan);
+        params.put("jenis", jenis);
+        params.put("kondisiPeralatanSelect", kondisiPeralatanSelect);
+
+        dataPeralatanDTOs = dataPeralatanService.findByParams(params);
+    }
+
+    @Command("detailDataPeralatan")
+    @NotifyChange("dataPeralatan")
+    public void detailDataPeralatan(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataPeralatanDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_peralatan_form.zul", window, params);
+    }
 
     /*======================================= functional for page Data Keuangan =======================================*/
     @Command("buttonKlikDataKeuangan")
@@ -272,12 +368,31 @@ public class DashboardVendorVM {
         src = "/eProcure/dashboard_vendor/Dashboard_DataKeuangan.zul";
     }
 
+    @Command("searchDataKeuangan")
+    @NotifyChange("dataKeuanganDTOs")
+    public void searchDataKeuangan(@ContextParam(ContextType.VIEW) Window window) {
+        Map params = new HashMap();
+        params.put("idDataKeuangan", idDataKeuangan);
+        params.put("tahunKeuangan", tahunKeuangan);
+
+        dataKeuanganDTOs = dataKeuanganService.findByParams(params);
+    }
+
+    @Command("detailDataKeuangan")
+    @NotifyChange("dataSegmentasi")
+    public void detailDataKeuangan(@BindingParam("object") DataKeuanganDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataKeuanganDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_keuangan_form.zul", window, params);
+    }
     /*======================================= functional for page Data Pengalaman =======================================*/
-//    @Command("buttonKlikDataPengalaman")
-//    @NotifyChange("src")
-//    public void buttonKlikDataPengalaman(@ContextParam(ContextType.VIEW) Window window) {
-//        src = "/eProcure/dashboard_vendor/Dashboard_DataPengalaman.zul";
-//    }
+
+    @Command("buttonKlikDataPengalaman")
+    @NotifyChange("src")
+    public void buttonKlikDataPengalaman(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/dashboard_vendor/Dashboard_DataPengalaman.zul";
+    }
+
     public String getSrc() {
         return src;
     }
@@ -516,6 +631,134 @@ public class DashboardVendorVM {
 
     public void setDataSegmentasiDTOs(List<DataSegmentasiDTO> dataSegmentasiDTOs) {
         this.dataSegmentasiDTOs = dataSegmentasiDTOs;
+    }
+
+    public String getDokumenID() {
+        return dokumenID;
+    }
+
+    public void setDokumenID(String dokumenID) {
+        this.dokumenID = dokumenID;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public DataDokumenDTO getDataDokumenDTO() {
+        return dataDokumenDTO;
+    }
+
+    public void setDataDokumenDTO(DataDokumenDTO dataDokumenDTO) {
+        this.dataDokumenDTO = dataDokumenDTO;
+    }
+
+    public List<DataDokumenDTO> getDataDokumenDTOs() {
+        return dataDokumenDTOs;
+    }
+
+    public void setDataDokumenDTOs(List<DataDokumenDTO> dataDokumenDTOs) {
+        this.dataDokumenDTOs = dataDokumenDTOs;
+    }
+
+    public ListModelList<String> getSubjectDokumenLegal() {
+        return subjectDokumenLegal;
+    }
+
+    public void setSubjectDokumenLegal(ListModelList<String> subjectDokumenLegal) {
+        this.subjectDokumenLegal = subjectDokumenLegal;
+    }
+
+    public String getIdDataKeuangan() {
+        return idDataKeuangan;
+    }
+
+    public void setIdDataKeuangan(String idDataKeuangan) {
+        this.idDataKeuangan = idDataKeuangan;
+    }
+
+    public String getTahunKeuangan() {
+        return tahunKeuangan;
+    }
+
+    public void setTahunKeuangan(String tahunKeuangan) {
+        this.tahunKeuangan = tahunKeuangan;
+    }
+
+    public DataKeuanganDTO getDataKeuanganDTO() {
+        return dataKeuanganDTO;
+    }
+
+    public void setDataKeuanganDTO(DataKeuanganDTO dataKeuanganDTO) {
+        this.dataKeuanganDTO = dataKeuanganDTO;
+    }
+
+    public List<DataKeuanganDTO> getDataKeuanganDTOs() {
+        return dataKeuanganDTOs;
+    }
+
+    public void setDataKeuanganDTOs(List<DataKeuanganDTO> dataKeuanganDTOs) {
+        this.dataKeuanganDTOs = dataKeuanganDTOs;
+    }
+
+    public String getIdDataPeralatan() {
+        return idDataPeralatan;
+    }
+
+    public void setIdDataPeralatan(String idDataPeralatan) {
+        this.idDataPeralatan = idDataPeralatan;
+    }
+
+    public String getTahunPembuatan() {
+        return tahunPembuatan;
+    }
+
+    public void setTahunPembuatan(String tahunPembuatan) {
+        this.tahunPembuatan = tahunPembuatan;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public KondisiPeralatan getKondisiPeralatanSelect() {
+        return kondisiPeralatanSelect;
+    }
+
+    public void setKondisiPeralatanSelect(KondisiPeralatan kondisiPeralatanSelect) {
+        this.kondisiPeralatanSelect = kondisiPeralatanSelect;
+    }
+
+    public ListModelList<KondisiPeralatan> getKondisiPeralatans() {
+        return new ListModelList<>(KondisiPeralatan.values());
+    }
+
+    public void setKondisiPeralatans(ListModelList<KondisiPeralatan> kondisiPeralatans) {
+        this.kondisiPeralatans = kondisiPeralatans;
+    }
+
+    public DataPeralatanDTO getDataPeralatanDTO() {
+        return dataPeralatanDTO;
+    }
+
+    public void setDataPeralatanDTO(DataPeralatanDTO dataPeralatanDTO) {
+        this.dataPeralatanDTO = dataPeralatanDTO;
+    }
+
+    public List<DataPeralatanDTO> getDataPeralatanDTOs() {
+        return dataPeralatanDTOs;
+    }
+
+    public void setDataPeralatanDTOs(List<DataPeralatanDTO> dataPeralatanDTOs) {
+        this.dataPeralatanDTOs = dataPeralatanDTOs;
     }
 
 }

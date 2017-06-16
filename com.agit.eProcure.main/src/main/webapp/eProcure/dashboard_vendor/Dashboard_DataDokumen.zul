@@ -1,20 +1,28 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window apply="org.zkoss.bind.BindComposer">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.DashboardVendorVM')"
+            form="@id('fx') @load(vm.dataDokumenDTO) @save(vm.dataDokumenDTO, before='buttonSave')">
         <groupbox closable="false" mold="3d">
             <caption label="Dashboard Data Dokumen" />
             <groupbox closable="false">
                 <caption label="Parameter Pencarian" />
                 <grid style="border:0">
                     <columns>
-                        <column width="15%" />
+                        <column width="20%" />
+                        <column width="30%" />
+                        <column width="20%" />
                         <column width="30%" />
                     </columns>
                     <rows>
                         <row>
                             <label value="ID Dokumen" />
-                            <textbox width="50%" value=""/> 
+                            <textbox width="100%" value="@bind(vm.dokumenID)"/> 
                             <label value="Subject" />
-                            <textbox width="50%" value=""/> 
+                            <combobox width="100%" placeholder="- Silahkan Pilih -" model="@load(vm.subjectDokumenLegal)" selectedItem="@bind(vm.subject)">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox> 
                         </row>
                         <row>
                         </row>
@@ -22,7 +30,7 @@
                             <cell></cell>
                             <cell></cell>
                             <cell align="left">
-                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('buttonPencarian')"/>
+                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('searchDataDokumen')"/>
                             </cell>
                             <cell colspan="2"></cell> 
                         </row>
@@ -32,10 +40,10 @@
             </groupbox>
             <groupbox closable="false">
                 <paging forward="onPaging" />
-                <listbox rows = "6">
+                <listbox rows="@load(vm.pageSize)" mold="paging" pageSize="@load(vm.pageSize)" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataDokumenDTOs)">
                 
                     <listhead>
-                        <listheader label="No" width="3%" align="center"/>
+                        <listheader label="Dokumen ID" width="3%" align="center"/>
                         <listheader label="Subject" width="18%" align="center"/>
                         <listheader label="Nomor Dokumen" width="14%" align="center"/>
                         <listheader label="Tanggal Terbit" width="14%" align="center"/>
@@ -43,25 +51,25 @@
                         <listheader label="Aksi" width="14%" align="center"/>
                     </listhead>
                 
-                    <template name="model">
-                        <listitem>
+                    <template name="model" align="left" >
+                        <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.dokumenID)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" style="text-align: left" value="@bind(each.subject)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.noDokumen)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.tglTerbit)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.tglAkhir)"/>
                             </listcell>
                             <listcell>
-                                <a label="EDIT" />
+                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailDataDokumen', object=each)"/>
                             </listcell>
                         </listitem>
                     </template>                

@@ -46,7 +46,7 @@
             </groupbox>
             <groupbox closable="false">
                 <paging forward="onPaging" />
-                <listbox rows="5" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataBankDTOs)">
+                <listbox rows="@load(vm.pageSize)" mold="paging" pageSize="@load(vm.pageSize)" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataBankDTOs)">
                     <listhead>
                         <listheader label="ID Bank" width="5%" align="center" sortDirection="ascending" sort="auto(idDataBank)"/>
                         <listheader label="Nama Bank" width="30%" align="center"/>
@@ -73,7 +73,7 @@
                                 <label width="100%" value="@bind(each.mataUangType)"/>
                             </listcell>
                             <listcell>
-                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
                                 <!--                                <a label=" | " style="font-size:12pt ;color:black"></a>
                                 <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>-->
                             </listcell>

@@ -1,36 +1,41 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window apply="org.zkoss.bind.BindComposer">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.DashboardVendorVM')"
+            form="@id('fx') @load(vm.dataPeralatanDTO) @save(vm.dataPeralatanDTO, before='buttonSave')">
         <groupbox closable="false" mold="3d">
             <caption label="Dashboard Data Peralatan" />
             <groupbox closable="false">
                 <caption label="Parameter Pencarian" />
                 <grid style="border:0">
                     <columns>
-                        <column width="15%" />
+                        <column width="20%" />
+                        <column width="30%" />
+                        <column width="20%" />
                         <column width="30%" />
                     </columns>
                     <rows>
                         <row>
                             <label value="ID Peralatan" />
-                            <textbox width="50%" value=""/> 
+                            <textbox width="90%" value="@bind(vm.idDataPeralatan)"/> 
                             <label value="Tahun Pembuatan" />
-                            <textbox width="50%" value=""/>                          
+                            <textbox width="90%" value="@bind(vm.tahunPembuatan)"/>                          
                         </row>
                         <row>
                             <label value="Jenis Peralatan" />
-                            <textbox width="50%" value=""/> 
+                            <textbox width="90%" value="@bind(vm.jenis)"/> 
                             <label value="Kondisi" />
-                            <combobox width="40%" >
-                                <template name="">
-                                    <comboitem label=""/>
+                            <combobox width="90%" placeholder="- Silahkan Pilih -" model="@load(vm.kondisiPeralatans)" selectedItem="@bind(vm.kondisiPeralatanSelect)">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
                                 </template>
                             </combobox>
+                        
                         </row>
                         <row>
                             <cell></cell>
                             <cell></cell>
                             <cell align="left">
-                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('buttonPencarian')"/>
+                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('searchDataPeralatan')"/>
                             </cell>
                             <cell colspan="2"></cell> 
                         </row>
@@ -40,36 +45,34 @@
             </groupbox>
             <groupbox closable="false">
                 <paging forward="onPaging" />
-                <listbox rows = "11">
-                
+                <listbox rows = "11" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataPeralatanDTOs)">
                     <listhead>
-                        <listheader label="No" width="3%" align="center"/>
+                        <listheader label="ID Peralatan" width="3%" align="center"/>
                         <listheader label="Jenis" width="12%" align="center"/>
                         <listheader label="Jumlah" width="5%" align="center"/>
                         <listheader label="Tahun Pembuatan" width="10%" align="center"/>
                         <listheader label="Kondisi" width="4%" align="center"/>
                         <listheader label="Aksi" width="5%" align="center"/>
-                    </listhead>
-                
-                    <template >
-                        <listitem>
+                    </listhead>     
+                    <template name="model">
+                        <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.idDataPeralatan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.jenis)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.jumlah)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.tahunPembuatan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.kondisiPeralatan)"/>
                             </listcell>
                             <listcell>
-                                <a label="EDIT" />
+                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailDataPeralatan', object=each)"/>
                                 
                             </listcell>
                         </listitem>

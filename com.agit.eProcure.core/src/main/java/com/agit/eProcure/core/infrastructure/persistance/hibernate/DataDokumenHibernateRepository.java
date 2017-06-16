@@ -56,6 +56,9 @@ public class DataDokumenHibernateRepository extends HibernateRepository implemen
         if (StringUtil.hasValue(map.get("dokumenID"))) {
             criteria.add(Restrictions.like("dokumenID", "%" + map.get("dokumenID") + "%").ignoreCase());
         }
+        if (StringUtil.hasValue(map.get("subject"))) {
+            criteria.add(Restrictions.eq("subject", map.get("subject")));
+        }
         return criteria.list();
     }
 
