@@ -26,16 +26,16 @@ public class DataKeuanganHibernateRepository extends HibernateRepository impleme
 
     @Override
     public void deleteData(DataKeuangan dataKeuangan) {
-        Query query = getSession().createQuery("DELETE FROM com.agit.eProcure.core.domain.vendor.DataKeuangan WHERE auditID = :ida");
-        query.setParameter("ida", dataKeuangan.getAuditID());
+        Query query = getSession().createQuery("DELETE FROM com.agit.eProcure.core.domain.vendor.DataKeuangan WHERE idDataKeuangan = :ida");
+        query.setParameter("ida", dataKeuangan.getIdDataKeuangan());
         query.executeUpdate();
     }
 
     @Override
-    public DataKeuangan findByID(String auditID) {
+    public DataKeuangan findByID(String idDataKeuangan) {
         return (DataKeuangan) getSession()
-                .createQuery("FROM com.agit.eProcure.core.domain.vendor.DataKeuangan WHERE auditID = :ida")
-                .setParameter("ida", auditID)
+                .createQuery("FROM com.agit.eProcure.core.domain.vendor.DataKeuangan WHERE idDataKeuangan = :ida")
+                .setParameter("ida", idDataKeuangan)
                 .uniqueResult();
     }
 

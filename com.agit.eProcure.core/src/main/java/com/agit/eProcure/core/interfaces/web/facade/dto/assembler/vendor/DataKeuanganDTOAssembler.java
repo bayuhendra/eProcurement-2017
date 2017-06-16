@@ -17,6 +17,7 @@ public class DataKeuanganDTOAssembler implements IObjectAssembler<DataKeuangan, 
     @Override
     public DataKeuanganDTO toDTO(DataKeuangan domainObject) {
         return new DataKeuanganDTOBuilder()
+                .setIdDataKeuangan(domainObject.getIdDataKeuangan())
                 .setAktivaLainnya(domainObject.getAktivaLainnya())
                 .setAuditID(domainObject.getAuditID())
                 .setBank(domainObject.getBank())
@@ -49,6 +50,7 @@ public class DataKeuanganDTOAssembler implements IObjectAssembler<DataKeuangan, 
     @Override
     public DataKeuangan toDomain(DataKeuanganDTO dtoObject) {
         return new DataKeuanganBuilder()
+                .setIdDataKeuangan(dtoObject.getIdDataKeuangan())
                 .setAktivaLainnya(dtoObject.getAktivaLainnya())
                 .setAuditID(dtoObject.getAuditID())
                 .setBank(dtoObject.getBank())

@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataPeralatanDTO)@save(vm.dataPeralatanDTO, before='buttonSaveDataPeralatan')">
         <separator spacing="15px"/>
         <groupbox width="500px" closable="false">
             <caption label="Peralatan / Asset" style="font-size:16pt; font-weight: bold"/>
@@ -8,45 +9,46 @@
                 <columns>
                     <column width="3%"/>
                     <column width="25%"/>
-                    <column width="60%"/>
+                    <column width="40%"/>
+                    <column width="20%"/>
                 </columns>
                 <rows>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Jenis" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.jenis)"/>
                     </row>
                 
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Jumlah" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.jumlah)"/>
                     </row>
                 
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Kapasitas" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.kapasitas)"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Merk / Tipe" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.merkTipe)"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tahun Pembuatan" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.tahunPembuatan)"/>
                     </row>
                     
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Kondisi" style="font-weight: bold"/>
-                        <combobox width="40%" >
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.kondisiPeralatans)" selectedItem="@bind(fx.kondisiPeralatan)" readonly="true" width="100%" placeholder="- Pilihan Kondisi Peralatan -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
@@ -54,15 +56,15 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Lokasi" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.lokasi)"/>
                     </row>
                 
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Bukti Kepemilikan" style="font-weight: bold"/>
-                        <combobox width="40%" >
-                            <template name="model">
-                                <comboitem label="" value=""/>
+                        <combobox autodrop="true" model="@load(vm.buktiKepemilikans)" selectedItem="@bind(fx.buktiKepemilikan)" readonly="true" width="100%" placeholder="- Pilihan Bukti Kepimilikan -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
                             </template>
                         </combobox>
                     </row>
@@ -73,7 +75,7 @@
                 <columns>
                     <column width="3%"/>
                     <column width="25%"/>
-                    <column width="30%" align="right"/>
+                    <column width="33%" align="right"/>
                     <column width="27%"/>
                 </columns>
                 
@@ -81,29 +83,26 @@
                     <row>
                         <label />
                         <label value="Dokumen Kepemilikan" style="font-weight: bold"/>
-                        <textbox width="100%" readonly="true" />
-                        <button label="Upload Dokumen" upload="true" onClick="@command('ButtonUploadDokumen')" width="85%"/>
+                        <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadBuktiKepemilikan)"/>
+                        <button label="upload" upload="true" onUpload="@command('uploadFileBuktiKepemilikan')" width="70%">
+                        </button>
                     </row>
                     
                     <row>
                         <label />
                         <label value="Gambar Peralatan / Asset" style="font-weight: bold"/>
-                        <textbox width="100%" readonly="true" />
-                        <button label="Upload Gambar" upload="true" onClick="@command('ButtonUploadGambar')" width="85%" />
+                        <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadGambarPeralatan)"/>
+                        <button label="upload" upload="true" onUpload="@command('uploadFileGambarPeralatan')" width="70%">
+                        </button>
                     </row>
                     <row>
                         <label/>
                         <label/>
                         <button label="Kembali" onClick="@command('buttonKlikBackDataPeralatanForm')" width="50%" />
-                        <button label="Simpan" onClick="@command('buttonKlikBackDataPeralatanForm')" width="50%"/>
+                        <button label="Simpan" onClick="@command('buttonSaveDataPeralatan')" width="50%"/>
                     </row>
                 </rows>
             </grid>
-            <grid>
-                <columns>
-                    <column/>
-                </columns>
-            </grid>
-        </groupbox>
+         </groupbox>
     </window>
 </zk>

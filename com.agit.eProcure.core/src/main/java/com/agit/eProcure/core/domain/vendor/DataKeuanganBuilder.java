@@ -7,8 +7,11 @@ package com.agit.eProcure.core.domain.vendor;
 
 import java.util.Date;
 
+
 public class DataKeuanganBuilder {
 
+    private long id;
+    private String idDataKeuangan;
     private String auditID;
     private Date tglAudit;
     private String namaAudit;
@@ -38,6 +41,16 @@ public class DataKeuanganBuilder {
     private Date modifiedDate;
 
     public DataKeuanganBuilder() {
+    }
+
+    public DataKeuanganBuilder setId(long id) {
+        this.id = id;
+        return this;
+    }
+
+    public DataKeuanganBuilder setIdDataKeuangan(String idDataKeuangan) {
+        this.idDataKeuangan = idDataKeuangan;
+        return this;
     }
 
     public DataKeuanganBuilder setAuditID(String auditID) {
@@ -176,7 +189,7 @@ public class DataKeuanganBuilder {
     }
 
     public DataKeuangan createDataKeuangan() {
-        return new DataKeuangan(auditID, tglAudit, namaAudit, tahunKeuangan, kas, bank, totalPiutang, persediaanBarang, pekerjaanDP, totalAktivaLancar, peralatan, inventaris, gedung, totalAktivaTetap, aktivaLainnya, totalAktivaLainnya, hutangDagang, hutangPajak, hutangLainnya, totalHutangJangkaPendek, hutangJangkaPanjang, kekayaanBerih, total, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataKeuangan(id, idDataKeuangan, auditID, tglAudit, namaAudit, tahunKeuangan, kas, bank, totalPiutang, persediaanBarang, pekerjaanDP, totalAktivaLancar, peralatan, inventaris, gedung, totalAktivaTetap, aktivaLainnya, totalAktivaLainnya, hutangDagang, hutangPajak, hutangLainnya, totalHutangJangkaPendek, hutangJangkaPanjang, kekayaanBerih, total, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-
+    
 }

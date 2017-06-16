@@ -218,7 +218,6 @@ public class DataPeralatan implements EntityObject<DataPeralatan> {
     }
     
     public void assignNewDataPeralatan(DataPeralatan dataPeralatan){
-        this.id = dataPeralatan.id;
         this.idDataPeralatan = dataPeralatan.idDataPeralatan;
         this.jenis = dataPeralatan.jenis;
         this.jumlah = dataPeralatan.jumlah;

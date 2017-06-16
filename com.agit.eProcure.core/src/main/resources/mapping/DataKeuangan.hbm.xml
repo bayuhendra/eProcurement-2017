@@ -5,6 +5,7 @@
         <id column="id_privilege" name="id">
             <generator class="increment"/>
         </id>
+        <property column="idDataKeuangan" name="idDataKeuangan" not-null="false"/>
         <property column="auditID" name="auditID" not-null="false"/>
         <property column="tglAudit" name="tglAudit"/>
         <property column="namaAudit" name="namaAudit"/>

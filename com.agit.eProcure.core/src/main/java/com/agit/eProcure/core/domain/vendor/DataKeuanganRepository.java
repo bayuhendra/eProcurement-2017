@@ -13,7 +13,7 @@ public interface DataKeuanganRepository {
 
     void deleteData(DataKeuangan dataKeuangan);
 
-    DataKeuangan findByID(String auditID);
+    DataKeuangan findByID(String idDataKeuangan);
 
     List<DataKeuangan> findAll();
 

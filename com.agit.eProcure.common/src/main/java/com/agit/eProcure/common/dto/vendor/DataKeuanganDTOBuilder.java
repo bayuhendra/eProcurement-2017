@@ -7,8 +7,10 @@ package com.agit.eProcure.common.dto.vendor;
 
 import java.util.Date;
 
+
 public class DataKeuanganDTOBuilder {
 
+    private String idDataKeuangan;
     private String auditID;
     private Date tglAudit;
     private String namaAudit;
@@ -38,6 +40,11 @@ public class DataKeuanganDTOBuilder {
     private Date modifiedDate;
 
     public DataKeuanganDTOBuilder() {
+    }
+
+    public DataKeuanganDTOBuilder setIdDataKeuangan(String idDataKeuangan) {
+        this.idDataKeuangan = idDataKeuangan;
+        return this;
     }
 
     public DataKeuanganDTOBuilder setAuditID(String auditID) {
@@ -176,7 +183,7 @@ public class DataKeuanganDTOBuilder {
     }
 
     public DataKeuanganDTO createDataKeuanganDTO() {
-        return new DataKeuanganDTO(auditID, tglAudit, namaAudit, tahunKeuangan, kas, bank, totalPiutang, persediaanBarang, pekerjaanDP, totalAktivaLancar, peralatan, inventaris, gedung, totalAktivaTetap, aktivaLainnya, totalAktivaLainnya, hutangDagang, hutangPajak, hutangLainnya, totalHutangJangkaPendek, hutangJangkaPanjang, kekayaanBerih, total, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataKeuanganDTO(idDataKeuangan, auditID, tglAudit, namaAudit, tahunKeuangan, kas, bank, totalPiutang, persediaanBarang, pekerjaanDP, totalAktivaLancar, peralatan, inventaris, gedung, totalAktivaTetap, aktivaLainnya, totalAktivaLainnya, hutangDagang, hutangPajak, hutangLainnya, totalHutangJangkaPendek, hutangJangkaPanjang, kekayaanBerih, total, createdBy, createdDate, modifiedBy, modifiedDate);
     }
-
+    
 }

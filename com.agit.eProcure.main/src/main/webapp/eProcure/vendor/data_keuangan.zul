@@ -7,7 +7,7 @@
                 
                 <columns>
                     <column align="right" width="85%"/>
-                    <column align="left" width="15%"/>
+                    <column align="right" width="15%"/>
                 </columns>
                 
                 <rows>
@@ -70,21 +70,6 @@
                     </listitem>
                 </template>
             </listbox>
-            
-            <grid style="border:0">
-                
-                <columns>
-                    <column align="right" width="50%"/>
-                    <column align="left" width="50%"/>
-                </columns>
-                
-                <rows>
-                    <row>
-                        <button label="Kembali" width="20%" />
-                        <button label="Selanjutnya" width="20%"/>
-                    </row>
-                </rows>
-            </grid>
         </groupbox>
     </window>
 </zk>

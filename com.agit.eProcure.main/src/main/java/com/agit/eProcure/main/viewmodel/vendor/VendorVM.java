@@ -2,9 +2,11 @@ package com.agit.eProcure.main.viewmodel.vendor;
 
 import com.agit.eProcure.common.application.DataBankService;
 import com.agit.eProcure.common.application.DataDokumenService;
+import com.agit.eProcure.common.application.DataKeuanganService;
 import com.agit.eProcure.common.application.DataLoginService;
 import com.agit.eProcure.common.application.DataPenanggungJawabService;
 import com.agit.eProcure.common.application.DataPengalamanService;
+import com.agit.eProcure.common.application.DataPeralatanService;
 import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
 import com.agit.eProcure.common.dto.vendor.DataBankDTO;
@@ -12,12 +14,14 @@ import com.agit.eProcure.common.dto.vendor.DataBankDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataDokumenDTO;
 import com.agit.eProcure.common.dto.vendor.DataDokumenDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataKeuanganDTO;
+import com.agit.eProcure.common.dto.vendor.DataKeuanganDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTO;
 import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTO;
 import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPengalamanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPeralatanDTO;
+import com.agit.eProcure.common.dto.vendor.DataPeralatanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
@@ -25,7 +29,9 @@ import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTOBuilder;
 import com.agit.eProcure.common.security.SecurityUtil;
 import com.agit.eProcure.shared.type.AssosiasiType;
 import com.agit.eProcure.shared.type.BidangUsahaType;
+import com.agit.eProcure.shared.type.BuktiKepemilikan;
 import com.agit.eProcure.shared.type.JabatanType;
+import com.agit.eProcure.shared.type.KondisiPeralatan;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.MataUangType;
 import com.agit.eProcure.shared.type.PKPType;
@@ -95,7 +101,13 @@ public class VendorVM extends SelectorComposer<Window> {
     @WireVariable
     DataDokumenService dataDokumenService;
 
-    /* Paramater Data Login */
+    @WireVariable
+    DataPeralatanService dataPeralatanService;
+
+    @WireVariable
+    DataKeuanganService dataKeuanganService;
+
+    /* Paramater Data All Vendor */
     private String idDataLogin;
     private String idDataPerusahaan;
     private String idPenanggungJawab;
@@ -105,6 +117,8 @@ public class VendorVM extends SelectorComposer<Window> {
     private JabatanType jabatan;
     private String email;
     private String dokumenID;
+    private String idDataPeralatan;
+    private String idDataKeuangan;
 
     /* Function For Combobox  */
     private ListModelList<KualifikasiType> kualifikasiTypes;
@@ -121,6 +135,8 @@ public class VendorVM extends SelectorComposer<Window> {
     private ListModelList<String> namaBank = new ListModelList<>();
     private ListModelList<String> subjectDokumenLegal = new ListModelList<>();
     private ListModelList<String> subjectDokumenTeknis = new ListModelList<>();
+    private ListModelList<KondisiPeralatan> kondisiPeralatans;
+    private ListModelList<BuktiKepemilikan> buktiKepemilikans;
 
 
     /* Object Binding for Form Data Login */
@@ -138,6 +154,10 @@ public class VendorVM extends SelectorComposer<Window> {
     private List<DataPengalamanDTO> dataPengalamanDTOs = new ArrayList();
     private DataDokumenDTO dataDokumenDTO = new DataDokumenDTO();
     private List<DataDokumenDTO> dataDokumenDTOs = new ArrayList();
+    private DataPeralatanDTO dataPeralatanDTO = new DataPeralatanDTO();
+    private List<DataPeralatanDTO> dataPeralatanDTOs = new ArrayList();
+    private DataKeuanganDTO dataKeuanganDTO = new DataKeuanganDTO();
+    private List<DataKeuanganDTO> dataKeuanganDTOs = new ArrayList();
 
 
     /* for home instance */
@@ -151,15 +171,26 @@ public class VendorVM extends SelectorComposer<Window> {
     Media mediaUploadLogo;
     Media mediaUploadDataDokumen;
     Media mediaUploadHeaderImage;
+    Media mediaUploadBuktiKepemilikan;
+    Media mediaUploadGambarPeralatan;
+
     String mediaNameUploadLogo;
     String mediaNameUploadDataDokumen;
     String mediaNameUploadHeaderImage;
+    String mediaNameUploadBuktiKepemilikan;
+    String mediaNameUploadGambarPeralatan;
+
     private String filepathUploadLogo;
     private String filepathUploadDataDokumen;
     private String filepathUploadHeaderImage;
+    private String filepathUploadBuktiKepemilikan;
+    private String filepathUploadGambarPeralatan;
+
     private String pathLocationUploadLogo;
     private String pathLocationUploadDataDokumen;
     private String pathLocationUploadHeaderImage;
+    private String pathLocationUploadBuktiKepemilikan;
+    private String pathLocationUploadGambarPeralatan;
 
     @Init
     public void init(
@@ -169,13 +200,15 @@ public class VendorVM extends SelectorComposer<Window> {
             @ExecutionArgParam("dataBankDTO") DataBankDTO dataBank,
             @ExecutionArgParam("dataSegmentasiDTO") DataSegmentasiDTO dataSegmentasi,
             @ExecutionArgParam("dataDokumenDTO") DataDokumenDTO dataDokumen,
+            @ExecutionArgParam("dataPeralatanDTO") DataPeralatanDTO dataPeralatan,
+            @ExecutionArgParam("dataKeuanganDTO") DataKeuanganDTO dataKeuangan,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
         /* Load Data */
         initData();
 
         /* Check Validity */
-        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, dataSegmentasi, dataDokumen, previous);
+        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, dataSegmentasi, dataDokumen, dataPeralatan, dataKeuangan, previous);
     }
 
     private void initData() {
@@ -205,6 +238,15 @@ public class VendorVM extends SelectorComposer<Window> {
             dataDokumenDTOs = Collections.emptyList();
         }
 
+        dataPeralatanDTOs = dataPeralatanService.findAll();
+        if (dataPeralatanDTOs.isEmpty()) {
+            dataPeralatanDTOs = Collections.emptyList();
+        }
+        dataKeuanganDTOs = dataKeuanganService.findAll();
+        if (dataKeuanganDTOs.isEmpty()) {
+            dataKeuanganDTOs = Collections.emptyList();
+        }
+
         kota.add("SEMARANG");
         kota.add("SURABAYA");
         kota.add("BANDUNG");
@@ -230,7 +272,7 @@ public class VendorVM extends SelectorComposer<Window> {
         subjectDokumenLegal.add("7. Dokumen Teknik");
     }
 
-    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, DataSegmentasiDTO dataSegmentasi, DataDokumenDTO dataDokumen, PageNavigation previous) {
+    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, DataSegmentasiDTO dataSegmentasi, DataDokumenDTO dataDokumen, DataPeralatanDTO dataPeralatan, DataKeuanganDTO dataKeuangan, PageNavigation previous) {
         if (dataLogin == null) {
             ListModelList<DataLoginDTO> parameterList = new ListModelList<>(dataLoginService.findAll());
             String idDataLogin = "";
@@ -344,6 +386,43 @@ public class VendorVM extends SelectorComposer<Window> {
             this.dataDokumenDTO = dataDokumen;
             mediaNameUploadDataDokumen = dataDokumenDTO.getUploadFile();
             dokumenID = dataDokumenDTO.getDokumenID();
+            this.previous = previous;
+        }
+        if (dataPeralatan == null) {
+            ListModelList<DataPeralatanDTO> parameterList = new ListModelList<>(dataPeralatanService.findAll());
+            String idDataPeralatan = "";
+            if (parameterList.isEmpty()) {
+                idDataPeralatan = "1";
+            } else {
+                idDataPeralatan = getLatestObjectID(parameterList, "idDataPeralatan");
+            }
+            dataPeralatanDTO = new DataPeralatanDTOBuilder()
+                    .setIdDataPeralatan(idDataPeralatan)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createDataPeralatanDTO();
+        } else {
+            this.dataPeralatanDTO = dataPeralatan;
+            idDataPeralatan = dataPeralatanDTO.getIdDataPeralatan();
+            mediaNameUploadBuktiKepemilikan = dataPeralatanDTO.getDokumenBuktiKepemilikan();
+            this.previous = previous;
+        }
+        if (dataKeuangan == null) {
+            ListModelList<DataKeuanganDTO> parameterList = new ListModelList<>(dataKeuanganService.findAll());
+            String idDataKeuangan = "";
+            if (parameterList.isEmpty()) {
+                idDataKeuangan = "1";
+            } else {
+                idDataKeuangan = getLatestObjectID(parameterList, "idDataKeuangan");
+            }
+            dataKeuanganDTO = new DataKeuanganDTOBuilder()
+                    .setIdDataKeuangan(idDataKeuangan)
+                    .setCreatedBy(SecurityUtil.getUserName())
+                    .setCreatedDate(new Date())
+                    .createDataKeuanganDTO();
+        } else {
+            this.dataKeuanganDTO = dataKeuangan;
+            idDataPeralatan = dataKeuanganDTO.getIdDataKeuangan();
             this.previous = previous;
         }
     }
@@ -483,6 +562,46 @@ public class VendorVM extends SelectorComposer<Window> {
 
     }
 
+    /* Function upload data dokumen */
+    @Command("uploadFileBuktiKepemilikan")
+    @NotifyChange({"mediaNameUploadBuktiKepemilikan", "pathLocationUploadBuktiKepemilikan"})
+    public void uploadFileBuktiKepemilikan(@ContextParam(ContextType.BIND_CONTEXT) BindContext ctx) throws IOException {
+        UploadEvent upEvent = null;
+        Object objUploadEvent = ctx.getTriggerEvent();
+
+        if (objUploadEvent != null && (objUploadEvent instanceof UploadEvent)) {
+            upEvent = (UploadEvent) objUploadEvent;
+        }
+
+        if (upEvent != null) {
+            mediaUploadBuktiKepemilikan = upEvent.getMedia();
+            Calendar now = Calendar.getInstance();
+            int year = now.get(Calendar.YEAR);
+            int month = now.get(Calendar.MONTH);
+            int day = now.get(Calendar.DAY_OF_MONTH);
+            filepathUploadBuktiKepemilikan = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/");
+            filepathUploadBuktiKepemilikan = filepathUploadBuktiKepemilikan + "\\" + "files" + "\\" + "eProcure-dokument" + "\\" + year + "\\" + month + "\\" + day + "\\";
+
+            File baseDir = new File(filepathUploadBuktiKepemilikan);
+            if (!baseDir.exists()) {
+                baseDir.mkdirs();
+            }
+
+            Files.copy(new File(filepathUploadBuktiKepemilikan + mediaUploadBuktiKepemilikan.getName()), mediaUploadBuktiKepemilikan.getStreamData());
+            setMediaNameUploadBuktiKepemilikan(filepathUploadBuktiKepemilikan + mediaUploadBuktiKepemilikan.getName());
+            pathLocationUploadBuktiKepemilikan = "/" + "files" + "/" + "eProcure-dokument" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadBuktiKepemilikan.getName();
+        } else {
+            Calendar now = Calendar.getInstance();
+            int year = now.get(Calendar.YEAR);
+            int month = now.get(Calendar.MONTH);
+            int day = now.get(Calendar.DAY_OF_MONTH);
+            mediaNameUploadBuktiKepemilikan = "";
+            pathLocationUploadBuktiKepemilikan = "/" + "files" + "/" + "eProcure-logo" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadBuktiKepemilikan.getName();
+            Messagebox.show("File : " + mediaUploadBuktiKepemilikan + " Bukan File PDF", "Error", Messagebox.OK, Messagebox.ERROR);
+        }
+
+    }
+
     /* Function upload data login for header image */
     @Command("uploadFileHeaderImage")
     @NotifyChange({"mediaNameUploadHeaderImage", "pathLocationUploadHeaderImage"})
@@ -525,6 +644,53 @@ public class VendorVM extends SelectorComposer<Window> {
                 mediaNameUploadHeaderImage = "";
                 pathLocationUploadHeaderImage = "/" + "files" + "/" + "eProcure-header-image" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadHeaderImage.getName();
                 Messagebox.show("File : " + mediaUploadHeaderImage + " Bukan File Gambar", "Error", Messagebox.OK, Messagebox.ERROR);
+            }
+
+        }
+    }
+
+    /* Function upload data login for header image */
+    @Command("uploadFileGambarPeralatan")
+    @NotifyChange({"mediaNameUploadGambarPeralatan", "pathLocationUploadGambarPeralatan"})
+    public void uploadFileGambarPeralatan(@ContextParam(ContextType.BIND_CONTEXT) BindContext ctx) throws IOException {
+        UploadEvent upEvent = null;
+        Object objUploadEvent = ctx.getTriggerEvent();
+
+        if (objUploadEvent != null && (objUploadEvent instanceof UploadEvent)) {
+            upEvent = (UploadEvent) objUploadEvent;
+        }
+
+        if (upEvent != null) {
+            mediaUploadGambarPeralatan = upEvent.getMedia();
+
+            if (mediaUploadGambarPeralatan instanceof org.zkoss.image.Image) {
+                if (mediaUploadGambarPeralatan.getByteData().length > 1024 * 1024) {
+                    Messagebox.show("Ukuran Gambar/Foto yang diupload tidak boleh lebih dari 1 Mb ", "Peringatan", Messagebox.OK, Messagebox.EXCLAMATION);
+                    return;
+                }
+                Calendar now = Calendar.getInstance();
+                int year = now.get(Calendar.YEAR);
+                int month = now.get(Calendar.MONTH);
+                int day = now.get(Calendar.DAY_OF_MONTH);
+                filepathUploadGambarPeralatan = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/");
+                filepathUploadGambarPeralatan = filepathUploadGambarPeralatan + "\\" + "files" + "\\" + "eProcure-header-image" + "\\" + year + "\\" + month + "\\" + day + "\\";
+
+                File baseDir = new File(filepathUploadGambarPeralatan);
+                if (!baseDir.exists()) {
+                    baseDir.mkdirs();
+                }
+
+                Files.copy(new File(filepathUploadGambarPeralatan + mediaUploadGambarPeralatan.getName()), mediaUploadGambarPeralatan.getStreamData());
+                setMediaNameUploadGambarPeralatan(filepathUploadGambarPeralatan + mediaUploadGambarPeralatan.getName());
+                pathLocationUploadGambarPeralatan = "/" + "files" + "/" + "eProcure-header-image" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadGambarPeralatan.getName();
+            } else {
+                Calendar now = Calendar.getInstance();
+                int year = now.get(Calendar.YEAR);
+                int month = now.get(Calendar.MONTH);
+                int day = now.get(Calendar.DAY_OF_MONTH);
+                mediaNameUploadGambarPeralatan = "";
+                pathLocationUploadGambarPeralatan = "/" + "files" + "/" + "eProcure-header-image" + "/" + year + "/" + month + "/" + day + "/" + mediaUploadGambarPeralatan.getName();
+                Messagebox.show("File : " + mediaUploadGambarPeralatan + " Bukan File Gambar", "Error", Messagebox.OK, Messagebox.ERROR);
             }
 
         }
@@ -574,6 +740,23 @@ public class VendorVM extends SelectorComposer<Window> {
 
     }
 
+    /* Function button save data peralatan */
+    @Command("buttonSaveDataPeralatan")
+    @NotifyChange({"dataPeralatanDTO"})
+    public void buttonSaveDataPeralatan(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        if (pathLocationUploadBuktiKepemilikan == null) {
+            pathLocationUploadBuktiKepemilikan = dataPeralatanDTO.getDokumenBuktiKepemilikan();
+        }
+
+        dataPeralatanDTO.setDokumenBuktiKepemilikan(pathLocationUploadBuktiKepemilikan);
+        dataPeralatanService.SaveOrUpdate(dataPeralatanDTO);
+        showInformationMessagebox("Data Peralatan Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataPeralatan", null);
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataPeralatanDTO", obj);
+        CommonViewModel.navigateTo("/eProcure/vendor/data_peralatan.zul", window, params);
+    }
+
     /* Function button save data bank */
     @Command("buttonSaveDataBank")
     @NotifyChange({"dataBankDTO", "dataBankDTOs"})
@@ -619,6 +802,15 @@ public class VendorVM extends SelectorComposer<Window> {
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_bank_form.zul", window, params);
     }
 
+    /* Function button detail data peralatan */
+    @Command("detailDataPeralatan")
+    @NotifyChange("dataPeralatanDTO")
+    public void detailDataPeralatan(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("dataPeralatanDTO", obj);
+        CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_peralatan_form.zul", window, params);
+    }
+
     /* Function button detail data segmentasi */
     @Command("detailDataSegmentasi")
     @NotifyChange("dataSegmentasiDTO")
@@ -642,6 +834,29 @@ public class VendorVM extends SelectorComposer<Window> {
                     dataBankService.deleteData(dataBankDTO);
                     showInformationMessagebox("Data Bank Berhasil Dihapus");
                     BindUtils.postGlobalCommand(null, null, "refreshDataBank", null);
+                } else {
+                    System.out.println("Operasi dibatalkan");
+                }
+            }
+        }
+        );
+
+    }
+
+    /* Function button detele data peralatan */
+    @Command("deleteDataPeralatan")
+    @NotifyChange("dataPeralatanDTOs")
+    public void deleteDataPeralatan(@BindingParam("object") DataPeralatanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataPeralatanDTO = (DataPeralatanDTO) obj;
+
+        Messagebox.show("Apakah anda yakin ingin menghapus Data Peralatan?", "Konfirmasi", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION,
+                new org.zkoss.zk.ui.event.EventListener() {
+            @Override
+            public void onEvent(Event evt) throws InterruptedException {
+                if (evt.getName().equals("onOK")) {
+                    dataPeralatanService.deleteData(dataPeralatanDTO);
+                    showInformationMessagebox("Data Peralatan Berhasil Dihapus");
+                    BindUtils.postGlobalCommand(null, null, "refreshDataPeralatan", null);
                 } else {
                     System.out.println("Operasi dibatalkan");
                 }
@@ -739,6 +954,12 @@ public class VendorVM extends SelectorComposer<Window> {
         dataPenanggungJawabDTOs = dataPenanggungJawabService.findAll();
     }
 
+    /* Function refresh data penanggung jawab */
+    @GlobalCommand
+    @NotifyChange("dataPeralatanDTOs")
+    public void refreshDataPeralatan() {
+        dataPeralatanDTOs = dataPeralatanService.findAll();
+    }
 
     /* Function button klik data login */
     @Command("buttonKlikDataLogin")
@@ -1338,6 +1559,134 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setMediaNameUploadDataDokumen(String mediaNameUploadDataDokumen) {
         this.mediaNameUploadDataDokumen = mediaNameUploadDataDokumen;
+    }
+
+    public DataPeralatanDTO getDataPeralatanDTO() {
+        return dataPeralatanDTO;
+    }
+
+    public void setDataPeralatanDTO(DataPeralatanDTO dataPeralatanDTO) {
+        this.dataPeralatanDTO = dataPeralatanDTO;
+    }
+
+    public List<DataPeralatanDTO> getDataPeralatanDTOs() {
+        return dataPeralatanDTOs;
+    }
+
+    public void setDataPeralatanDTOs(List<DataPeralatanDTO> dataPeralatanDTOs) {
+        this.dataPeralatanDTOs = dataPeralatanDTOs;
+    }
+
+    public ListModelList<KondisiPeralatan> getKondisiPeralatans() {
+        return new ListModelList<>(KondisiPeralatan.values());
+    }
+
+    public void setKondisiPeralatans(ListModelList<KondisiPeralatan> kondisiPeralatans) {
+        this.kondisiPeralatans = kondisiPeralatans;
+    }
+
+    public ListModelList<BuktiKepemilikan> getBuktiKepemilikans() {
+        return new ListModelList<>(BuktiKepemilikan.values());
+    }
+
+    public void setBuktiKepemilikans(ListModelList<BuktiKepemilikan> buktiKepemilikans) {
+        this.buktiKepemilikans = buktiKepemilikans;
+    }
+
+    public String getIdDataPeralatan() {
+        return idDataPeralatan;
+    }
+
+    public void setIdDataPeralatan(String idDataPeralatan) {
+        this.idDataPeralatan = idDataPeralatan;
+    }
+
+    public Media getMediaUploadBuktiKepemilikan() {
+        return mediaUploadBuktiKepemilikan;
+    }
+
+    public void setMediaUploadBuktiKepemilikan(Media mediaUploadBuktiKepemilikan) {
+        this.mediaUploadBuktiKepemilikan = mediaUploadBuktiKepemilikan;
+    }
+
+    public Media getMediaUploadGambarPeralatan() {
+        return mediaUploadGambarPeralatan;
+    }
+
+    public void setMediaUploadGambarPeralatan(Media mediaUploadGambarPeralatan) {
+        this.mediaUploadGambarPeralatan = mediaUploadGambarPeralatan;
+    }
+
+    public String getMediaNameUploadBuktiKepemilikan() {
+        return mediaNameUploadBuktiKepemilikan;
+    }
+
+    public void setMediaNameUploadBuktiKepemilikan(String mediaNameUploadBuktiKepemilikan) {
+        this.mediaNameUploadBuktiKepemilikan = mediaNameUploadBuktiKepemilikan;
+    }
+
+    public String getMediaNameUploadGambarPeralatan() {
+        return mediaNameUploadGambarPeralatan;
+    }
+
+    public void setMediaNameUploadGambarPeralatan(String mediaNameUploadGambarPeralatan) {
+        this.mediaNameUploadGambarPeralatan = mediaNameUploadGambarPeralatan;
+    }
+
+    public String getFilepathUploadBuktiKepemilikan() {
+        return filepathUploadBuktiKepemilikan;
+    }
+
+    public void setFilepathUploadBuktiKepemilikan(String filepathUploadBuktiKepemilikan) {
+        this.filepathUploadBuktiKepemilikan = filepathUploadBuktiKepemilikan;
+    }
+
+    public String getFilepathUploadGambarPeralatan() {
+        return filepathUploadGambarPeralatan;
+    }
+
+    public void setFilepathUploadGambarPeralatan(String filepathUploadGambarPeralatan) {
+        this.filepathUploadGambarPeralatan = filepathUploadGambarPeralatan;
+    }
+
+    public String getPathLocationUploadBuktiKepemilikan() {
+        return pathLocationUploadBuktiKepemilikan;
+    }
+
+    public void setPathLocationUploadBuktiKepemilikan(String pathLocationUploadBuktiKepemilikan) {
+        this.pathLocationUploadBuktiKepemilikan = pathLocationUploadBuktiKepemilikan;
+    }
+
+    public String getPathLocationUploadGambarPeralatan() {
+        return pathLocationUploadGambarPeralatan;
+    }
+
+    public void setPathLocationUploadGambarPeralatan(String pathLocationUploadGambarPeralatan) {
+        this.pathLocationUploadGambarPeralatan = pathLocationUploadGambarPeralatan;
+    }
+
+    public String getIdDataKeuangan() {
+        return idDataKeuangan;
+    }
+
+    public void setIdDataKeuangan(String idDataKeuangan) {
+        this.idDataKeuangan = idDataKeuangan;
+    }
+
+    public DataKeuanganDTO getDataKeuanganDTO() {
+        return dataKeuanganDTO;
+    }
+
+    public void setDataKeuanganDTO(DataKeuanganDTO dataKeuanganDTO) {
+        this.dataKeuanganDTO = dataKeuanganDTO;
+    }
+
+    public List<DataKeuanganDTO> getDataKeuanganDTOs() {
+        return dataKeuanganDTOs;
+    }
+
+    public void setDataKeuanganDTOs(List<DataKeuanganDTO> dataKeuanganDTOs) {
+        this.dataKeuanganDTOs = dataKeuanganDTOs;
     }
 
 }

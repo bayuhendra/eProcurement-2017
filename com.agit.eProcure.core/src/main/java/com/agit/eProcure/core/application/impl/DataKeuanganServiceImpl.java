@@ -9,6 +9,7 @@ import com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataKeu
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -78,6 +79,7 @@ public class DataKeuanganServiceImpl implements DataKeuanganService {
     @Override
     public DataKeuanganDTO getDummy() {
         DataKeuangan p = new DataKeuanganBuilder()
+                .setIdDataKeuangan(UUID.randomUUID().toString())
                 .setAktivaLainnya(Double.valueOf(12))
                 .setAuditID("123")
                 .setBank(Double.valueOf(13))

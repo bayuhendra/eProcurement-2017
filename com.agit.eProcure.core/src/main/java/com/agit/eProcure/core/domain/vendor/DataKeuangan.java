@@ -11,6 +11,7 @@ import java.util.Objects;
 public class DataKeuangan implements EntityObject<DataKeuangan> {
 
     long id;
+    private String idDataKeuangan;
     private String auditID;
     private Date tglAudit;
     private String namaAudit;
@@ -42,7 +43,9 @@ public class DataKeuangan implements EntityObject<DataKeuangan> {
     public DataKeuangan() {
     }
 
-    public DataKeuangan(String auditID, Date tglAudit, String namaAudit, String tahunKeuangan, Double kas, Double bank, Double totalPiutang, Double persediaanBarang, Double pekerjaanDP, Double totalAktivaLancar, Double peralatan, Double inventaris, Double gedung, Double totalAktivaTetap, Double aktivaLainnya, Double totalAktivaLainnya, Double hutangDagang, Double hutangPajak, Double hutangLainnya, Double totalHutangJangkaPendek, Double hutangJangkaPanjang, Double kekayaanBerih, Double total, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataKeuangan(long id, String idDataKeuangan, String auditID, Date tglAudit, String namaAudit, String tahunKeuangan, Double kas, Double bank, Double totalPiutang, Double persediaanBarang, Double pekerjaanDP, Double totalAktivaLancar, Double peralatan, Double inventaris, Double gedung, Double totalAktivaTetap, Double aktivaLainnya, Double totalAktivaLainnya, Double hutangDagang, Double hutangPajak, Double hutangLainnya, Double totalHutangJangkaPendek, Double hutangJangkaPanjang, Double kekayaanBerih, Double total, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+        this.id = id;
+        this.idDataKeuangan = idDataKeuangan;
         this.auditID = auditID;
         this.tglAudit = tglAudit;
         this.namaAudit = namaAudit;
@@ -73,6 +76,7 @@ public class DataKeuangan implements EntityObject<DataKeuangan> {
     }
 
     public void assignNewKeuangan(DataKeuangan dataKeuangan) {
+        this.idDataKeuangan = dataKeuangan.idDataKeuangan;
         this.auditID = dataKeuangan.auditID;
         this.tglAudit = dataKeuangan.tglAudit;
         this.namaAudit = dataKeuangan.namaAudit;
@@ -326,41 +330,53 @@ public class DataKeuangan implements EntityObject<DataKeuangan> {
         this.modifiedDate = modifiedDate;
     }
 
+    public String getIdDataKeuangan() {
+        return idDataKeuangan;
+    }
+
+    public void setIdDataKeuangan(String idDataKeuangan) {
+        this.idDataKeuangan = idDataKeuangan;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + Objects.hashCode(this.auditID);
-        hash = 17 * hash + Objects.hashCode(this.tglAudit);
-        hash = 17 * hash + Objects.hashCode(this.namaAudit);
-        hash = 17 * hash + Objects.hashCode(this.tahunKeuangan);
-        hash = 17 * hash + Objects.hashCode(this.kas);
-        hash = 17 * hash + Objects.hashCode(this.bank);
-        hash = 17 * hash + Objects.hashCode(this.totalPiutang);
-        hash = 17 * hash + Objects.hashCode(this.persediaanBarang);
-        hash = 17 * hash + Objects.hashCode(this.pekerjaanDP);
-        hash = 17 * hash + Objects.hashCode(this.totalAktivaLancar);
-        hash = 17 * hash + Objects.hashCode(this.peralatan);
-        hash = 17 * hash + Objects.hashCode(this.inventaris);
-        hash = 17 * hash + Objects.hashCode(this.gedung);
-        hash = 17 * hash + Objects.hashCode(this.totalAktivaTetap);
-        hash = 17 * hash + Objects.hashCode(this.aktivaLainnya);
-        hash = 17 * hash + Objects.hashCode(this.totalAktivaLainnya);
-        hash = 17 * hash + Objects.hashCode(this.hutangDagang);
-        hash = 17 * hash + Objects.hashCode(this.hutangPajak);
-        hash = 17 * hash + Objects.hashCode(this.hutangLainnya);
-        hash = 17 * hash + Objects.hashCode(this.totalHutangJangkaPendek);
-        hash = 17 * hash + Objects.hashCode(this.hutangJangkaPanjang);
-        hash = 17 * hash + Objects.hashCode(this.kekayaanBerih);
-        hash = 17 * hash + Objects.hashCode(this.total);
-        hash = 17 * hash + Objects.hashCode(this.createdBy);
-        hash = 17 * hash + Objects.hashCode(this.createdDate);
-        hash = 17 * hash + Objects.hashCode(this.modifiedBy);
-        hash = 17 * hash + Objects.hashCode(this.modifiedDate);
+        hash = 83 * hash + Objects.hashCode(this.idDataKeuangan);
+        hash = 83 * hash + Objects.hashCode(this.auditID);
+        hash = 83 * hash + Objects.hashCode(this.tglAudit);
+        hash = 83 * hash + Objects.hashCode(this.namaAudit);
+        hash = 83 * hash + Objects.hashCode(this.tahunKeuangan);
+        hash = 83 * hash + Objects.hashCode(this.kas);
+        hash = 83 * hash + Objects.hashCode(this.bank);
+        hash = 83 * hash + Objects.hashCode(this.totalPiutang);
+        hash = 83 * hash + Objects.hashCode(this.persediaanBarang);
+        hash = 83 * hash + Objects.hashCode(this.pekerjaanDP);
+        hash = 83 * hash + Objects.hashCode(this.totalAktivaLancar);
+        hash = 83 * hash + Objects.hashCode(this.peralatan);
+        hash = 83 * hash + Objects.hashCode(this.inventaris);
+        hash = 83 * hash + Objects.hashCode(this.gedung);
+        hash = 83 * hash + Objects.hashCode(this.totalAktivaTetap);
+        hash = 83 * hash + Objects.hashCode(this.aktivaLainnya);
+        hash = 83 * hash + Objects.hashCode(this.totalAktivaLainnya);
+        hash = 83 * hash + Objects.hashCode(this.hutangDagang);
+        hash = 83 * hash + Objects.hashCode(this.hutangPajak);
+        hash = 83 * hash + Objects.hashCode(this.hutangLainnya);
+        hash = 83 * hash + Objects.hashCode(this.totalHutangJangkaPendek);
+        hash = 83 * hash + Objects.hashCode(this.hutangJangkaPanjang);
+        hash = 83 * hash + Objects.hashCode(this.kekayaanBerih);
+        hash = 83 * hash + Objects.hashCode(this.total);
+        hash = 83 * hash + Objects.hashCode(this.createdBy);
+        hash = 83 * hash + Objects.hashCode(this.createdDate);
+        hash = 83 * hash + Objects.hashCode(this.modifiedBy);
+        hash = 83 * hash + Objects.hashCode(this.modifiedDate);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }

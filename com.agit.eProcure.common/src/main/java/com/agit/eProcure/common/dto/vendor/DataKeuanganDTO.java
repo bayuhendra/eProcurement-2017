@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class DataKeuanganDTO implements Serializable {
 
+    private String idDataKeuangan;
     private String auditID;
     private Date tglAudit;
     private String namaAudit;
@@ -40,7 +41,8 @@ public class DataKeuanganDTO implements Serializable {
     public DataKeuanganDTO() {
     }
 
-    public DataKeuanganDTO(String auditID, Date tglAudit, String namaAudit, String tahunKeuangan, Double kas, Double bank, Double totalPiutang, Double persediaanBarang, Double pekerjaanDP, Double totalAktivaLancar, Double peralatan, Double inventaris, Double gedung, Double totalAktivaTetap, Double aktivaLainnya, Double totalAktivaLainnya, Double hutangDagang, Double hutangPajak, Double hutangLainnya, Double totalHutangJangkaPendek, Double hutangJangkaPanjang, Double kekayaanBerih, Double total, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataKeuanganDTO(String idDataKeuangan, String auditID, Date tglAudit, String namaAudit, String tahunKeuangan, Double kas, Double bank, Double totalPiutang, Double persediaanBarang, Double pekerjaanDP, Double totalAktivaLancar, Double peralatan, Double inventaris, Double gedung, Double totalAktivaTetap, Double aktivaLainnya, Double totalAktivaLainnya, Double hutangDagang, Double hutangPajak, Double hutangLainnya, Double totalHutangJangkaPendek, Double hutangJangkaPanjang, Double kekayaanBerih, Double total, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+        this.idDataKeuangan = idDataKeuangan;
         this.auditID = auditID;
         this.tglAudit = tglAudit;
         this.namaAudit = namaAudit;
@@ -68,6 +70,14 @@ public class DataKeuanganDTO implements Serializable {
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
+    }
+
+    public String getIdDataKeuangan() {
+        return idDataKeuangan;
+    }
+
+    public void setIdDataKeuangan(String idDataKeuangan) {
+        this.idDataKeuangan = idDataKeuangan;
     }
 
     public String getAuditID() {
@@ -288,7 +298,7 @@ public class DataKeuanganDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "DataKeuanganDTO{" + "auditID=" + auditID + ", tglAudit=" + tglAudit + ", namaAudit=" + namaAudit + ", tahunKeuangan=" + tahunKeuangan + ", kas=" + kas + ", bank=" + bank + ", totalPiutang=" + totalPiutang + ", persediaanBarang=" + persediaanBarang + ", pekerjaanDP=" + pekerjaanDP + ", totalAktivaLancar=" + totalAktivaLancar + ", peralatan=" + peralatan + ", inventaris=" + inventaris + ", gedung=" + gedung + ", totalAktivaTetap=" + totalAktivaTetap + ", aktivaLainnya=" + aktivaLainnya + ", totalAktivaLainnya=" + totalAktivaLainnya + ", hutangDagang=" + hutangDagang + ", hutangPajak=" + hutangPajak + ", hutangLainnya=" + hutangLainnya + ", totalHutangJangkaPendek=" + totalHutangJangkaPendek + ", hutangJangkaPanjang=" + hutangJangkaPanjang + ", kekayaanBerih=" + kekayaanBerih + ", total=" + total + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "DataKeuanganDTO{" + "idDataKeuangan=" + idDataKeuangan + ", auditID=" + auditID + ", tglAudit=" + tglAudit + ", namaAudit=" + namaAudit + ", tahunKeuangan=" + tahunKeuangan + ", kas=" + kas + ", bank=" + bank + ", totalPiutang=" + totalPiutang + ", persediaanBarang=" + persediaanBarang + ", pekerjaanDP=" + pekerjaanDP + ", totalAktivaLancar=" + totalAktivaLancar + ", peralatan=" + peralatan + ", inventaris=" + inventaris + ", gedung=" + gedung + ", totalAktivaTetap=" + totalAktivaTetap + ", aktivaLainnya=" + aktivaLainnya + ", totalAktivaLainnya=" + totalAktivaLainnya + ", hutangDagang=" + hutangDagang + ", hutangPajak=" + hutangPajak + ", hutangLainnya=" + hutangLainnya + ", totalHutangJangkaPendek=" + totalHutangJangkaPendek + ", hutangJangkaPanjang=" + hutangJangkaPanjang + ", kekayaanBerih=" + kekayaanBerih + ", total=" + total + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
 
 }

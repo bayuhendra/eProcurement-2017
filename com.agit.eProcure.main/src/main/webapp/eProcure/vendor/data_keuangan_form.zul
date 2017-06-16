@@ -19,7 +19,7 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tanggal Audit" style="font-weight: bold"/>
-                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" />
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true"/>
                     </row>                    
                     <row>
                         <label value="*)" style="color:red"/>
@@ -35,15 +35,15 @@
             <caption label="Data Keuangan Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
-                    <column width="20%" align="right"/>
-                    <column width="10%"/>
+                    <column width="1%" align="left"/>
+                    <column width="8%"/>
                     <column width="70%"/>
                 </columns>
                 <rows>
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tahun Keuangan" style="font-weight: bold"/>
-                        <textbox width="10%" />
+                        <textbox width="20%" />
                     </row>
                 </rows>
             </grid>
@@ -56,8 +56,8 @@
                 </columns>
                 <rows>
                     <row>
-                        <label value = "AKTIVA" />
-                        <label value = "PASIVA" />
+                        <label value = "AKTIVA" style="font-weight: bold"/>
+                        <label value = "PASIVA" style="font-weight: bold"/>
                     </row>
                 </rows>
             </grid>
@@ -65,117 +65,57 @@
             <separator spacing="15px"/>
             <grid style="border:0">
                 <columns>
-                    <column width="5%" />
+                    <column width="2%" />
                     <column width="15%" />
                     <column width="15%" />
                     <column width="15%" />
                     
-                    <column width="5%" />
+                    <column width="2%" />
                     <column width="15%" />
                     <column width="15%" />
                     <column width="15%" />
                 </columns>
                 <rows>
                     <row>
-                        <label value="I" />
-                        <label value="Aktiva Lancar, terdiri dari :" />
+                        <label value="I" style="font-weight: bold"/>
+                        <label value="Aktiva Lancar, terdiri dari :" style="font-weight: bold"/>
                         <label/>
                         <label/>
                                                 
-                        <label value="IV" />
-                        <label value="Hutang Jangka Pendek, terdiri dari :" />
+                        <label value="IV" style="font-weight: bold"/>
+                        <label value="Hutang Jangka Pendek, terdiri dari:" style="font-weight: bold"/>
                         <label/>
                         <label/>
                     </row>
                     
                     <row>
                         <label />
-                        <label value="Kas"/>
-                        <textbox placeholder="0.00" />
+                        <label value="Kas" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                                                 
                         <label />
-                        <label value="Hutang Dagang" />
-                        <textbox placeholder="0.00" />
+                        <label value="Hutang Dagang" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                     </row>
                     
                     <row>
                         <label />
-                        <label value="Bank"/>
-                        <textbox placeholder="0.00" />
+                        <label value="Bank" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                                                 
                         <label />
-                        <label value="Hutang Pajak" />
-                        <textbox placeholder="0.00" />
+                        <label value="Hutang Pajak" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                     </row>
                     
                     <row>
                         <label />
-                        <label value="Total Piutang"/>
-                        <textbox placeholder="0.00" />
-                        <label />
-                                                
-                        <label />
-                        <label />
-                        <label />
-                        <label />
-                    </row>
-                    
-                    <row>
-                        <label />
-                        <label value="Persediaan Barang"/>
-                        <textbox placeholder="0.00" />
-                        <label />
-                                                
-                        <label />
-                        <label value="Hutang Lainnya" />
-                        <textbox placeholder="0.00" />
-                        <label />
-                    </row>
-                    
-                    <row>
-                        <label />
-                        <label value="Pekerjaan dalam proses"/>
-                        <textbox placeholder="0.00" />
-                        <label />
-                                                
-                        <label />
-                        <label value="Total (IV)" />
-                        <label />
-                        <textbox placeholder="0.00" readonly="true"/>
-                    </row>
-                    
-                    <row>
-                        <label />
-                        <label value="Total (I)"/>
-                        <label />
-                        <textbox placeholder="0.00" readonly="true" />
-                                                
-                        <label value="V" />
-                        <label value="Hutang Jangka Panjang" />
-                        <label />
-                        <textbox placeholder="0.00"/>
-                    </row>
-                    
-                    <row>
-                        <label value="II" />
-                        <label value="Aktiva Tetap, terdiri dari :"/>
-                        <label />
-                        <label />
-                                                
-                        <label value="VI"/>
-                        <label value="Kekayaan Bersih(I+II+III)-(IV+V)"/>
-                        <label />
-                        <textbox placeholder="0.00" readonly="true" />
-                    </row>
-                    
-                    <row>
-                        <label />
-                        <label value="Peralatan dan mesin" />
-                        <textbox placeholder="0.00" />
+                        <label value="Total Piutang" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                                                 
                         <label />
@@ -186,8 +126,56 @@
                     
                     <row>
                         <label />
-                        <label value="Inventaris" />
-                        <textbox placeholder="0.00" />
+                        <label value="Persediaan Barang" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <label />
+                                                
+                        <label />
+                        <label value="Hutang Lainnya" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <label />
+                    </row>
+                    
+                    <row>
+                        <label />
+                        <label value="Pekerjaan dalam proses" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <label />
+                                                
+                        <label />
+                        <label value="Total (IV)" style="font-weight: bold" />
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true"/>
+                    </row>
+                    
+                    <row>
+                        <label />
+                        <label value="Total (I)" style="font-weight: bold"/>
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" />
+                                                
+                        <label value="V" style="font-weight: bold"/>
+                        <label value="Hutang Jangka Panjang" style="font-weight: bold"/>
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00"/>
+                    </row>
+                    
+                    <row>
+                        <label value="II" style="font-weight: bold"/>
+                        <label value="Aktiva Tetap, terdiri dari :" style="font-weight: bold"/>
+                        <label />
+                        <label />
+                                                
+                        <label value="VI" style="font-weight: bold"/>
+                        <label value="Kekayaan Bersih(I+II+III)-(IV+V)" style="font-weight: bold"/>
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" />
+                    </row>
+                    
+                    <row>
+                        <label />
+                        <label value="Peralatan dan mesin" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                                                 
                         <label />
@@ -198,8 +186,8 @@
                     
                     <row>
                         <label />
-                        <label value="Gedung - gedung" />
-                        <textbox placeholder="0.00" />
+                        <label value="Inventaris" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
                                                 
                         <label />
@@ -210,21 +198,9 @@
                     
                     <row>
                         <label />
-                        <label value="Total(II)" />
+                        <label value="Gedung - gedung" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" />
                         <label />
-                        <textbox placeholder="0.00" readonly="true"/>
-                                                
-                        <label />
-                        <label />
-                        <label />
-                        <label />
-                    </row>
-                    
-                    <row>
-                        <label value="III" />
-                        <label value="Aktiva Lainnya(III)"/>
-                        <label />
-                        <textbox placeholder="0.00" />
                                                 
                         <label />
                         <label />
@@ -234,14 +210,38 @@
                     
                     <row>
                         <label />
-                        <label value="Total(III)" />
+                        <label value="Total(II)" style="font-weight: bold"/>
                         <label />
-                        <textbox placeholder="0.00" readonly="true" />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true"/>
                                                 
                         <label />
-                        <label value="Total" />
                         <label />
-                        <textbox placeholder="0.00" readonly="true"/>
+                        <label />
+                        <label />
+                    </row>
+                    
+                    <row>
+                        <label value="III" style="font-weight: bold"/>
+                        <label value="Aktiva Lainnya(III)" style="font-weight: bold"/>
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00" />
+                                                
+                        <label />
+                        <label />
+                        <label />
+                        <label />
+                    </row>
+                    
+                    <row>
+                        <label />
+                        <label value="Total(III)" style="font-weight: bold"/>
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" />
+                                                
+                        <label />
+                        <label value="Total" style="font-weight: bold"/>
+                        <label />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true"/>
                     </row>
                 </rows>
             </grid>
