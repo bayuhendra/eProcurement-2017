@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataKeuanganDTO) @save(vm.dataKeuanganDTO, before='buttonSaveDataKeuangan')">
         <separator spacing="15px"/>
         <groupbox width="500px" >
             <caption label="Data Auditor" style="font-size:16pt; font-weight: bold"/>
@@ -14,17 +15,17 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nomor Audit" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.auditID)"/>
                     </row>                    
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tanggal Audit" style="font-weight: bold"/>
-                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="50%" readonly="true" value="@bind(fx.tglAudit)"/>
                     </row>                    
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Nama Audit" style="font-weight: bold"/>
-                        <textbox width="100%" />
+                        <textbox width="100%" value="@bind(fx.namaAudit)"/>
                     </row>
                 </rows>
             </grid>
@@ -43,7 +44,7 @@
                     <row>
                         <label value="*)" style="color:red"/>
                         <label value="Tahun Keuangan" style="font-weight: bold"/>
-                        <textbox width="20%" />
+                        <textbox width="20%" value="@bind(fx.tahunKeuangan)"/>
                     </row>
                 </rows>
             </grid>
@@ -91,31 +92,31 @@
                     <row>
                         <label />
                         <label value="Kas" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.kas)"/>
                         <label />
                                                 
                         <label />
                         <label value="Hutang Dagang" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.hutangDagang)"/>
                         <label />
                     </row>
                     
                     <row>
                         <label />
                         <label value="Bank" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.bank)"/>
                         <label />
                                                 
                         <label />
                         <label value="Hutang Pajak" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.hutangPajak)"/>
                         <label />
                     </row>
                     
                     <row>
                         <label />
                         <label value="Total Piutang" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.totalPiutang)"/>
                         <label />
                                                 
                         <label />
@@ -127,37 +128,37 @@
                     <row>
                         <label />
                         <label value="Persediaan Barang" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.persediaanBarang)"/>
                         <label />
                                                 
                         <label />
                         <label value="Hutang Lainnya" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.hutangLainnya)"/>
                         <label />
                     </row>
                     
                     <row>
                         <label />
                         <label value="Pekerjaan dalam proses" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.pekerjaanDP)"/>
                         <label />
                                                 
                         <label />
                         <label value="Total (IV)" style="font-weight: bold" />
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.totalHutangJangkaPendek)"/>
                     </row>
                     
                     <row>
                         <label />
                         <label value="Total (I)" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" value="@bind(fx.totalAktivaLancar)"/>
                                                 
                         <label value="V" style="font-weight: bold"/>
                         <label value="Hutang Jangka Panjang" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.hutangJangkaPanjang)"/>
                     </row>
                     
                     <row>
@@ -169,13 +170,13 @@
                         <label value="VI" style="font-weight: bold"/>
                         <label value="Kekayaan Bersih(I+II+III)-(IV+V)" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" value="@bind(fx.kekayaanBerih)"/>
                     </row>
                     
                     <row>
                         <label />
                         <label value="Peralatan dan mesin" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.peralatan)"/>
                         <label />
                                                 
                         <label />
@@ -187,7 +188,7 @@
                     <row>
                         <label />
                         <label value="Inventaris" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.inventaris)"/>
                         <label />
                                                 
                         <label />
@@ -199,7 +200,7 @@
                     <row>
                         <label />
                         <label value="Gedung - gedung" style="font-weight: bold"/>
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.gedung)"/>
                         <label />
                                                 
                         <label />
@@ -212,7 +213,7 @@
                         <label />
                         <label value="Total(II)" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" value="@bind(fx.totalAktivaTetap)"/>
                                                 
                         <label />
                         <label />
@@ -224,7 +225,7 @@
                         <label value="III" style="font-weight: bold"/>
                         <label value="Aktiva Lainnya(III)" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" />
+                        <doublebox format="#,##0.##" placeholder="0.00" value="@bind(fx.aktivaLainnya)"/>
                                                 
                         <label />
                         <label />
@@ -236,12 +237,12 @@
                         <label />
                         <label value="Total(III)" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" />
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" value="@bind(fx.totalAktivaLainnya)"/>
                                                 
                         <label />
                         <label value="Total" style="font-weight: bold"/>
                         <label />
-                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" readonly="true" value="@bind(fx.total)"/>
                     </row>
                 </rows>
             </grid>
@@ -254,7 +255,7 @@
                 <rows>
                     <row>
                         <button label="Kembali" onClick="@command('buttonKlikBackDataKeuanganForm')"  />
-                        <button label="Simpan"  onClick="@command('buttonKlikBackDataKeuanganForm')" />
+                        <button label="Simpan"  onClick="@command('buttonSaveDataKeuangan')" />
                     </row>
                 </rows>
             </grid>

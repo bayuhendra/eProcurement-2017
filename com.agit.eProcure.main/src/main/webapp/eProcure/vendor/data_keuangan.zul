@@ -1,6 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataKeuanganDTO) @save(vm.dataKeuanganDTO, before='buttonSaveDataKeuangan')">
         <groupbox width="100%" closable="false">
             <caption label="Data Keuangan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">

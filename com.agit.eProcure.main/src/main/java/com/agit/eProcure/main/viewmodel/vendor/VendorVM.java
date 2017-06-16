@@ -422,7 +422,7 @@ public class VendorVM extends SelectorComposer<Window> {
                     .createDataKeuanganDTO();
         } else {
             this.dataKeuanganDTO = dataKeuangan;
-            idDataPeralatan = dataKeuanganDTO.getIdDataKeuangan();
+            idDataKeuangan = dataKeuanganDTO.getIdDataKeuangan();
             this.previous = previous;
         }
     }
@@ -755,6 +755,16 @@ public class VendorVM extends SelectorComposer<Window> {
         Map<String, Object> params = new HashMap<>();
         params.put("dataPeralatanDTO", obj);
         CommonViewModel.navigateTo("/eProcure/vendor/data_peralatan.zul", window, params);
+    }
+
+    /* Function button save data peralatan */
+    @Command("buttonSaveDataKeuangan")
+    @NotifyChange({"dataKeuanganDTO"})
+    public void buttonSaveDataKeuangan(@BindingParam("object") DataKeuanganDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+        dataKeuanganService.saveOrUpdate(dataKeuanganDTO);
+        showInformationMessagebox("Data Keuangan Berhasil Disimpan");
+        BindUtils.postGlobalCommand(null, null, "refreshDataKeuangan", null);
+        window.detach();
     }
 
     /* Function button save data bank */
