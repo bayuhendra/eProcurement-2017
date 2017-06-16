@@ -55,6 +55,12 @@ public class DataBankHibernateRepository extends HibernateRepository implements 
         if (StringUtil.hasValue(map.get("namaBank"))) {
             criteria.add(Restrictions.like("namaBank", "%" + map.get("namaBank") + "%").ignoreCase());
         }
+        if (StringUtil.hasValue(map.get("noRekening"))) {
+            criteria.add(Restrictions.like("noRekening", "%" + map.get("noRekening") + "%").ignoreCase());
+        }
+        if (StringUtil.hasValue(map.get("namaNasabah"))) {
+            criteria.add(Restrictions.like("namaNasabah", "%" + map.get("namaNasabah") + "%").ignoreCase());
+        }
         return criteria.list();
     }
 }

@@ -1,8 +1,8 @@
 <?page id="index" title="E-Procurement - Project"?>
 <?link rel="icon" type="image/png" href="/images/animated_favicon.gif"?>
 <zk xmlns:x="xhtml">
-    <window apply="org.zkoss.bind.BindComposer">
-<!--            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">-->
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.DashboardVendorVM')">
         <separator spacing="5px"/>
         <caption label="Data Vendor Perusahaan" />  
         <div height = "50%">

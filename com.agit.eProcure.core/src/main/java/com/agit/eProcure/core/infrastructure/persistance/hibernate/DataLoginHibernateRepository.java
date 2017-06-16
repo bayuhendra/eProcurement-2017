@@ -49,8 +49,8 @@ public class DataLoginHibernateRepository extends HibernateRepository implements
     @Override
     public List<DataLogin> findByParams(Map map) {
         Criteria criteria = getSession().createCriteria(DataLogin.class);
-        if (StringUtil.hasValue(map.get("idDataLogin"))) {
-            criteria.add(Restrictions.like("idDataLogin", "%" + map.get("idDataLogin") + "%").ignoreCase());
+        if (StringUtil.hasValue(map.get("idDatalogin"))) {
+            criteria.add(Restrictions.like("idDatalogin", "%" + map.get("idDatalogin") + "%").ignoreCase());
         }
         if (StringUtil.hasValue(map.get("namaPengguna"))) {
             criteria.add(Restrictions.like("namaPengguna", "%" + map.get("namaPengguna") + "%").ignoreCase());

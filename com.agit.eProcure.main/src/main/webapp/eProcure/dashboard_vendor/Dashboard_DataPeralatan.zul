@@ -12,17 +12,17 @@
                     <rows>
                         <row>
                             <label value="ID Peralatan" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/> 
+                            <textbox width="50%" value=""/> 
                             <label value="Tahun Pembuatan" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/>                          
+                            <textbox width="50%" value=""/>                          
                         </row>
                         <row>
                             <label value="Jenis Peralatan" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/> 
+                            <textbox width="50%" value=""/> 
                             <label value="Kondisi" />
                             <combobox width="40%" >
-                                <template name="model">
-                                    <comboitem label="" value=""/>
+                                <template name="">
+                                    <comboitem label=""/>
                                 </template>
                             </combobox>
                         </row>
@@ -51,7 +51,7 @@
                         <listheader label="Aksi" width="5%" align="center"/>
                     </listhead>
                 
-                    <template name="model">
+                    <template >
                         <listitem>
                             <listcell>
                                 <label width="100%" value=""/>
@@ -70,8 +70,7 @@
                             </listcell>
                             <listcell>
                                 <a label="EDIT" />
-                                <a label=" | " style="font-size:12pt ;color:black" />
-                                <a label="DELETE" />
+                                
                             </listcell>
                         </listitem>
                     </template>

@@ -1,32 +1,40 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window apply="org.zkoss.bind.BindComposer">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.DashboardVendorVM')"
+            form="@id('fx') @load(vm.dataSegmentasiDTO) @save(vm.dataSegmentasiDTO, before='buttonSave')">
         <groupbox closable="false" mold="3d">
             <caption label="Dashboard Data Segmentasi" />
             <groupbox closable="false">
                 <caption label="Parameter Pencarian" />
                 <grid style="border:0">
                     <columns>
-                        <column width="15%" />
+                        <column width="20%" />
+                        <column width="30%" />
+                        <column width="20%" />
                         <column width="30%" />
                     </columns>
                     <rows>
                         <row>
                             <label value="ID Segmentasi" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/> 
+                            <textbox width="90%" value="@bind(vm.idDataSegmentasi)"/> 
                             <label value="Nomor" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/>                          
+                            <textbox width="90%" value="@bind(vm.nomorAssosiasi)"/>                          
                         </row>
                         <row>
                             <label value="Bidang Usaha" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/> 
+                            <combobox width="90%" placeholder="- Silahkan Pilih -" model="@load(vm.bidangUsahaTypes)" selectedItem="@bind(vm.bidangUsahaSelect)">
+                                <template name="model" var="items">
+                                    <comboitem label="@load(items)" value="@load(items)"/>
+                                </template>
+                            </combobox>
                             <label value="Tanggal Mulai" />
-                            <datebox width="50%"/>
+                            <datebox width="90%" value="@bind(vm.tanggalMulai)"/>
                         </row>
                         <row>
                             <cell></cell>
                             <cell></cell>
                             <cell align="left">
-                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('buttonPencarian')"/>
+                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('searchDataSegmentasi')"/>
                             </cell>
                             <cell colspan="2"></cell> 
                         </row>
@@ -36,10 +44,10 @@
             </groupbox>
             <groupbox closable="false">
                 <paging forward="onPaging" />
-                <listbox rows = "7">
+                <listbox rows = "7" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataSegmentasiDTOs)">
                 
                     <listhead>
-                        <listheader label="No" width="3%" align="center"/>
+                        <listheader label="ID Segmentasi" width="3%" align="center"/>
                         <listheader label="Bidang Usaha" width="12%" align="center"/>
                         <listheader label="Asosiasi" width="5%" align="center"/>
                         <listheader label="Nomor" width="10%" align="center"/>
@@ -49,29 +57,28 @@
                     </listhead>
                 
                     <template name="model">
-                        <listitem>
+                        <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.idDataSegmentasi)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.bidangUsahaType)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.assosiasiType)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.nomorAssosiasi)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.tanggalMulai)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value=""/>
+                                <label width="100%" value="@bind(each.tanggalBerakhir)"/>
                             </listcell>
                             <listcell>
-                                <a label="EDIT" />
-                                <a label=" | " style="font-size:12pt ;color:black" />
-                                <a label="DELETE" />
+                                <a label="EDIT" style="text-decoration:underline ;color:blue" onClick="@command('detailDataSegmentasi', object=each)"/>
+                                
                             </listcell>
                         </listitem>
                     </template>

@@ -12,9 +12,9 @@
                     <rows>
                         <row>
                             <label value="ID Dokumen" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/> 
+                            <textbox width="50%" value=""/> 
                             <label value="Subject" />
-                            <textbox width="50%" value="@bind(vm.layananID)"/> 
+                            <textbox width="50%" value=""/> 
                         </row>
                         <row>
                         </row>
@@ -62,8 +62,6 @@
                             </listcell>
                             <listcell>
                                 <a label="EDIT" />
-                                <a label=" | " style="font-size:12pt ;color:black" />
-                                <a label="DELETE" />
                             </listcell>
                         </listitem>
                     </template>                

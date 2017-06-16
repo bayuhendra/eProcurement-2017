@@ -26,7 +26,7 @@ INSERT INTO "public"."mst_privilege" VALUES ('19', 'MENU_VENDOR', 'Vendor Dashbo
 INSERT INTO "public"."mst_privilege" VALUES ('20', 'REGISTRASI_VENDOR', 'Vendor Dashboard', 'ACTIVE', 'MENU_VENDOR', 't', 'Registrasi - Vendor', 'Registrasi - Vendor', null, 'eProcure/vendor/form_vendor.zul', '2016-01-01 00:00:00', 'SYSTEM');
 
 INSERT INTO "public"."mst_privilege" VALUES ('21', 'MENU_DASHBOARD_VENDOR', 'Vendor Dashboard Awal', 'ACTIVE', 'ADMINISTRATOR', 't', 'Vendor Management', null, null, null, '2016-01-01 00:00:00', 'SYSTEM');
-INSERT INTO "public"."mst_privilege" VALUES ('22', 'DASHBOARD_REGISTRASI_VENDOR', 'Vendor Dashboard Awal', 'ACTIVE', 'MENU_DASHBOARD_VENDOR', 't', 'Dashboard - Registrasi - Vendor', 'Dashboard - Registrasi - Vendor', null, 'eProcure/dashboard_vendor/form_DashboardVendor.zul', '2016-01-01 00:00:00', 'SYSTEM');
+INSERT INTO "public"."mst_privilege" VALUES ('22', 'DASHBOARD_REGISTRASI_VENDOR', 'Vendor Dashboard Awal', 'ACTIVE', 'MENU_DASHBOARD_VENDOR', 't', 'Dashboard - Vendor', 'Dashboard - Vendor', null, 'eProcure/dashboard_vendor/form_DashboardVendor.zul', '2016-01-01 00:00:00', 'SYSTEM');
 
 -- ----------------------------
 -- Records of mst_role

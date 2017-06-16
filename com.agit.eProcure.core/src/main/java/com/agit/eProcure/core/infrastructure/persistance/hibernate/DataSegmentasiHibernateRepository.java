@@ -55,6 +55,12 @@ public class DataSegmentasiHibernateRepository extends HibernateRepository imple
         if (StringUtil.hasValue(map.get("nomorAssosiasi"))) {
             criteria.add(Restrictions.like("nomorAssosiasi", "%" + map.get("nomorAssosiasi") + "%").ignoreCase());
         }
+        if (StringUtil.hasValue(map.get("bidangUsahaSelect"))) {
+            criteria.add(Restrictions.eq("bidangUsahaType", map.get("bidangUsahaSelect")));
+        }
+        if (StringUtil.hasValue(map.get("tanggalMulai"))) {
+            criteria.add(Restrictions.eq("tanggalMulai", map.get("tanggalMulai")));
+        }
         return criteria.list();
     }
 }

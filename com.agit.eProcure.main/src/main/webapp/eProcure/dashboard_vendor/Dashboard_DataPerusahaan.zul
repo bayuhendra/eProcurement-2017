@@ -1,7 +1,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.DashboardVendorVM')"
-            form="@id('fx') @load(vm.dataLoginDTO) @save(vm.dataLoginDTO, before='buttonSave')">
+            form="@id('fx') @load(vm.dataPerusahaanDTO) @save(vm.dataPerusahaanDTO, before='buttonSave')">
         <groupbox closable="false" mold="3d">
             <caption label="Dashboard Data Login" />
             <groupbox closable="false">
@@ -13,18 +13,18 @@
                     </columns>
                     <rows>
                         <row>
-                            <label value="ID User" />
-                            <textbox width="100%" value="@bind(vm.idUser)"/>
+                            <label value="Perusahaan ID" />
+                            <textbox width="100%" value="@bind(vm.idPerusahaan)"/>
                         </row>
                         <row>
-                            <label value="Nama Pengguna" />
-                            <textbox width="100%" value="@bind(vm.namaPengguna)"/>
+                            <label value="Nama Perusahaan" />
+                            <textbox width="100%" value="@bind(vm.namaPerusahaan)"/>
                         </row>
                         <row>
                             <cell></cell>
                             <cell></cell>
                             <cell align="center">
-                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('searchDataLogin')"/>
+                                <button width="60%" label="Pencarian" mold="trendy" onClick="@command('searchDataPerusahaan')"/>
                                 
                             </cell>
                             <cell colspan="2"></cell> 
@@ -35,31 +35,35 @@
             </groupbox>
             <groupbox closable="false">
                 <paging forward="onPaging" />
-                <listbox rows="@load(vm.pageSize)" mold="paging" pageSize="@load(vm.pageSize)" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataLoginDTOs)">
+                <listbox rows="@load(vm.pageSize)" mold="paging" pageSize="@load(vm.pageSize)" emptyMessage="${labels.common.noDataFound}" model="@bind(vm.dataPerusahaanDTOs)">
                     <!--model=""-->
                     <listhead>
-                        <listheader label="ID Data Login" width="15%" align="center"/>
-                        <listheader label="User ID" width="25%" align="center"/>
-                        <listheader label="Nama Pengguna" width="25%" align="center"/>
-                        <listheader label="Password" width="30%" align="center"/>
+                        <listheader label="Perusahaan ID" width="15%" align="center"/>
+                        <listheader label="Nama Perusahaan" width="25%" align="center"/>
+                        <listheader label="Nama Singkatan" width="25%" align="center"/>
+                        <listheader label="Alamat Perusahaan" width="30%" align="center"/>
+                        <listheader label="Telpon Perusahaan" width="25%" align="center"/>
                         <listheader label="Aksi" width="10%" align="center"/>
                     </listhead>
                     <template name="model">
                         <listitem value="${each}">
                             <listcell >
-                                <label width="100%" value="@bind(each.idDataLogin)"/>
+                                <label width="100%" value="@bind(each.idPerusahaan)"/>
                             </listcell>
                             <listcell >
-                                <label width="100%" value="@bind(each.idUser)"/>
+                                <label width="100%" value="@bind(each.namaPerusahaan)"/>
                             </listcell>
                             <listcell >
-                                <label width="100%" value="@bind(each.namaPengguna)"/>
+                                <label width="100%" value="@bind(each.namaSingkatan)"/>
                             </listcell>
                             <listcell >
-                                <label width="100%" value="@bind(each.password)"/>
+                                <label width="100%" value="@bind(each.alamatPerusahaan)"/>
+                            </listcell>
+                            <listcell >
+                                <label width="100%" value="@bind(each.telpPerusahaan)"/>
                             </listcell>
                             <listcell>
-                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailDataLogin', object=each)"></a>
+                                <a label="Detail" style="text-decoration:underline ;color:blue" onClick="@command('detailDataPerusahaan', object=each)"></a>
                                 <!--                                <a label="|" style="font-size:12pt ;color:black"></a>
                                 <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteLayanan', object=each)"></a>-->
                             </listcell>
