@@ -1,0 +1,68 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <separator spacing="15px"/>
+        <groupbox width="800px" closable="false">            
+            <grid style="border:0">
+                <columns>
+                    <column width="20%" align="right" />
+                    <column width="20%" align="left" />
+                    <column width="40%" />
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="PR Number" style="font-weight: bold"/>
+                        <combobox width="70%"/>
+                        <button label="Generate" />
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Required Date" style="font-weight: bold"/>
+                        <datebox width="70%"/>
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Department" style="font-weight: bold"/>
+                        <combobox width="70%"/>
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="" style="color:red"/>
+                        <label value="Cost Center/Budget ID" style="font-weight: bold"/>
+                        <combobox width="70%"/>
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="" style="color:red"/>
+                        <label value="Description" style="font-weight: bold"/>
+                        <textbox rows="5" width="100%"/>
+                        <cell/>
+                    </row>
+                    <row>
+                        <cell/>
+                        <cell/>
+                        <checkbox label="Join PR" />
+                        <cell/>
+                    </row>
+                </rows>
+            </grid>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="50%" align="right"/>
+                    <column width="50%" align="right"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <label />
+                        <button label="Simpan" onClick="@command('buttonSaveDataBank')" width="20%"/>
+                    </row>
+                </rows>
+            </grid>            
+        </groupbox>
+        
+    </window>
+</zk>
