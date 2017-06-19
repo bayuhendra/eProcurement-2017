@@ -3,7 +3,7 @@
             viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
             form="@id('fx') @load(vm.dataPerusahaanDTO)@save(vm.dataPerusahaanDTO, before='buttonSaveDataPerusahaan')">
         <separator spacing="5px"/>
-        <groupbox width="600px" closable="false">
+        <groupbox width="600px" closable="true">
             <caption label="Data Perusahaan" style="font-size:16pt; font-weight: bold"/>
             <grid style="border:0">
                 <columns>
