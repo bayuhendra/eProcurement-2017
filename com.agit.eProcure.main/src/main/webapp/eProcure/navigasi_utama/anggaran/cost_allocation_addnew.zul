@@ -1,0 +1,64 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window>
+        <groupbox width="40%" closable="false" mold="3d">
+            <caption label="Cost Allocation" style="font-size:16pt; font-weight:bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="20%" align="right" />
+                    <column width="70%"/>
+                    <column width="10%"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Account Code" style="font-weight:bold" />
+                        <textbox width="100%" />
+                    </row>
+                    <row>
+                        <label value="Account Name" style="font-weight:bold" />
+                        <textbox width="100%" />
+                    </row>
+                    <row>
+                        <label value="Type" style="font-weight:bold"  />
+                        <grid style="border:0">
+                            <columns>
+                                <column width="20%" align="center"/>
+                                <column align="left"/>
+                            </columns>
+                            <rows>
+                                <row>
+                                    <radio label="CAPEX" radiogroup="test"/>
+                                    <radio label="OPEX" radiogroup="test"/>
+                                </row>
+                            </rows>
+                        </grid>                        
+                        <radiogroup id="test"/>
+                    </row>
+                    <row>
+                        <label value="Department" style="font-weight:bold"  />
+                        <combobox  />
+                    </row>
+                    <row>
+                        <label value="Budget" style="font-size:13pt" />
+                    </row>
+                    <row>
+                        <label value="Start" style="font-weight:bold"  />
+                        <textbox />
+                    </row>
+                </rows>
+            </grid>
+            
+            <grid>
+                <columns>
+                    <column align="right" />
+                    <column align="left" />
+                </columns>
+                <rows>
+                    <row>
+                        <button label="Kembali" />
+                        <button label="Simpan" />
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+    </window>
+</zk>
