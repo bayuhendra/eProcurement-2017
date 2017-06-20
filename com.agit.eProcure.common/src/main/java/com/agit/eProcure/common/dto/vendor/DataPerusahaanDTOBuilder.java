@@ -5,12 +5,12 @@
  */
 package com.agit.eProcure.common.dto.vendor;
 
-import com.agit.eProcure.shared.type.JabatanType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
+import java.util.Set;
 
 
 public class DataPerusahaanDTOBuilder {
@@ -39,6 +39,7 @@ public class DataPerusahaanDTOBuilder {
     private String noHP;
     private String emailCp;
     private String noKtp;
+    private Set<DataPenanggungJawabDTO> dataPenanggungJawabDTO;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -51,7 +52,6 @@ public class DataPerusahaanDTOBuilder {
         this.idPerusahaan = idPerusahaan;
         return this;
     }
-    
 
     public DataPerusahaanDTOBuilder setPKPType(PKPType pKPType) {
         this.pKPType = pKPType;
@@ -168,6 +168,11 @@ public class DataPerusahaanDTOBuilder {
         return this;
     }
 
+    public DataPerusahaanDTOBuilder setDataPenanggungJawabDTO(Set<DataPenanggungJawabDTO> dataPenanggungJawabDTO) {
+        this.dataPenanggungJawabDTO = dataPenanggungJawabDTO;
+        return this;
+    }
+
     public DataPerusahaanDTOBuilder setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
@@ -189,7 +194,7 @@ public class DataPerusahaanDTOBuilder {
     }
 
     public DataPerusahaanDTO createDataPerusahaanDTO() {
-        return new DataPerusahaanDTO(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataPerusahaanDTO(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, dataPenanggungJawabDTO, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

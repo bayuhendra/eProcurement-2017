@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field">
     <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataPenanggungJawab" table="AGIT_DATAPENANGGUNGJAWAB">
-        <id column="id_privilege" name="id">
-            <generator class="increment"/>
+        <id column="id" name="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
         </id>
         <property column="idPerusahaan" name="idPerusahaan" not-null="false"/>
         <property column="idPenanggungJawab" name="idPenanggungJawab" not-null="false"/>

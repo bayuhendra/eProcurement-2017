@@ -18,7 +18,7 @@ import org.apache.commons.lang.Validate;
  * @author Zaky
  */
 public class DataPenanggungJawabServiceImpl implements DataPenanggungJawabService {
-    
+
     private DataPenanggungJawabRepository dataPenanggungJawabRepository;
     private DataPenanggungJawabDTOAssembler dataPenanggungJawabDTOAssembler;
 
@@ -29,10 +29,7 @@ public class DataPenanggungJawabServiceImpl implements DataPenanggungJawabServic
     public void setDataPenanggungJawabDTOAssembler(DataPenanggungJawabDTOAssembler dataPenanggungJawabDTOAssembler) {
         this.dataPenanggungJawabDTOAssembler = dataPenanggungJawabDTOAssembler;
     }
-    
-    
-    
-    
+
     @Override
     public void SaveOrUpdate(DataPenanggungJawabDTO dataPenanggungJawab) {
         Validate.notNull(dataPenanggungJawabRepository);
@@ -79,12 +76,12 @@ public class DataPenanggungJawabServiceImpl implements DataPenanggungJawabServic
         }
         return null;
     }
-    
+
     @Override
     public DataPenanggungJawabDTO getDummyData() {
-        DataPenanggungJawab p = new DataPenanggungJawabBuilder()                
-                .setIdPerusahaan((UUID.randomUUID().toString()))
-                .setIdPenanggungJawab((UUID.randomUUID().toString()))
+        DataPenanggungJawab p = new DataPenanggungJawabBuilder()
+                .setIdPerusahaan("12")
+                .setIdPenanggungJawab("13")
                 .setNamaPenanggungJawab("NamaPenanggungJawab")
                 .setJabatanType(JabatanType.MANAGER)
                 .setEmailPenanggungJawab("EmailPenanggungJawab")
@@ -93,8 +90,8 @@ public class DataPenanggungJawabServiceImpl implements DataPenanggungJawabServic
                 .setModifiedBy("ADMIN")
                 .setModifiedDate(new Date())
                 .createDataPenanggungJawab();
-        
+
         return dataPenanggungJawabDTOAssembler.toDTO(p);
     }
-    
+
 }

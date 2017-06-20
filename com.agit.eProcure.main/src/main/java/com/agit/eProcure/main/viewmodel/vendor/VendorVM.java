@@ -9,6 +9,8 @@ import com.agit.eProcure.common.application.DataPengalamanService;
 import com.agit.eProcure.common.application.DataPeralatanService;
 import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.application.DataSegmentasiService;
+import com.agit.eProcure.common.application.PengalamanBerjalanService;
+import com.agit.eProcure.common.application.PengalamanMitraService;
 import com.agit.eProcure.common.dto.vendor.DataBankDTO;
 import com.agit.eProcure.common.dto.vendor.DataBankDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataDokumenDTO;
@@ -20,12 +22,17 @@ import com.agit.eProcure.common.dto.vendor.DataLoginDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTO;
 import com.agit.eProcure.common.dto.vendor.DataPenanggungJawabDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPengalamanDTO;
+import com.agit.eProcure.common.dto.vendor.DataPengalamanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPeralatanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPeralatanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTOBuilder;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTO;
 import com.agit.eProcure.common.dto.vendor.DataSegmentasiDTOBuilder;
+import com.agit.eProcure.common.dto.vendor.PengalamanBerjalanDTO;
+import com.agit.eProcure.common.dto.vendor.PengalamanBerjalanDTOBuilder;
+import com.agit.eProcure.common.dto.vendor.PengalamanMitraDTO;
+import com.agit.eProcure.common.dto.vendor.PengalamanMitraDTOBuilder;
 import com.agit.eProcure.common.security.SecurityUtil;
 import com.agit.eProcure.shared.type.AssosiasiType;
 import com.agit.eProcure.shared.type.BidangUsahaType;
@@ -107,6 +114,12 @@ public class VendorVM extends SelectorComposer<Window> {
     @WireVariable
     DataKeuanganService dataKeuanganService;
 
+    @WireVariable
+    PengalamanBerjalanService pengalamanBerjalanService;
+
+    @WireVariable
+    PengalamanMitraService pengalamanMitraService;
+
     /* Paramater Data All Vendor */
     private String idDataLogin;
     private String idDataPerusahaan;
@@ -119,6 +132,9 @@ public class VendorVM extends SelectorComposer<Window> {
     private String dokumenID;
     private String idDataPeralatan;
     private String idDataKeuangan;
+    private String idDataPengalaman;
+    private String idPengalamanBerjalan;
+    private String mitraID;
 
     /* Function For Combobox  */
     private ListModelList<KualifikasiType> kualifikasiTypes;
@@ -137,7 +153,6 @@ public class VendorVM extends SelectorComposer<Window> {
     private ListModelList<String> subjectDokumenTeknis = new ListModelList<>();
     private ListModelList<KondisiPeralatan> kondisiPeralatans;
     private ListModelList<BuktiKepemilikan> buktiKepemilikans;
-
 
     /* Object Binding for Form Data Login */
     private DataLoginDTO dataLoginDTO = new DataLoginDTO();
@@ -158,7 +173,10 @@ public class VendorVM extends SelectorComposer<Window> {
     private List<DataPeralatanDTO> dataPeralatanDTOs = new ArrayList();
     private DataKeuanganDTO dataKeuanganDTO = new DataKeuanganDTO();
     private List<DataKeuanganDTO> dataKeuanganDTOs = new ArrayList();
-
+    private PengalamanBerjalanDTO pengalamanBerjalanDTO = new PengalamanBerjalanDTO();
+    private List<PengalamanBerjalanDTO> pengalamanBerjalanDTOs = new ArrayList();
+    private PengalamanMitraDTO pengalamanMitraDTO = new PengalamanMitraDTO();
+    private List<PengalamanMitraDTO> pengalamanMitraDTOs = new ArrayList();
 
     /* for home instance */
     private String src = "/eProcure/vendor/data_login.zul";
@@ -202,13 +220,16 @@ public class VendorVM extends SelectorComposer<Window> {
             @ExecutionArgParam("dataDokumenDTO") DataDokumenDTO dataDokumen,
             @ExecutionArgParam("dataPeralatanDTO") DataPeralatanDTO dataPeralatan,
             @ExecutionArgParam("dataKeuanganDTO") DataKeuanganDTO dataKeuangan,
+            @ExecutionArgParam("dataPengalamanDTO") DataPengalamanDTO dataPengalaman,
+            @ExecutionArgParam("pengalamanBerjalanDTO") PengalamanBerjalanDTO pengalamanBerjalan,
+            @ExecutionArgParam("pengalamanMitraDTO") PengalamanMitraDTO pengalamanMitra,
             @ExecutionArgParam("previous") PageNavigation previous) {
 
         /* Load Data */
         initData();
 
         /* Check Validity */
-        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, dataSegmentasi, dataDokumen, dataPeralatan, dataKeuangan, previous);
+        checkValidity(dataLogin, dataPerusahaan, dataBank, dataPenanggungJawab, dataSegmentasi, dataDokumen, dataPeralatan, dataKeuangan, dataPengalaman, pengalamanBerjalan, pengalamanMitra, previous);
     }
 
     private void initData() {
@@ -246,6 +267,18 @@ public class VendorVM extends SelectorComposer<Window> {
         if (dataKeuanganDTOs.isEmpty()) {
             dataKeuanganDTOs = Collections.emptyList();
         }
+        dataPengalamanDTOs = dataPengalamanService.findAll();
+        if (dataPengalamanDTOs.isEmpty()) {
+            dataPengalamanDTOs = Collections.emptyList();
+        }
+        pengalamanBerjalanDTOs = pengalamanBerjalanService.findAll();
+        if (pengalamanBerjalanDTOs.isEmpty()) {
+            pengalamanBerjalanDTOs = Collections.emptyList();
+        }
+        pengalamanMitraDTOs = pengalamanMitraService.findAll();
+        if (pengalamanMitraDTOs.isEmpty()) {
+            pengalamanMitraDTOs = Collections.emptyList();
+        }
 
         kota.add("SEMARANG");
         kota.add("SURABAYA");
@@ -272,7 +305,7 @@ public class VendorVM extends SelectorComposer<Window> {
         subjectDokumenLegal.add("7. Dokumen Teknik");
     }
 
-    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, DataSegmentasiDTO dataSegmentasi, DataDokumenDTO dataDokumen, DataPeralatanDTO dataPeralatan, DataKeuanganDTO dataKeuangan, PageNavigation previous) {
+    private void checkValidity(DataLoginDTO dataLogin, DataPerusahaanDTO dataPerusahaan, DataBankDTO dataBank, DataPenanggungJawabDTO dataPenanggungJawab, DataSegmentasiDTO dataSegmentasi, DataDokumenDTO dataDokumen, DataPeralatanDTO dataPeralatan, DataKeuanganDTO dataKeuangan, DataPengalamanDTO dataPengalaman, PengalamanBerjalanDTO pengalamanBerjalan, PengalamanMitraDTO pengalamanMitra, PageNavigation previous) {
         if (dataLogin == null) {
             ListModelList<DataLoginDTO> parameterList = new ListModelList<>(dataLoginService.findAll());
             String idDataLogin = "";
@@ -425,6 +458,65 @@ public class VendorVM extends SelectorComposer<Window> {
             idDataKeuangan = dataKeuanganDTO.getIdDataKeuangan();
             this.previous = previous;
         }
+        if (dataPengalaman == null) {
+            ListModelList<DataPengalamanDTO> parameterList = new ListModelList<>(dataPengalamanService.findAll());
+            String idDataPengalaman = "";
+            if (parameterList.isEmpty()) {
+                idDataPengalaman = "1";
+            } else {
+                idDataPengalaman = getLatestObjectID(parameterList, "idDataPengalaman");
+            }
+            dataPengalamanDTO = new DataPengalamanDTOBuilder()
+                    .setIdDataPengalaman(idDataPengalaman)
+                    .setCreateBy(SecurityUtil.getUserName())
+                    .setCreateDate(new Date())
+                    .createDataPengalamanDTO();
+        } else {
+            this.dataPengalamanDTO = dataPengalamanDTO;
+            idDataPengalaman = dataPengalamanDTO.getIdDataPengalaman();
+            this.previous = previous;
+        }
+
+        if (pengalamanBerjalan == null) {
+            ListModelList<PengalamanBerjalanDTO> parameterList = new ListModelList<>(pengalamanBerjalanService.findAll());
+            String idPengalamanBerjalan = "";
+            if (parameterList.isEmpty()) {
+                idPengalamanBerjalan = "1";
+            } else {
+                idPengalamanBerjalan = getLatestObjectID(parameterList, "idPengalamanBerjalan");
+            }
+            pengalamanBerjalanDTO = new PengalamanBerjalanDTOBuilder()
+                    .setIdPengalamanBerjalan(idPengalamanBerjalan)
+                    .setCreateBy(SecurityUtil.getUserName())
+                    .setCreateDate(new Date())
+                    .createPengalamanBerjalanDTO();
+
+        } else {
+            this.pengalamanBerjalanDTO = pengalamanBerjalanDTO;
+            idPengalamanBerjalan = pengalamanBerjalanDTO.getIdPengalamanBerjalan();
+            this.previous = previous;
+        }
+
+        if (pengalamanMitra == null) {
+            ListModelList<PengalamanMitraDTO> parameterList = new ListModelList<>(pengalamanMitraService.findAll());
+            String mitraID = "";
+            if (parameterList.isEmpty()) {
+                mitraID = "1";
+            } else {
+                mitraID = getLatestObjectID(parameterList, "mitraID");
+            }
+            pengalamanMitraDTO = new PengalamanMitraDTOBuilder()
+                    .setMitraID(mitraID)
+                    .setCreateBy(SecurityUtil.getUserName())
+                    .setCreateDate(new Date())
+                    .createPengalamanMitraDTO();
+
+        } else {
+            this.pengalamanMitraDTO = pengalamanMitraDTO;
+            mitraID = pengalamanMitraDTO.getMitraID();
+            this.previous = previous;
+        }
+
     }
 
     protected String getLatestObjectID(ListModelList list, String attribute) {
@@ -1016,6 +1108,27 @@ public class VendorVM extends SelectorComposer<Window> {
         src = "/eProcure/vendor/data_bank.zul";
     }
 
+    /* Function button klik data pengalaman*/
+    @Command("buttonKlikDataPengalamanBerjalan")
+    @NotifyChange("src")
+    public void buttonKlikDataPengalamanBerjalan(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/dashboard_data_pengalaman_berjalan.zul";
+    }
+
+    /* Function button klik data pengalaman*/
+    @Command("buttonKlikDataPengalamanPelanggan")
+    @NotifyChange("src")
+    public void buttonKlikDataPengalamanPelanggan(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/dashboard_data_pengalaman_pelanggan.zul";
+    }
+
+    /* Function button klik data pengalaman*/
+    @Command("buttonKlikDataPengalamanMitra")
+    @NotifyChange("src")
+    public void buttonKlikDataPengalamanMitra(@ContextParam(ContextType.VIEW) Window window) {
+        src = "/eProcure/vendor/dashboard_data_pengalaman_mitra.zul";
+    }
+
     /* Function button klik data bank form*/
     @Command("buttonKlikDataBankForm")
     @NotifyChange("dataBankDTO")
@@ -1024,6 +1137,7 @@ public class VendorVM extends SelectorComposer<Window> {
         params.put("dataBankDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_bank_form.zul", window, params);
     }
+
 
     /* Function button klik back data bank */
     @Command("buttonKlikBackDataBankForm")
@@ -1116,25 +1230,25 @@ public class VendorVM extends SelectorComposer<Window> {
         src = "/eProcure/vendor/data_pengalaman.zul";
     }
 
-    @Command("buttonKlikDataPengalamanPelanggan")
+    @Command("buttonKlikTambahDataPengalamanPelanggan")
     @NotifyChange("dataPengalamanDTO")
-    public void buttonKlikDataPengalamanPelanggan(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+    public void buttonKlikTambahDataPengalamanPelanggan(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         Map<String, Object> params = new HashMap<>();
         params.put("dataPengalamanDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_pengalaman_pelanggan.zul", window, params);
     }
 
-    @Command("buttonKlikDataPengalamanMitra")
+    @Command("buttonKlikTambahDataPengalamanMitra")
     @NotifyChange("dataPengalamanDTO")
-    public void buttonKlikDataPengalamanMitra(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+    public void buttonKlikTambahDataPengalamanMitra(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         Map<String, Object> params = new HashMap<>();
         params.put("dataPengalamanDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_pengalaman_mitra.zul", window, params);
     }
 
-    @Command("buttonKlikDataPengalamanBerjalan")
+    @Command("buttonKlikTambahDataPengalamanBerjalan")
     @NotifyChange("dataPengalamanDTO")
-    public void buttonKlikDataPengalamanBerjalan(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
+    public void buttonKlikTambahDataPengalamanBerjalan(@BindingParam("object") DataPengalamanDTO obj, @ContextParam(ContextType.VIEW) Window window) {
         Map<String, Object> params = new HashMap<>();
         params.put("dataPengalamanDTO", obj);
         CommonViewModel.navigateToWithoutDetach("/eProcure/vendor/data_pengalaman_berjalan.zul", window, params);
@@ -1697,6 +1811,62 @@ public class VendorVM extends SelectorComposer<Window> {
 
     public void setDataKeuanganDTOs(List<DataKeuanganDTO> dataKeuanganDTOs) {
         this.dataKeuanganDTOs = dataKeuanganDTOs;
+    }
+
+    public String getIdDataPengalaman() {
+        return idDataPengalaman;
+    }
+
+    public void setIdDataPengalaman(String idDataPengalaman) {
+        this.idDataPengalaman = idDataPengalaman;
+    }
+
+    public String getIdPengalamanBerjalan() {
+        return idPengalamanBerjalan;
+    }
+
+    public void setIdPengalamanBerjalan(String idPengalamanBerjalan) {
+        this.idPengalamanBerjalan = idPengalamanBerjalan;
+    }
+
+    public String getMitraID() {
+        return mitraID;
+    }
+
+    public void setMitraID(String mitraID) {
+        this.mitraID = mitraID;
+    }
+
+    public PengalamanBerjalanDTO getPengalamanBerjalanDTO() {
+        return pengalamanBerjalanDTO;
+    }
+
+    public void setPengalamanBerjalanDTO(PengalamanBerjalanDTO pengalamanBerjalanDTO) {
+        this.pengalamanBerjalanDTO = pengalamanBerjalanDTO;
+    }
+
+    public List<PengalamanBerjalanDTO> getPengalamanBerjalanDTOs() {
+        return pengalamanBerjalanDTOs;
+    }
+
+    public void setPengalamanBerjalanDTOs(List<PengalamanBerjalanDTO> pengalamanBerjalanDTOs) {
+        this.pengalamanBerjalanDTOs = pengalamanBerjalanDTOs;
+    }
+
+    public PengalamanMitraDTO getPengalamanMitraDTO() {
+        return pengalamanMitraDTO;
+    }
+
+    public void setPengalamanMitraDTO(PengalamanMitraDTO pengalamanMitraDTO) {
+        this.pengalamanMitraDTO = pengalamanMitraDTO;
+    }
+
+    public List<PengalamanMitraDTO> getPengalamanMitraDTOs() {
+        return pengalamanMitraDTOs;
+    }
+
+    public void setPengalamanMitraDTOs(List<PengalamanMitraDTO> pengalamanMitraDTOs) {
+        this.pengalamanMitraDTOs = pengalamanMitraDTOs;
     }
 
 }

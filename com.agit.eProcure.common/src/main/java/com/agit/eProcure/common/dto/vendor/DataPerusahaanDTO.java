@@ -1,12 +1,12 @@
 package com.agit.eProcure.common.dto.vendor;
 
-import com.agit.eProcure.shared.type.JabatanType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -38,6 +38,7 @@ public class DataPerusahaanDTO implements Serializable {
     private String noHP;
     private String emailCp;
     private String noKtp;
+    private Set<DataPenanggungJawabDTO> dataPenanggungJawabDTO;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -46,7 +47,7 @@ public class DataPerusahaanDTO implements Serializable {
     public DataPerusahaanDTO() {
     }
 
-    public DataPerusahaanDTO(String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
+    public DataPerusahaanDTO(String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, Set<DataPenanggungJawabDTO> dataPenanggungJawabDTO, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idPerusahaan = idPerusahaan;
         this.pKPType = pKPType;
         this.kualifikasiType = kualifikasiType;
@@ -71,6 +72,7 @@ public class DataPerusahaanDTO implements Serializable {
         this.noHP = noHP;
         this.emailCp = emailCp;
         this.noKtp = noKtp;
+        this.dataPenanggungJawabDTO = dataPenanggungJawabDTO;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
@@ -301,9 +303,17 @@ public class DataPerusahaanDTO implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    public Set<DataPenanggungJawabDTO> getDataPenanggungJawabDTO() {
+        return dataPenanggungJawabDTO;
+    }
+
+    public void setDataPenanggungJawabDTO(Set<DataPenanggungJawabDTO> dataPenanggungJawabDTO) {
+        this.dataPenanggungJawabDTO = dataPenanggungJawabDTO;
+    }
+
     @Override
     public String toString() {
-        return "DataPerusahaanDTO{" + "idPerusahaan=" + idPerusahaan + ", pKPType=" + pKPType + ", kualifikasiType=" + kualifikasiType + ", unitType=" + unitType + ", namaPerusahaan=" + namaPerusahaan + ", perusahaanType=" + perusahaanType + ", npwp=" + npwp + ", namaSingkatan=" + namaSingkatan + ", jumlahKaryawan=" + jumlahKaryawan + ", tanggalBerdiri=" + tanggalBerdiri + ", deskripsi=" + deskripsi + ", alamatPerusahaan=" + alamatPerusahaan + ", propinsi=" + propinsi + ", kota=" + kota + ", poBox=" + poBox + ", kodePos=" + kodePos + ", telpPerusahaan=" + telpPerusahaan + ", noFax=" + noFax + ", emailPerusahaan=" + emailPerusahaan + ", website=" + website + ", namaCp=" + namaCp + ", noHP=" + noHP + ", emailCp=" + emailCp + ", noKtp=" + noKtp + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
+        return "DataPerusahaanDTO{" + "idPerusahaan=" + idPerusahaan + ", pKPType=" + pKPType + ", kualifikasiType=" + kualifikasiType + ", unitType=" + unitType + ", namaPerusahaan=" + namaPerusahaan + ", perusahaanType=" + perusahaanType + ", npwp=" + npwp + ", namaSingkatan=" + namaSingkatan + ", jumlahKaryawan=" + jumlahKaryawan + ", tanggalBerdiri=" + tanggalBerdiri + ", deskripsi=" + deskripsi + ", alamatPerusahaan=" + alamatPerusahaan + ", propinsi=" + propinsi + ", kota=" + kota + ", poBox=" + poBox + ", kodePos=" + kodePos + ", telpPerusahaan=" + telpPerusahaan + ", noFax=" + noFax + ", emailPerusahaan=" + emailPerusahaan + ", website=" + website + ", namaCp=" + namaCp + ", noHP=" + noHP + ", emailCp=" + emailCp + ", noKtp=" + noKtp + ", dataPenanggungJawabDTO=" + dataPenanggungJawabDTO + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", modifiedBy=" + modifiedBy + ", modifiedDate=" + modifiedDate + '}';
     }
-    
+
 }

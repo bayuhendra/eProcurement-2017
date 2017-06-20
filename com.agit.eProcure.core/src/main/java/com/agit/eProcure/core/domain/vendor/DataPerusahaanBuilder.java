@@ -5,17 +5,16 @@
  */
 package com.agit.eProcure.core.domain.vendor;
 
-import com.agit.eProcure.shared.type.JabatanType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
+import java.util.Set;
 
 
 public class DataPerusahaanBuilder {
 
-    private long id;
     private String idPerusahaan;
     private PKPType pKPType;
     private KualifikasiType kualifikasiType;
@@ -40,18 +39,13 @@ public class DataPerusahaanBuilder {
     private String noHP;
     private String emailCp;
     private String noKtp;
+    private Set<DataPenanggungJawab> dataPenanggungJawabs;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
     private Date modifiedDate;
 
     public DataPerusahaanBuilder() {
-    }
-
-    
-    public DataPerusahaanBuilder setId(long id) {
-        this.id = id;
-        return this;
     }
 
     public DataPerusahaanBuilder setIdPerusahaan(String idPerusahaan) {
@@ -174,6 +168,11 @@ public class DataPerusahaanBuilder {
         return this;
     }
 
+    public DataPerusahaanBuilder setDataPenanggungJawabs(Set<DataPenanggungJawab> dataPenanggungJawabs) {
+        this.dataPenanggungJawabs = dataPenanggungJawabs;
+        return this;
+    }
+
     public DataPerusahaanBuilder setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
         return this;
@@ -195,7 +194,7 @@ public class DataPerusahaanBuilder {
     }
 
     public DataPerusahaan createDataPerusahaan() {
-        return new DataPerusahaan(id, idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, createdBy, createdDate, modifiedBy, modifiedDate);
+        return new DataPerusahaan(idPerusahaan, pKPType, kualifikasiType, unitType, namaPerusahaan, perusahaanType, npwp, namaSingkatan, jumlahKaryawan, tanggalBerdiri, deskripsi, alamatPerusahaan, propinsi, kota, poBox, kodePos, telpPerusahaan, noFax, emailPerusahaan, website, namaCp, noHP, emailCp, noKtp, dataPenanggungJawabs, createdBy, createdDate, modifiedBy, modifiedDate);
     }
     
 }

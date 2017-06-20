@@ -15,8 +15,38 @@
                     <tab label="  DATA DOKUMEN  " onClick = "@command('buttonKlikDataDokumen')"/>
                     <tab label="  PERALATAN  " onClick = "@command('buttonKlikDataPeralatan')"/>
                     <tab label="  DATA KEUANGAN  " onClick = "@command('buttonKlikDataKeuangan')"/>
-                    <tab label="  DATA PENGALAMAN  " onClick= "@command('buttonKlikDataPengalaman')"/>
+                    <tab label="  DATA PENGALAMAN  " onClick= "@command('buttonKlikDataPengalamanPelanggan')"/>
                 </tabs>
+                <tabpanels>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <space/>
+                    </tabpanel>
+                    <tabpanel>
+                        <toolbar hflex="true">
+                            <toolbarbutton label="Data Pelanggan" onClick="@command('buttonKlikDataPengalamanPelanggan')"/>
+                            <toolbarbutton label="Data Mitra" onClick="@command('buttonKlikDataPengalamanMitra')"/>
+                            <toolbarbutton label="Data Pekerjaan Berjalan" onClick="@command('buttonKlikDataPengalamanBerjalan')"/>
+                        </toolbar>
+                    </tabpanel>
+                </tabpanels>
             </tabbox>
         </div>
         <hlayout>

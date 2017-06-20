@@ -1,11 +1,10 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window apply="org.zkoss.bind.BindComposer"
-            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
-            form="@id('fx') @load(vm.dataBankDTO) @save(vm.dataBankDTO, before='buttonSaveDataBank')">
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')">
         <groupbox width="1000px" closable="false">
             <caption label="Data Pengalaman" style="font-size:16pt; font-weight: bold"/>
-            
-            <!-- ================================================== Data Pelanggan ================================================== -->
+            <separator></separator>
+            <separator></separator>
             <grid style="border:0">
                 <columns>
                     <column align="left" width="15%"/>
@@ -14,16 +13,16 @@
                 <rows>
                     <row>
                         <checkbox label="Tanpa Pengalaman" />
-                        <button onClick="@command('buttonKlikDataBankForm')" label=" + Tambah Data Pelanggan" width="20%" />
+                        <button onClick="@command('buttonKlikDataPengalamanPekerjaan')" label=" + Tambah Data Pelanggan" width="20%" />
                     </row>
                 </rows>
             </grid>
             <groupbox>
                 <caption label="Daftar Pelelangan Aktif selama 5 tahun terakhir" style="font-size:10pt; font-weight: bold"/>
-                <!--<paging forward="onPaging" />-->
-                <listbox rows = "8" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataBankDTOs)">                
+                <paging forward="onPaging" />
+                <listbox rows = "8" emptyMessage="Data Tidak Ditemukan">                
                     <listhead>
-                        <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataBank)"/>
+                        <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataPengalaman)"/>
                         <listheader label="Nama" width="15%" align="center"/>
                         <listheader label="Alamat" width="25%" align="center"/>
                         <listheader label="Bidang Usaha" width="12.5%" align="center"/>
@@ -35,38 +34,38 @@
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@bind(each.idDataBank)"/>
+                                <label width="100%" value="@bind(each.idDataPengalaman)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.namaBank)"/>
+                                <label width="100%" value="@bind(each.namaPekerjaan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.noRekening)"/>
+                                <label width="100%" value="@bind(each.lokasiPekerjaan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.namaNasabah)"/>
+                                <label width="100%" value="@bind(each.bidangUsaha)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.mulaiKerja)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.nilaiKontrak)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.buktiKerjasama)"/>
                             </listcell>
                             <listcell>
-                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataPengalaman', object=each)"></a>
                                 <a label=" | " style="font-size:12pt ;color:black"></a>
-                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
+                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataPengalaman', object=each)"></a>
                             </listcell>
                         </listitem>
                     </template>
                 </listbox>
             </groupbox>
+            <separator></separator>
+            <separator></separator>
             
-            
-            <!-- ================================================== Data Mitra ================================================== -->
             <grid style="border:0">
                 <columns>
                     <column align="left" width="15%"/>
@@ -75,16 +74,16 @@
                 <rows>
                     <row>
                         <label/>
-                        <button onClick="@command('buttonKlikDataBankForm')" label=" + Tambah Data Mitra" width="20%" />
+                        <button label=" + Tambah Data Mitra" width="20%" />
                     </row>
                 </rows>
             </grid>
             <groupbox>
                 <caption label="Daftar Mitra Dagang / Mitra Usaha" style="font-size:10pt; font-weight: bold"/>
-                <!--<paging forward="onPaging" />-->
-                <listbox rows = "8" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataBankDTOs)">
+                <paging forward="onPaging" />
+                <listbox rows = "8" emptyMessage="Data Tidak Ditemukan">
                     <listhead>
-                        <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataBank)"/>
+                        <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(mitraID)"/>
                         <listheader label="Nama" width="15%" align="center"/>
                         <listheader label="Alamat" width="25%" align="center"/>
                         <listheader label="Bidang Usaha" width="12.5%" align="center"/>
@@ -96,38 +95,38 @@
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@bind(each.idDataBank)"/>
+                                <label width="100%" value="@bind(each.mitraID)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.namaBank)"/>
+                                <label width="100%" value="@bind(each.namaMitra)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.noRekening)"/>
+                                <label width="100%" value="@bind(each.lokasiKerja)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.namaNasabah)"/>
+                                <label width="100%" value="@bind(each.bidangUsahaType)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.mulaiKerjasama)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.nilai)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.buktiKerjasama)"/>
                             </listcell>
                             <listcell>
-                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataPengalaman', object=each)"></a>
                                 <a label=" | " style="font-size:12pt ;color:black"></a>
-                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
+                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataPengalaman', object=each)"></a>
                             </listcell>
                         </listitem>
                     </template>
                 </listbox>
             </groupbox>
+            <separator></separator>
+            <separator></separator>
             
-            
-            <!-- ================================================== Data Pekerja Berjalan ================================================== -->
             <grid style="border:0">
                 <columns>
                     <column align="left" width="15%"/>
@@ -136,17 +135,15 @@
                 <rows>
                     <row>
                         <label/>
-                        <button onClick="@command('buttonKlikDataBankForm')" label=" + Tambah Data Pekerjaan Berjalan" width="28%" />
+                        <button label=" + Tambah Data Pekerjaan Berjalan" width="28%" />
                     </row>
                 </rows>
             </grid>
             <groupbox>
                 <caption label="Data Pekerjaan yang sedang berjalan" style="font-size:10pt; font-weight: bold"/>
-                <!--<paging forward="onPaging" />-->
-                <listbox rows = "8" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataBankDTOs)">
-                
+                <listbox rows = "8" emptyMessage="Data Tidak Ditemukan" >
                     <listhead>
-                        <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idDataBank)"/>
+                        <listheader label="No" width="5%" align="center" sortDirection="ascending" sort="auto(idPengalamanBerjalan)"/>
                         <listheader label="Nama" width="15%" align="center"/>
                         <listheader label="Alamat" width="25%" align="center"/>
                         <listheader label="Bidang Usaha" width="12.5%" align="center"/>
@@ -159,46 +156,35 @@
                     <template name="model">
                         <listitem value="${each}">
                             <listcell>
-                                <label width="100%" value="@bind(each.idDataBank)"/>
+                                <label width="100%" value="@bind(each.idPengalamanBerjalan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.namaBank)"/>
+                                <label width="100%" value="@bind(each.namaPekerjaan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.noRekening)"/>
+                                <label width="100%" value="@bind(each.lokasiPekerjaan)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.namaNasabah)"/>
+                                <label width="100%" value="@bind(each.bidangUsaha)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.mulaiKerja)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.nilaiKontrak)"/>
                             </listcell>
                             <listcell>
-                                <label width="100%" value="@bind(each.mataUangType)"/>
+                                <label width="100%" value="@bind(each.buktiKerja)"/>
                             </listcell>
                             <listcell>
-                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
+                                <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataPengalaman', object=each)"></a>
                                 <a label=" | " style="font-size:12pt ;color:black"></a>
-                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
+                                <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataPengalaman', object=each)"></a>
                             </listcell>
                         </listitem>
                     </template>
                 </listbox>
             </groupbox>
-            <grid style="border:0">
-                <columns>
-                    <column width="100%" align="center"/>
-                </columns>
-                
-                <rows>
-                    <row>
-                        <button label="Simpan" onClick="@command('buttonSaveDataBank')" width="10%"/>
-                    </row>
-                </rows>
-            </grid>      
         </groupbox>
     </window>
 </zk>

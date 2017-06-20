@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field">
     <class mutable="true" name="com.agit.eProcure.core.domain.vendor.DataPerusahaan" table="AGIT_DATAPERUSAHAAN">
-        <id column="id_privilege" name="id">
-            <generator class="increment"/>
+        <id column="id" name="id">
+             <generator class="org.hibernate.id.IdentityGenerator"/>
         </id>
         <property column="idPerusahaan" name="idPerusahaan" not-null="false"/>
         <property column="pKPType" name="pKPType" not-null="false">
@@ -50,6 +50,10 @@
         <property column="noHP" name="noHP"/>
         <property column="emailCp" name="emailCp"/>
         <property column="noKtp" name="noKtp"/>
+        <set cascade="all" lazy="false" name="dataPenanggungJawabs" table="AGIT_DATAPENANGGUNGJAWAB">
+            <key column="idPerusahaan"/>
+            <one-to-many class="com.agit.eProcure.core.domain.vendor.DataPenanggungJawab"/>
+        </set>
         <property column="createdBy" name="createdBy"/>
         <property column="createdDate" name="createdDate"/>
         <property column="modifiedBy" name="modifiedBy"/>

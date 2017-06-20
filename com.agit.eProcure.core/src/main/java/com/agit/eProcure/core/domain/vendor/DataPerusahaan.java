@@ -7,6 +7,7 @@ import com.agit.eProcure.shared.type.PerusahaanType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -39,6 +40,7 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     private String noHP;
     private String emailCp;
     private String noKtp;
+    private Set<DataPenanggungJawab> dataPenanggungJawabs;
     private String createdBy;
     private Date createdDate;
     private String modifiedBy;
@@ -47,8 +49,7 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
     public DataPerusahaan() {
     }
 
-    public DataPerusahaan(long id, String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
-        this.id = id;
+    public DataPerusahaan( String idPerusahaan, PKPType pKPType, KualifikasiType kualifikasiType, UnitType unitType, String namaPerusahaan, PerusahaanType perusahaanType, String npwp, String namaSingkatan, String jumlahKaryawan, Date tanggalBerdiri, String deskripsi, String alamatPerusahaan, String propinsi, String kota, String poBox, String kodePos, String telpPerusahaan, String noFax, String emailPerusahaan, String website, String namaCp, String noHP, String emailCp, String noKtp, Set<DataPenanggungJawab> dataPenanggungJawabs, String createdBy, Date createdDate, String modifiedBy, Date modifiedDate) {
         this.idPerusahaan = idPerusahaan;
         this.pKPType = pKPType;
         this.kualifikasiType = kualifikasiType;
@@ -73,18 +74,11 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.noHP = noHP;
         this.emailCp = emailCp;
         this.noKtp = noKtp;
+        this.dataPenanggungJawabs = dataPenanggungJawabs;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.modifiedBy = modifiedBy;
         this.modifiedDate = modifiedDate;
-    }
-    
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getIdPerusahaan() {
@@ -311,6 +305,14 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.modifiedDate = modifiedDate;
     }
 
+    public Set<DataPenanggungJawab> getDataPenanggungJawabs() {
+        return dataPenanggungJawabs;
+    }
+
+    public void setDataPenanggungJawabs(Set<DataPenanggungJawab> dataPenanggungJawabs) {
+        this.dataPenanggungJawabs = dataPenanggungJawabs;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -388,6 +390,7 @@ public class DataPerusahaan implements EntityObject<DataPerusahaan> {
         this.noHP = dataPerusahaan.noHP;
         this.emailCp = dataPerusahaan.emailCp;
         this.noKtp = dataPerusahaan.noKtp;
+        this.dataPenanggungJawabs = dataPerusahaan.dataPenanggungJawabs;
         this.createdBy = dataPerusahaan.createdBy;
         this.createdDate = dataPerusahaan.createdDate;
         this.modifiedBy = dataPerusahaan.modifiedBy;

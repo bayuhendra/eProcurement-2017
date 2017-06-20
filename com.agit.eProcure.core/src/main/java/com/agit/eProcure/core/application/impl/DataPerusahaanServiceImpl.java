@@ -2,20 +2,24 @@ package com.agit.eProcure.core.application.impl;
 
 import com.agit.eProcure.common.application.DataPerusahaanService;
 import com.agit.eProcure.common.dto.vendor.DataPerusahaanDTO;
+import com.agit.eProcure.core.domain.vendor.DataPenanggungJawab;
+import com.agit.eProcure.core.domain.vendor.DataPenanggungJawabBuilder;
+import com.agit.eProcure.core.domain.vendor.DataPenanggungJawabRepository;
 import com.agit.eProcure.core.domain.vendor.DataPerusahaan;
 import com.agit.eProcure.core.domain.vendor.DataPerusahaanBuilder;
 import com.agit.eProcure.core.domain.vendor.DataPerusahaanRepository;
+import com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataPenanggungJawabDTOAssembler;
 import com.agit.eProcure.core.interfaces.web.facade.dto.assembler.vendor.DataPerusahaanDTOAssembler;
 import com.agit.eProcure.shared.type.JabatanType;
-import com.agit.eProcure.shared.type.KotaType;
 import com.agit.eProcure.shared.type.KualifikasiType;
 import com.agit.eProcure.shared.type.PKPType;
 import com.agit.eProcure.shared.type.PerusahaanType;
-import com.agit.eProcure.shared.type.PropinsiType;
 import com.agit.eProcure.shared.type.UnitType;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import org.apache.commons.lang.Validate;
 
@@ -25,6 +29,8 @@ import org.apache.commons.lang.Validate;
  */
 public class DataPerusahaanServiceImpl implements DataPerusahaanService {
 
+    private DataPenanggungJawabRepository dataPenanggungJawabRepository;
+    private DataPenanggungJawabDTOAssembler dataPenanggungJawabDTOAssembler;
     private DataPerusahaanRepository dataPerusahaanRepository;
     private DataPerusahaanDTOAssembler dataPerusahaanDTOAssembler;
 
@@ -34,6 +40,14 @@ public class DataPerusahaanServiceImpl implements DataPerusahaanService {
 
     public void setDataPerusahaanDTOAssembler(DataPerusahaanDTOAssembler dataPerusahaanDTOAssembler) {
         this.dataPerusahaanDTOAssembler = dataPerusahaanDTOAssembler;
+    }
+
+    public void setDataPenanggungJawabRepository(DataPenanggungJawabRepository dataPenanggungJawabRepository) {
+        this.dataPenanggungJawabRepository = dataPenanggungJawabRepository;
+    }
+
+    public void setDataPenanggungJawabDTOAssembler(DataPenanggungJawabDTOAssembler dataPenanggungJawabDTOAssembler) {
+        this.dataPenanggungJawabDTOAssembler = dataPenanggungJawabDTOAssembler;
     }
 
     @Override
@@ -70,7 +84,11 @@ public class DataPerusahaanServiceImpl implements DataPerusahaanService {
     @Override
     public List<DataPerusahaanDTO> findAll() {
         Validate.notNull(dataPerusahaanRepository);
-        return (List<DataPerusahaanDTO>) dataPerusahaanDTOAssembler.toDTO((List<DataPerusahaan>) dataPerusahaanRepository.findAll());
+        List<DataPerusahaan> listDataPerusahaan= dataPerusahaanRepository.findAll();
+        if (listDataPerusahaan != null) {
+            return dataPerusahaanDTOAssembler.irDomain2irDTO(listDataPerusahaan);
+        }
+        return null;
     }
 
     @Override
@@ -85,8 +103,23 @@ public class DataPerusahaanServiceImpl implements DataPerusahaanService {
 
     @Override
     public DataPerusahaanDTO getDummyData() {
+        DataPenanggungJawab x = new DataPenanggungJawabBuilder()
+                .setIdPerusahaan("11")
+                .setIdPenanggungJawab("111")
+                .setNamaPenanggungJawab("NamaPenanggungJawab")
+                .setJabatanType(JabatanType.MANAGER)
+                .setEmailPenanggungJawab("EmailPenanggungJawab")
+                .setCreatedBy("ADMIN")
+                .setCreatedDate(new Date())
+                .setModifiedBy("ADMIN")
+                .setModifiedDate(new Date())
+                .createDataPenanggungJawab();
+
+        Set<DataPenanggungJawab> dataPenanggungJawabs = new HashSet<>();
+        dataPenanggungJawabs.add(x);
+
         DataPerusahaan p = new DataPerusahaanBuilder()
-                .setIdPerusahaan((UUID.randomUUID().toString()))
+                .setIdPerusahaan("111")
                 .setPKPType(PKPType.PKP)
                 .setKualifikasiType(KualifikasiType.KECIL)
                 .setUnitType(UnitType.PT_ASTRA_INTERNATIONAL_Tbk)
@@ -110,6 +143,7 @@ public class DataPerusahaanServiceImpl implements DataPerusahaanService {
                 .setNoHP("noHP")
                 .setEmailCp("emailCp")
                 .setNoKtp("noKtp")
+                .setDataPenanggungJawabs(dataPenanggungJawabs)
                 .setCreatedBy("ADMIN")
                 .setCreatedDate(new Date())
                 .setModifiedBy("ADMIN")

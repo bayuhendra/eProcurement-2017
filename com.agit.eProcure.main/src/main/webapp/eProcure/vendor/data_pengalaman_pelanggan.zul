@@ -1,5 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<zk xmlns="http://www.zkoss.org/2005/zul">
-
+<zk xmlns:x="xhtml">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.agit.eProcure.main.viewmodel.vendor.VendorVM')"
+            form="@id('fx') @load(vm.dataPengalamanDTO) @save(vm.dataPengalamanDTO, before='buttonSaveDataPengalaman')">
+        <separator spacing="5px"/>
+        <groupbox width="600px">
+            <caption label="Pengalaman Pekerjaan" style="font-size:16pt;font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="3%"></column>
+                    <column width="30%"></column>
+                    <column width="30%"></column>
+                    <column></column>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="*) " style="color:red"/>
+                        <label value="Nama Pekerjaan" style="font-weight: bold"/>
+                        <textbox width="100%" disabled="false" value="@bind(fx.namaPekerjaan)"/>
+                    </row>
+                    <row>
+                        <label value="*) " style="color:red"/>
+                        <label value="Lokasi Pekerjaan" style="font-weight: bold"/>
+                        <textbox width="100%" disabled="false" value="@bind(fx.lokasiPekerjaan)"/>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Bidang Usaha" style="font-weight: bold"/>
+                        <combobox autodrop="true" model="@load(vm.bidangUsahaTypes)" selectedItem="@bind(fx.bidangUsaha)" readonly="true" width="100%" placeholder="- Pilihan Bidang Usaha -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
+                            </template>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Mulai Kerja Sama" style="font-weight: bold"/>
+                        <datebox format="dd/MM/yyyy" constraint="no empty" width="100%" readonly="true" value="@bind(fx.mulaiKerja)"/>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Nilai Kontrak" style="font-weight: bold"/>
+                        <doublebox format="#,##0.##" placeholder="0.00" width="100%" value="@bind(fx.nilaiKontrak)"/>
+                        <combobox autodrop="true" readonly="true" width="70%" placeholder="- Pilihan Mata Uang -">
+                            <template name="model" var="items">
+                                <comboitem label="@load(items)" value="@load(items)"/>
+                            </template>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="*)" style="color:red"/>
+                        <label value="Bukti Kerja Sama" style="font-weight: bold"/>
+                        <textbox width="100%" readonly="true" value="@bind(vm.mediaNameUploadHeaderImage)"/>
+                        <button label="Upload" upload="true" onUpload="@command('uploadFileHeaderImage')" width="60%">
+                        </button>
+                        
+                    </row>
+                </rows>
+            </grid>
+            <grid style="border:0">
+                
+                <columns>
+                    <column align="right" width="50%"/>
+                    <column align="left" width="50%"/>
+                </columns>
+                
+                <rows>
+                    <row>
+                        <button label="Kembali" width="30%" onClick = "@command('buttonKembaliDataSegmentasi')"/>
+                        <button label="Save" width="30%" onClick = "@command('buttonSaveDataSegmentasi')"/>
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+        
+    </window>
 </zk>
