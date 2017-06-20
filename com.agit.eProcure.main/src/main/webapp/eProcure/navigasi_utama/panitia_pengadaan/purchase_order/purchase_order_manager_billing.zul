@@ -1,0 +1,99 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <radiogroup id="asd"/>
+        <separator spacing="15px"/>
+        <groupbox width="800px" closable="false">
+            <caption label="Billing" style="font-size:16pt; font-weight: bold"/>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="30%" align="right" />
+                    <column width="50%" align="center" />
+                    <column width="20%" />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Vendor" style="font-weight:bold" />
+                        <combobox width="100%" />
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="PO Number" style="font-weight:bold" />
+                        <textbox width="100%" readonly="true" />
+                        <button label="Generate"/>
+                    </row>
+                    <row>
+                        <label value="PO Date" style="font-weight:bold" />
+                        <datebox width="100%" readonly="true"/>
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="PR Number" style="font-weight:bold" />
+                        <combobox width="100%" />
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="Company Name" style="font-weight:bold" />
+                        <textbox width="100%" />
+                        <cell/>
+                    </row>
+                </rows>
+            </grid>
+            
+            <grid style="border:0">
+                <columns><column/></columns>
+                <rows>
+                    <row>
+                        <label value="Select billing address from your address book or enter a new address" style="font-weight:bold" />
+                    </row>
+                    <row>
+                        <combobox width="100%" />   
+                    </row>
+                </rows>
+            </grid>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="30%" align="right" />
+                    <column width="50%" align="center" />
+                    <column width="20%" />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Full Name" style="font-weight:bold" />
+                        <textbox width="100%" />
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="Address" style="font-weight:bold" />
+                        <textbox width="100%" />
+                        <cell/>
+                    </row>
+                    <row>
+                        <label value="Phone" style="font-weight:bold" />
+                        <textbox width="100%" />
+                        <cell/>
+                    </row>
+                    <row>
+                        <cell/>
+                        <grid style="border:0">
+                            <columns><column width="50%"/><column width="50%"/></columns>
+                            <rows>
+                                <row>
+                                    <radio label="Ship to this address" radiogroup="asd"/>
+                                    <radio label="Ship to different address" radiogroup="asd"/>
+                                </row>
+                            </rows>
+                        </grid>
+                        <cell/>
+                    </row>
+                    <row>
+                        <button label="Back" />
+                        <cell/>
+                        <button label="Next" />
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+    </window>
+</zk>

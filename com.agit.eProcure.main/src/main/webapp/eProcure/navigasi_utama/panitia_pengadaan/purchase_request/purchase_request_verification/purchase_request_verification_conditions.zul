@@ -1,0 +1,31 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <groupbox width="1000px" closable="false">
+            <caption label="Term and Condition" style="font-size:16pt; font-weight: bold"/>
+            <grid style="border:0">
+                <columns>
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <textbox value="binding" rows="5" readonly="true" width="100%"/>
+                    </row>
+                </rows>
+            </grid>
+                
+            <grid style="border:0">
+                <columns>
+                    <column width="50%"/>
+                    <column width="50%" align="right"/>
+                </columns>
+                <rows>
+                    <row>
+                        <button label="Back"/>
+                        <button label="Next"/>
+                    </row>
+                </rows>
+            </grid>
+                
+        </groupbox>
+    </window>
+</zk>

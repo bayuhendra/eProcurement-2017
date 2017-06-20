@@ -1,0 +1,38 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <groupbox width="600px" height="300px" closable="false">
+            <caption label="Approval" style="font-size:16pt; font-weight: bold"/>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="50%" align="right"/>
+                    <column width="50%" />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Procurement - AI" />
+                        <checkbox />
+                    </row>
+                </rows>
+            </grid>
+            
+            <separator height="200px"/>
+            <grid style="border:0">
+                <columns>
+                    <column width="30%" align="right"/>
+                    <column width="40%" align="center"/>
+                    <column width="30%" align="left"/>
+                </columns>
+                <rows>
+                    <row>
+                        <button label="Kembali" />
+                        <button label="Simpan" />
+                        <button label="Kembali - Index" />
+                    </row>
+                </rows>
+            </grid>
+            
+            
+        </groupbox>
+    </window>
+</zk>

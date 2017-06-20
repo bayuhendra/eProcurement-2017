@@ -1,0 +1,75 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <separator spacing="15px"/>
+        <groupbox width="800px" closable="false">
+            <caption label="Shipping" style="font-size:16pt; font-weight: bold"/>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="30%" align="right"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Company Name"/>
+                        <label value="binding" />
+                    </row>
+                    <row>
+                        <label value="Full Name"/>
+                        <label value="binding" />
+                    </row>
+                    <row>
+                        <label value="Address"/>
+                        <label value="binding" />
+                    </row>
+                    <row>
+                        <label value="Phone"/>
+                        <label value="binding" />
+                    </row>
+                </rows>
+            </grid>
+                
+            <grid style="border:0">
+                <columns>
+                    <column width="5%" />
+                    <column width="35%" />
+                    <column width="15%" />
+                    <column width="15%" />
+                    <column width="15%" />
+                    <column width="15%" />
+                </columns>
+                <rows>
+                    <row>
+                        <cell/>
+                        <label value="Nama Item" style="font-weight:bold"/>
+                        <label value="Jumlah Item Pengiriman" style="font-weight:bold" />
+                        <label value="Jumlah Total Item" style="font-weight:bold" />
+                        <label value="Harga Satuan (IDR)" style="font-weight:bold" />
+                        <label value="Harga Total (IDR)" style="font-weight:bold" />
+                    </row>
+                    <row>
+                        <cell/>
+                        <label value="binding" />
+                        <label value="binding" />
+                        <label value="binding" />
+                        <label value="binding" />
+                        <label value="binding" />
+                    </row>
+                </rows>
+            </grid>
+            
+            <grid style="border:0">
+                <columns>
+                    <column width="70%" />
+                    <column width="20%" align="right" />
+                </columns>
+                <rows>
+                    <row>
+                        <button label="Back" width="10%"/>
+                        <button label="Next" width="40%"/>
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+    </window>
+</zk>

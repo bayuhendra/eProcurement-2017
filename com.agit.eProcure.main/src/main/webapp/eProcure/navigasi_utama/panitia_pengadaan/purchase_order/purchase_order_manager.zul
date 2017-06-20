@@ -1,31 +1,26 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window>
+    <window >
         <groupbox width="1000px" closable="false" mold="3d">
             <caption label="Purchase Request" style="font-size:16pt; font-weight: bold" />
             
             <grid >
                 <columns>
-                    <column width="10%" align="center" />
-                    <column width="18%" align="center" />
-                    <column width="18%" align="center" />
-                    <column width="18%" align="center" />
-                    <column width="18%" align="center" />
-                    <column width="18%" align="center" />
+                    <column width="30%" align="center" />
+                    <column width="30%" align="center" />
+                    <column width="40%" align="center" />
                 </columns>
                 <rows>
                     <row>
-                        <label value="All" />
-                        <label value="Need Verification" />
-                        <label value="On Process" />
-                        <label value="Received" />
-                        <label value="Approval Process" />
-                        <label value="Procurement Process" />
+                        <cell/>
+                        <cell/>
+                        <button label="+ Add New PO"/>
                     </row>
-                    
                     <row>
-                        <label value="10" />
-                        <label value="10" />
-                        <label value="10" />
+                        <label value="All" />
+                        <label value="On Process" />
+                        <label value="Done" />
+                    </row>
+                    <row>
                         <label value="10" />
                         <label value="10" />
                         <label value="10" />
@@ -45,31 +40,23 @@
                         <label value="Search" />
                         <textbox width="40%" />
                         <label value="Sort by" />
-                        <combobox width="100%" />
+                        <combobox width="100%" readonly="true"/>
                     </row>
                 </rows>
             </grid>
             
             <listbox rows = "9" emptyMessage="Data Tidak Ditemukan" model="@bind(vm.dataBankDTOs)">
                 <listhead sizable="false">
-                    <listheader label="No" align="center" width="2.5%" />
-                    <listheader label="PR Number" align="center" width="12.5%" />
-                    <listheader label="Description" align="center" width="12.5%" />
-                    <listheader label="Department" align="center" width="12.5%" />
-                    <listheader label="Total Cost(IDR)" align="center" width="12.5%" />
-                    <listheader label="Required Date" align="center" width="12.5%" />
-                    <listheader label="Post Date" align="center" width="12.5%" />
-                    <listheader label="Status" align="center" width="12.5%" />
+                    <listheader label="PO Number" align="center" width="20%" />
+                    <listheader label="PR Number" align="center" width="20%" />
+                    <listheader label="Department" align="center" width="10%" />
+                    <listheader label="Total Cost(IDR)" align="center" width="10%" />
+                    <listheader label="Post Date" align="center" width="10%" />
+                    <listheader label="Status" align="center" width="10%" />
                     <listheader label="Action" align="center" width="10%" />
                 </listhead>
                 <template name="model">
                     <listitem value="${each}">
-                        <listcell>
-                            <label width="100%" value="@bind(each.idDataBank)"/>
-                        </listcell>
-                        <listcell>
-                            <label width="100%" value="@bind(each.idDataBank)"/>
-                        </listcell>
                         <listcell>
                             <label width="100%" value="@bind(each.idDataBank)"/>
                         </listcell>
@@ -89,9 +76,9 @@
                             <label width="100%" value="@bind(each.mataUangType)"/>
                         </listcell>
                         <listcell>
-                            <a label="Edit" style="text-decoration:underline ;color:blue" onClick="@command('detailDataBank', object=each)"></a>
-                            <a label=" | " style="font-size:12pt ;color:black"></a>
-                            <a label="Delete" style="text-decoration:underline ;color:blue" onClick="@command('deleteDataBank', object=each)"></a>
+                            <hbox>
+                                <button id="" label="Verify"/>
+                            </hbox>	
                         </listcell>
                     </listitem>
                 </template>

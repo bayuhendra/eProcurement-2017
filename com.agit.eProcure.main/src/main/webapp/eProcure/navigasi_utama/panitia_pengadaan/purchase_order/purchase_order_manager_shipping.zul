@@ -1,0 +1,19 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window apply="org.zkoss.bind.BindComposer">
+        <separator spacing="15px"/>
+        <groupbox width="800px" closable="false">
+            <grid>
+                <columns>
+                    <column width="30%"align="right"/>
+                    <column />
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Company Name"/>
+                        
+                    </row>
+                </rows>
+            </grid>
+        </groupbox>
+    </window>
+</zk>
